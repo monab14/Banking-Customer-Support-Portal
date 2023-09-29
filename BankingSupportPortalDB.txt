@@ -1,0 +1,59 @@
+create database customersupport;
+-- Create Customers table
+CREATE TABLE Customers (
+    customer_id INT PRIMARY KEY,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+    email VARCHAR(100),
+    phone_number VARCHAR(15),
+    address VARCHAR(255)
+);
+
+-- Complaints Table
+CREATE TABLE Complaints(
+    complaint_id INT PRIMARY KEY,
+    customer_id INT,
+    category VARCHAR(50),
+    description TEXT,
+    status VARCHAR(20),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    resolved_at TIMESTAMP,
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+);
+
+-- FAQs Table
+CREATE TABLE FAQs (
+    faq_id INT PRIMARY KEY,
+    category VARCHAR(255),
+    question TEXT,
+    answer TEXT
+);
+
+-- ChatBotRequests Table
+CREATE TABLE ChatBotRequests (
+    request_id INT PRIMARY KEY,
+    customer_id INT,
+    query TEXT,
+    response TEXT,
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+);
+
+-- SupportTeams Table
+CREATE TABLE SupportTeam (
+    team_id INT PRIMARY KEY,
+    team_name VARCHAR(100)
+);
+
+-- Assignments Table
+CREATE TABLE Assignments (
+    assignment_id INT PRIMARY KEY,
+    complaint_id INT,
+    team_id INT,
+    assigned_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(255),
+    FOREIGN KEY (complaint_id) REFERENCES Complaints(complaint_id),
+    FOREIGN KEY (team_id) REFERENCES SupportTeam(team_id)
+);
+
+
