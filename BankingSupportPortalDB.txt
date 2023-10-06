@@ -11,9 +11,16 @@ CREATE TABLE Customers (
     address VARCHAR(255)
 );
 
+-- Create Admins table
+CREATE TABLE Admins (
+    admin_id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) UNIQUE,
+    password VARCHAR(255)
+);
+
 -- Complaints Table
 CREATE TABLE Complaints(
-    complaint_id INT PRIMARY KEY,
+    complaint_id INT PRIMARY KEY AUTO_INCREMENT,
     customer_id INT,
     category VARCHAR(50),
     description TEXT,
@@ -25,7 +32,7 @@ CREATE TABLE Complaints(
 
 -- FAQs Table
 CREATE TABLE FAQs (
-    faq_id INT PRIMARY KEY,
+    faq_id INT PRIMARY KEY AUTO_INCREMENT,
     category VARCHAR(255),
     question TEXT,
     answer TEXT
@@ -33,7 +40,7 @@ CREATE TABLE FAQs (
 
 -- ChatBotRequests Table
 CREATE TABLE ChatBotRequests (
-    request_id INT PRIMARY KEY,
+    request_id INT PRIMARY KEY AUTO_INCREMENT,
     customer_id INT,
     query TEXT,
     response TEXT,
@@ -43,13 +50,13 @@ CREATE TABLE ChatBotRequests (
 
 -- SupportTeams Table
 CREATE TABLE SupportTeam (
-    team_id INT PRIMARY KEY,
+    team_id INT PRIMARY KEY AUTO_INCREMENT,
     team_name VARCHAR(100)
 );
 
 -- Assignments Table
 CREATE TABLE Assignments (
-    assignment_id INT PRIMARY KEY,
+    assignment_id INT PRIMARY KEY AUTO_INCREMENT,
     complaint_id INT,
     team_id INT,
     assigned_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -57,5 +64,38 @@ CREATE TABLE Assignments (
     FOREIGN KEY (complaint_id) REFERENCES Complaints(complaint_id),
     FOREIGN KEY (team_id) REFERENCES SupportTeam(team_id)
 );
+
+--  EmailCommunications table
+CREATE TABLE EmailCommunications (
+    email_id INT PRIMARY KEY AUTO_INCREMENT,
+    customer_id INT,
+    subject VARCHAR(255),
+    body TEXT,
+    sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+);
+
+-- Tickets table for Chat Bot
+CREATE TABLE Tickets (
+    ticket_id INT PRIMARY KEY AUTO_INCREMENT,
+    customer_id INT,
+    query TEXT,
+    status VARCHAR(20),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    resolved_at TIMESTAMP,
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
+);
+
+--  Reports table for MIS/Reporting
+CREATE TABLE Reports (
+    report_id INT PRIMARY KEY AUTO_INCREMENT,
+    report_name VARCHAR(255),
+    report_data TEXT,
+    generated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+
+
 
 
