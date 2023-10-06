@@ -1,11 +1,13 @@
 create database customersupport;
 -- Create Customers table
 CREATE TABLE Customers (
-    customer_id INT PRIMARY KEY,
+    customer_id INT PRIMARY KEY AUTO_INCREMENT,
     first_name VARCHAR(100),
     last_name VARCHAR(100),
-    email VARCHAR(100),
+    email VARCHAR(100) UNIQUE,
     phone_number VARCHAR(15),
+    aadhar_number VARCHAR(100) UNIQUE,
+    gender VARCHAR(100),
     address VARCHAR(255)
 );
 
