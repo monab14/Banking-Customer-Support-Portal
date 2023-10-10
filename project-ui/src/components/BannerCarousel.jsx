@@ -4,7 +4,7 @@ import { Carousel } from 'react-bootstrap';
 
 const BannerCarousel = () => {
     return (
-    <div classname="col text-center container mb-3">
+    <div className="col text-center container mb-3">
     <Carousel>
       <Carousel.Item>
         <img
