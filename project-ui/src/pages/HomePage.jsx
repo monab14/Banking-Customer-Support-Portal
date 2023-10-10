@@ -1,7 +1,8 @@
 import React from 'react';
-import BannerCarousel from '../components/BannerCarousel'; // Import your banner carousel component
-import FaqSection from '../components/FaqSection'; // Import your FAQ component
-import Chatbot from '../components/Chatbot'; // Import your Chatbot component
+import BannerCarousel from '../components/BannerCarousel'; 
+import FaqSection from '../components/FaqSection'; 
+import Chatbot from '../components/Chatbot'; 
+import NavBar from '../NavBar';
 function HomePage() {
     const containerStyle = {
         backgroundColor: '#F0F2EF',
@@ -13,9 +14,10 @@ function HomePage() {
         <div className= " container mb-5 mt-5 rounded" style={containerStyle}>
             <h1 style={{ color: '#750D37' }}>Welcome to Axis bank</h1>
         </div>
-    <BannerCarousel />
-    <FaqSection />
-    <Chatbot />
+        <BannerCarousel />
+        <NavBar />
+        <FaqSection />
+        <Chatbot />
     </div>
   );
 }
