@@ -67,8 +67,8 @@ const iconStyle = {
 
 const logoStyle = {
   position: 'absolute',
-  top: '1px', // Adjust top position as needed
-  left: '2px', // Adjust left position as needed
+  top: '1px', 
+  left: '2px', 
 };
 
 const AdminLoginPage = () => {
