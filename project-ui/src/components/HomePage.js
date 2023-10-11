@@ -1,7 +1,7 @@
 import React from 'react';
-import BannerCarousel from '../components/BannerCarousel'; 
-import FaqSection from '../components/FaqSection'; 
-import Chatbot from '../components/Chatbot'; 
+import BannerCarousel from './BannerCarousel'; 
+import FaqSection from './FaqSection'; 
+import Chatbot from './Chatbot'; 
 //import NavBar from '../components/NavBar';
 
 const HomePage = () => {
