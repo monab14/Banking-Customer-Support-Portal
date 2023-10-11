@@ -23,7 +23,4 @@ function App() {
 
 
 export default App;
-// =======
-// export default App;
 
-// >>>>>>> 8d45f24 (login and adminloginpage)
