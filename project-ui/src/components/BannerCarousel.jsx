@@ -9,28 +9,28 @@ const BannerCarousel = () => {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="https://pbs.twimg.com/media/E5byoNYVgAI3CbO.jpg:large"
+          src="1.jpg"
           alt="First slide"
         />
       </Carousel.Item>
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="https://pbs.twimg.com/media/DREI57oV4AEIZSV?format=jpg&name=900x900"
+          src="2.jpg"
           alt="Second slide"
         />
       </Carousel.Item>
       <Carousel.Item>
     <img
           className="d-block w-100"
-          src="https://pbs.twimg.com/profile_banners/714003800/1662109997/600x200"
+          src="3.jpg"
           alt="Third slide"
         />
     </Carousel.Item>
     <Carousel.Item>
         <img
           className="d-block w-100"
-          src="https://pbs.twimg.com/media/DEXD0jpUQAEjINJ?format=jpg&name=small"
+          src="4.jpg"
           alt="fourth slide"
         />
           </Carousel.Item>
