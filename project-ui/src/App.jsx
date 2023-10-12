@@ -1,13 +1,14 @@
 import React from 'react';
-import {  Routes, Route } from 'react-router-dom';
+import {  Routes, Route, useNavigate } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import HomePage from './components/HomePage';
-
+import ThankYouPage from './pages/customer/ThankYouPage';
 import LoginPage from './pages/customer/LoginPage';
 import AdminLoginPage from './pages/Admin/Adminlogin';
 import RegistrationPage from './pages/customer/RegistrationPage';
 
 function App() {
+  const navigate = useNavigate();
   return (
     <div className="App">
       <NavBar/>
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/Adminlogin" element={<AdminLoginPage />} />
         <Route path="/RegistrationPage" element={<RegistrationPage />} />
+        <Route path="/thank-you" element={<ThankYouPage navigate={navigate} />} />
 
         </Routes>
      
