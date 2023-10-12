@@ -16,7 +16,7 @@ const FaqSection = () => {
   return (
     <div className="faq-section">
       <div className="container mt-5 mb-5 rounded" style={containerStyle}>
-        <h2 style={{ color: '#750D37' }}>Frequently Asked Questions</h2>
+        <h2 class="text-center" style={{ color: '#750D37' }}>Frequently Asked Questions</h2>
       </div>
       {faqs.map((faq, index) => (
         <div key={index} className="faq-item mt-3 mb-3">
