@@ -9,35 +9,35 @@ const BannerCarousel = () => {
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="1.jpg"
+          src="MonaImages/1.jpg"
           alt="First slide"
         />
       </Carousel.Item>
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="2.jpg"
+          src="MonaImages/2.jpg"
           alt="Second slide"
         />
       </Carousel.Item>
       <Carousel.Item>
     <img
           className="d-block w-100"
-          src="3.jpg"
+          src="MonaImages/3.jpg"
           alt="Third slide"
         />
     </Carousel.Item>
     <Carousel.Item>
         <img
           className="d-block w-100"
-          src="4.jpg"
+          src="MonaImages/4.jpg"
           alt="fourth slide"
         />
           </Carousel.Item>
           <Carousel.Item>
         <img
           className="d-block h-90 w-100"
-          src="5.jpg"
+          src="MonaImages/5.jpg"
           alt="fifth slide" 
         />
       </Carousel.Item>

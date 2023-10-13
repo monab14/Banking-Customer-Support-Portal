@@ -1,5 +1,6 @@
 import React from 'react';
 import login from "../../images/login.png";
+import NavBar from '../../components/NavBar';
 
 const imageStyle = {
   width: '50%',
@@ -65,6 +66,7 @@ const logoStyle = {
 
 const LoginPage = () => {
   return (
+    <div><NavBar/>
     <div className="login-page" style={{ display: 'flex', width: '100vw', height: '100vh' }}>
       <div className = " mt-5" style={{ ...imageStyle }}>
         <img
@@ -119,7 +121,7 @@ const LoginPage = () => {
         </form>
         </div>
       </div>
-    </div>
+    </div></div>
   );
 };
 
