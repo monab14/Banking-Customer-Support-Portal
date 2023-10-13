@@ -6,6 +6,7 @@ import ThankYouPage from './pages/customer/ThankYouPage';
 import LoginPage from './pages/customer/LoginPage';
 import AdminLoginPage from './pages/Admin/Adminlogin';
 import RegistrationPage from './pages/customer/RegistrationPage';
+import AboutUs from './pages/NavBarItems/AboutUs';
 
 function App() {
   const navigate = useNavigate();
@@ -20,6 +21,7 @@ function App() {
         <Route path="/Adminlogin" element={<AdminLoginPage />} />
         <Route path="/RegistrationPage" element={<RegistrationPage />} />
         <Route path="/thank-you" element={<ThankYouPage navigate={navigate} />} />
+        <Route path="/aboutUs" element={<AboutUs />} />
 
         </Routes>
      

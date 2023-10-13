@@ -5,7 +5,7 @@ const NavBar = () => {
         <div>
             <nav className="navbar navbar-expand-lg fixed" style={{ backgroundColor: '#871f40' }}>
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="#"><img src='axislogo.jpg' style={{ height: '2cm', width: '10cm', padding: '12px 80px' }} alt="Logo" /></a>
+                    <a className="navbar-brand" href="#"><img src='MonaImages/axislogo.jpg' style={{ height: '2cm', width: '10cm', padding: '12px 80px' }} alt="Logo" /></a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
                     </button>
@@ -28,7 +28,7 @@ const NavBar = () => {
                                 <a className="nav-link active" aria-current="page" href="#" style={{ color: 'white' }}>NRI</a>
                             </li> */}
                             <li className="nav-item">
-                                <a className="nav-link" href="#" style={{ color: 'white' }}>About Us</a>
+                                <a className="nav-link" href="/aboutUs" style={{ color: 'white' }}>About Us</a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link active" aria-current="page" href="#" style={{ color: 'white' }}>Support</a>
