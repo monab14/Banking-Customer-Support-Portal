@@ -6,6 +6,8 @@ import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import registrationImage from '../images/registrationImage.jpeg'
 import smallImage from '../images/smallImage.png'
+import NavBar from './NavBar';
+
 
 const RegistrationForm = () => {
     const navigate = useNavigate();
@@ -112,7 +114,10 @@ const handlePasswordSubmit = (e) => {
 
     
 return (
+    <div>
+        <NavBar/>
     <div className="container mt-5 mb-5 ">
+        
     <div className="row justify-content-center" >
         <div className="col-md-6" style={{ backgroundColor: '#F0F2EF',  borderRadius: '10px' }} >
         <div className= "container mt-5 mb-2">
@@ -346,7 +351,7 @@ return (
         </div>
     </div>
     <ToastContainer />
-    </div>
+    </div> </div>
   );
 };
 
