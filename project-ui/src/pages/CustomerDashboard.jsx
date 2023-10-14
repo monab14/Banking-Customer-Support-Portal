@@ -121,11 +121,14 @@ const CustomerDashboard = () => {
             </div>
           </div>
           <div className="col-md-10">
-  <div className="mt-3">
+  <div className="mt-2">
     <div className="d-flex align-items-center justify-content-between">
-      <div className="col-md-6">
-        <h2>Dashboard</h2>
+    <div className="col-md-8">
+    <h2 style={{ marginLeft: '50px' }}>Dashboard</h2>
+
       </div>
+    <div className="col-md-6"></div> 
+      
       <div className="d-flex align-items-center ml-auto ">
         <div className="mr-2">
           <h5>{customerData ? `${customerData.firstName} ${customerData.lastName}` : 'Your Profile'}</h5>
@@ -170,7 +173,7 @@ const CustomerDashboard = () => {
       </div>
    </div>
 
-<div className="container bg-white p-5 mt-1" style={{ height: '1200px', width: '1200px', marginLeft: '20px' }}>
+<div className="container bg-white p-5 mt-1" style={{ height: '1200px', width: '1200px', marginLeft: '70px' }}>
     <div className="row"> 
       <div className="col-md-4 mb-4"> 
         <div className="card mt-4 w-70"> 
