@@ -46,7 +46,6 @@ const AdminAddFaq = () => {
     FaqService.saveFaq(faq)
       .then((res) => {
         console.log("Faq Added Successfully");
-        setMsg("Faq Added Successfully");
         toast.success("FAQ Added Successfully");
 
         setFaq({
