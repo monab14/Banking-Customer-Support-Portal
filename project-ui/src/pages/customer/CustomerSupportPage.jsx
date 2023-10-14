@@ -1,4 +1,5 @@
 import React from 'react';
+import SupportNavBar from './SupportNavBar';
 
 const CustomerSupportPage = () => {
     const containerStyle = {
@@ -45,7 +46,9 @@ const CustomerSupportPage = () => {
     };
 
     return (
-        <div style={containerStyle}>
+        
+        <div>
+            <SupportNavBar/>
             <div style={headerStyle}>Logo</div>
             <div style={contentContainerStyle}>
                 <h1>Contact Our Customer Support</h1>

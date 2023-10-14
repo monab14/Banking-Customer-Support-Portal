@@ -31,7 +31,7 @@ const NavBar = () => {
                                 <a className="nav-link" href="/aboutUs" style={{ color: 'white' }}>About Us</a>
                             </li>
                             <li className="nav-item mx-2">
-                                <a className="nav-link active" aria-current="page" href="#" style={{ color: 'white' }}>Support</a>
+                                <a className="nav-link active" aria-current="page" href="/Support" style={{ color: 'white' }}>Support</a>
                             </li>
                             <li className="nav-item mx-2">
                                 <a className="nav-link" href="#" style={{ color: 'white' }}>Bank Smart</a>
@@ -50,8 +50,8 @@ const NavBar = () => {
                                     </ul>
                                 </div>
                             </li>
-                            <li className="nav-item mx-3" style={{ backgroundColor: '#ffffff', color: '#871f40', borderRadius: '5px', background: '#ffffff', color: '#871f40', border: '1px solid #871f40' }}>
-                                <a href='/login'><button type="button" className="btn" style={{ fontWeight: '', padding: '0.5rem 2rem' }}>
+                            <li className="nav-item mx-3" style={{ backgroundColor: '#ffffff', color: '#871f40', borderRadius: '5px', background: '#ffffff', color: '#ab5571', border: '1px solid #ab5571' }}>
+                                <a href='/login'><button type="button" className="btn" style={{ color: '#871f40', fontWeight: '', padding: '0.5rem 2rem' }}>
                                     <strong>LOGIN</strong>
                                 </button></a>
                             </li>

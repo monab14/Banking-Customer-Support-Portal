@@ -6,12 +6,9 @@ import ThankYouPage from './pages/customer/ThankYouPage';
 import LoginPage from './pages/customer/LoginPage';
 import AdminLoginPage from './pages/Admin/Adminlogin';
 import RegistrationPage from './pages/customer/RegistrationPage';
-<<<<<<< HEAD
 import AboutUs from './pages/NavBarItems/AboutUs';
 import AdminAddFaq from './pages/Admin/AdminAddFaq';
-=======
 import CustomerSupportPage from './pages/customer/CustomerSupportPage';
->>>>>>> c90026d (customerSupport)
 
 function App() {
   const navigate = useNavigate();
@@ -27,12 +24,8 @@ function App() {
         {/* <Route path="/adminAddFaq" element={<AdminAddFaq />} /> */}
         <Route path="/RegistrationPage" element={<RegistrationPage />} />
         <Route path="/thank-you" element={<ThankYouPage navigate={navigate} />} />
-<<<<<<< HEAD
         <Route path="/aboutUs" element={<AboutUs />} />
-
-=======
-        <Route path="/support" element={<CustomerSupportPage />} />
->>>>>>> c90026d (customerSupport)
+        <Route path="/Support" element={<CustomerSupportPage />} />
         </Routes>
      
     </div>
