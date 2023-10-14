@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Dropdown } from 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import { Link } from 'react-router-dom';
 
 const NavBar = () => {
     useEffect(() => {
@@ -22,7 +23,7 @@ const NavBar = () => {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent" style={{ height: '1cm' }}>
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                             <li className="nav-item mx-2">
-                                <a className="nav-link active" aria-current="page" href="#" style={{ color: 'white' }}>Personal</a>
+                                <a className="nav-link active" aria-current="page" href="/" style={{ color: 'white' }}>Personal</a>
                             </li>
                             <li className="nav-item mx-2">
                                 <a className="nav-link" href="#" style={{ color: 'white' }}>Business</a>
