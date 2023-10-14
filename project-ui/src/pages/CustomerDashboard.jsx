@@ -63,7 +63,7 @@ const CustomerDashboard = () => {
     <div style={{ backgroundColor: '#f0f0f0' }}>
       <div className="dashboard-banner d-flex align-items-center justify-content-left" style={{ height: '70px', backgroundColor: '#871f40', color: '#ffffff', padding: '8px' }}>
         <div className="logo" >
-        <img src="/axislogo.jpg" alt="Axis Bank Logo" height="50" />
+        <img src="/MonaImages/axislogo.jpg" alt="Axis Bank Logo" height="50" />
         </div>
       </div>
 
@@ -170,7 +170,7 @@ const CustomerDashboard = () => {
       </div>
    </div>
 
-<div className="container bg-white p-5 mt-1" style={{ height: '1200px', width: '1190px', marginLeft: '20px' }}>
+<div className="container bg-white p-5 mt-1" style={{ height: '1200px', width: '1200px', marginLeft: '20px' }}>
     <div className="row"> 
       <div className="col-md-4 mb-4"> 
         <div className="card mt-4 w-70"> 

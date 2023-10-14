@@ -2,11 +2,7 @@ import React from 'react';
 
 import {  Routes, Route, useNavigate } from 'react-router-dom';
 import NavBar from './components/NavBar';
-import HomePage from './components/HomePage';
 import ThankYouPage from './pages/customer/ThankYouPage';
-
-import { Routes, Route, useNavigate } from 'react-router-dom';
-import NavBar from './components/NavBar';
 import HomePage from './components/HomePage';
 import CustomerDashboard from './pages/CustomerDashboard';
 
