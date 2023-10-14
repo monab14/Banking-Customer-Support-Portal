@@ -1,7 +1,11 @@
 import React from 'react';
 
 import {  Routes, Route, useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
 import NavBar from './components/NavBar';
+=======
+import HomePage from './components/HomePage';
+>>>>>>> 477266c (c)
 import ThankYouPage from './pages/customer/ThankYouPage';
 import HomePage from './components/HomePage';
 import CustomerDashboard from './pages/CustomerDashboard';
@@ -25,7 +29,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/Adminlogin" element={<AdminLoginPage />} />
-        {/* <Route path="/adminAddFaq" element={<AdminAddFaq />} /> */}
+        <Route path="/adminAddFaq" element={<AdminAddFaq />} />
         <Route path="/RegistrationPage" element={<RegistrationPage />} />
         <Route path="/customer-dashboard" element={<CustomerDashboard />} />
       </Routes>
