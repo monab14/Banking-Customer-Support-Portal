@@ -19,7 +19,7 @@ const HomePage = () => {
         <div className="HomePage">
             <NavBar/>
             <div className=" container mb-5 mt-5 rounded" style={containerStyle}>
-                <h1 class="text-center" style={{ color: '#750D37' }}>Welcome to Axis bank</h1>
+                <h1 class="text-center" style={{ color: '#750D37' }}>Welcome to Axis Bank</h1>
             </div>
         
             <BannerCarousel />
