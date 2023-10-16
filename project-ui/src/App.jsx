@@ -8,6 +8,7 @@ import AdminLoginPage from './pages/Admin/Adminlogin';
 import RegistrationPage from './pages/customer/RegistrationPage';
 import AboutUs from './pages/NavBarItems/AboutUs';
 import AdminAddFaq from './pages/Admin/AdminAddFaq';
+import FaqPage from './pages/customer/FaqPage'
 import CustomerSupportPage from './pages/customer/CustomerSupportPage';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/Adminlogin" element={<AdminLoginPage />} />
+        <Route path="/faqs" element={<FaqPage />} /> 
         {/* <Route path="/adminAddFaq" element={<AdminAddFaq />} /> */}
         <Route path="/RegistrationPage" element={<RegistrationPage />} />
         <Route path="/thank-you" element={<ThankYouPage navigate={navigate} />} />

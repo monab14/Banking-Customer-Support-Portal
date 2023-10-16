@@ -1,133 +1,137 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logoAxis from '../../images/logoAxis.jpeg';
-
+import ConfirmationModal    from '../../components/ConfirmationModel';
 const dropdownMenuOptions = [
-    {
-        value: 'instaService',
-        label: 'Insta Service',
-        subOptions: [
-            {
-                value: 'cards',
-                label: 'Cards',
-                subOptions: [
-                    { value: 'debitCard', label: 'Block Debit Card' },
-                    { value: 'creditCard', label: 'Block Credit Card' },
-                    { value: 'UpdateDebitCard', label: 'Update Debit Card' }
-                ]
-            },
-            { value: 'downloads', label: 'Downloads' },
-            { value: 'otherRequests', label: 'Other Requests' },
-            { value: 'loanServices', label: 'Loan Services' },
-            { value: 'myDetails', label: 'My Details' },
-            { value: 'accountDetails', label: 'Account Details' }
-        ]
-    }
+  { value: 'cards', label: 'Cards' },
+  { value: 'updateEmail', label: 'Update Email ID' },
+  { value: 'updateAddress', label: 'Update Address' },
+  { value: 'generateDebitCardPin', label: 'Generate Debit Card PIN' },
+  { value: 'generateCreditCardPin', label: 'Generate Credit Card PIN' },
 ];
 
 const SupportNavBar = () => {
-    const navStyle = {
-        backgroundColor: '#871f40',
-        borderBottom: '1px solid #871f40',
-    };
+    const [isOpen, setIsOpen] = useState(false);
+    const [showConfirmation, setShowConfirmation] = useState(false);
+    const [selectedOption, setSelectedOption] = useState(null);
+    
+  
 
-    const linkStyle = {
-        color: 'white',
-    };
+   const handleDropdownOptionClick = (option) => {
+    setSelectedOption(option);
+    setIsOpen(false);
+       if (option.value !== 'cards') {
+           setShowConfirmation(true);
+       }
+       else {
+           setShowConfirmation(true);
+       }
+  };
 
-    const renderDropright = (options) => {
-        return (
-            <ul className="dropdown-menu">
-                {options.map((option, index) => (
-                    <li key={index} style={{ listStyleType: 'none' }}>
-                        <a
-                            className="dropdown-item"
-                            href={`/${option.value}`}
-                            style={{
-                                color: '#000',
-                                textDecoration: 'none',
-                                transition: 'color 0.3s',
-                            }}
-                        >
-                            {option.label}
-                        </a>
-                    </li>
+    
+const handleConfirmationClose = () => {
+    setShowConfirmation(false);
+};
+    
+  const handleConfirmationConfirm  = (confirmed) => {
+    setShowConfirmation(false);
+      if (confirmed && selectedOption) {
+          switch (selectedOption.value) {
+              case 'cards':
+                  window.location.href = `/login`;
+                  break;
+              case 'updateEmail':
+                  window.location.href = '/login';
+                  break;
+              case 'updateAddress':
+                  window.location.href = '/login';
+                  break;
+              case 'generateDebitCardPin':
+                  window.location.href = '/login';
+                  break;
+
+              case 'generateCreditCardPin':
+                  window.location.href = '/login';
+                  break;
+              default:
+        
+                  break;
+          }    
+    }
+  };
+    
+  return (
+    <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: '#750D37' }}>
+      <div className="container-fluid">
+        <a className="navbar-brand" href="/">
+          <img src={logoAxis} alt="Logo" style={{ height: '50px', width: 'auto', padding: '5px' }} />
+        </a>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+        <div className={`collapse navbar-collapse justify-content-end ${isOpen ? 'show' : ''}`} id="navbarNav">
+          <ul className="navbar-nav">
+            <li className="nav-item dropdown">
+              <a
+                className={`nav-link dropdown-toggle ${isOpen ? 'show' : ''}`}
+                id="navbarDropdown"
+                role="button"
+                onClick={() => setIsOpen(!isOpen)}
+                style={{ color: 'white' }}
+              >
+                Insta Services
+              </a>
+              <div className={`dropdown-menu ${isOpen ? 'show' : ''}`} aria-labelledby="navbarDropdown">
+                {dropdownMenuOptions.map((option, index) => (
+                    
+                        <button
+                        key={index}
+                        className={`dropdown-item `}
+                        
+                        onClick={() => handleDropdownOptionClick(option)}
+                        style={{ cursor: 'pointer' }}
+                    >
+                    {option.label}
+                    </button>
+                 
                 ))}
-            </ul>
-        );
-    };
-
-    const renderDropdown = (options) => {
-        return (
-            <ul className="dropdown-menu">
-                {options.map((option, index) => (
-                    <li key={index} style={{ listStyleType: 'none' }}>
-                        <a
-                            className="dropdown-item"
-                            href={`/${option.value}`}
-                            style={{
-                                color: '#000',
-                                textDecoration: 'none',
-                                transition: 'color 0.3s',
-                            }}
-                        >
-                            {option.label}
-                        </a>
-                        {option.subOptions && option.subOptions.length > 0 && renderDropright(option.subOptions)}
-                    </li>
-                ))}
-            </ul>
-        );
-    };
-
-    return (
-        <nav className="navbar navbar-expand-lg" style={navStyle}>
-            <div className="container-fluid">
-                <a className="navbar-brand" href="/" style={linkStyle}>
-                    <img src={logoAxis} alt="Logo" style={{ height: '50px', width: 'auto', padding: '5px' }} />
-                </a>
-                <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav ms-auto">
-                        <li className="nav-item" style={{ marginRight: '20px' }}>
-                            <a className="nav-link" href="/home" style={linkStyle}>
-                                Home
-                            </a>
-                        </li>
-                        {dropdownMenuOptions.map((option, index) => (
-                            <li key={index} style={{ marginRight: '20px', listStyleType: 'none' }}>
-                                <div className="dropdown">
-                                    <button
-                                        className="btn btn-secondary dropdown-toggle"
-                                        type="button"
-                                        id={`dropdownMenuButton-${option.value}`}
-                                        data-bs-toggle="dropdown"
-                                        aria-expanded="false"
-                                        style={{
-                                            backgroundColor: '#871f40',
-                                            color: '#fff',
-                                            minWidth: '150px',
-                                        }}
-                                    >
-                                        {option.label}
-                                    </button>
-                                    {renderDropdown(option.subOptions)}
-                                </div>
-                            </li>
-                        ))}
-                        <li className="nav-item" style={{ marginRight: '20px' }}>
-                            <a className="nav-link" href="/#" style={linkStyle}>
-                                FAQs
-                            </a>
-                        </li>
-                        <li className="nav-item" style={{ marginRight: '20px' }}>
-                            <a className="nav-link" href="/#" style={linkStyle}>
-                                Service Request Status
-                            </a>
-                        </li>
-                    </ul>
-                </div>
             </div>
-        </nav>
-    );
+        
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/faqs" style={{ color: 'white', marginRight: '20px' }}>
+                FAQs
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/ticket-status" style={{ color: 'white', marginRight: '20px' }}>
+                Ticket Request Status
+              </a>
+            </li>
+          </ul>
+        </div>
+          </div>
+        {showConfirmation && (
+        <ConfirmationModal
+          isOpen={showConfirmation}
+          option={selectedOption}
+          onConfirm={handleConfirmationConfirm}
+          onCancel={handleConfirmationClose}
+        />
+      )}
+    </nav>
+  );
 };
 
 export default SupportNavBar;
+
+
+
