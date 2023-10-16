@@ -12,6 +12,7 @@ import CustomerSupportPage from './pages/customer/CustomerSupportPage';
 import ComplaintPage from './pages/customer/ComplaintPage';
 import ContactPage  from './pages/ContactPage';
 import ThankYouPage from './pages/customer/ThankYouPage';
+import AdminSolveQuery from './pages/Admin/AdminSolveQuery';
 
 function App() {
   const navigate = useNavigate(); // Get the navigate function
@@ -30,7 +31,8 @@ function App() {
         <Route path="/aboutUs" element={<AboutUs />} />
         <Route path="/complaintPage" element={<ComplaintPage />} />
         <Route path="/customer-dashboard" element={<CustomerDashboard />} />
-        <Route path="/contact" element={<ContactPage />} />
+        <Route path="/contact" element={<ContactPage />} /> 
+        <Route path="/solveQuery" element={<AdminSolveQuery />} />
 
 
       </Routes>
