@@ -10,7 +10,7 @@ import AboutUs from './pages/NavBarItems/AboutUs';
 import AdminAddFaq from './pages/Admin/AdminAddFaq';
 import CustomerSupportPage from './pages/customer/CustomerSupportPage';
 import ComplaintPage from './pages/customer/ComplaintPage';
-
+import ContactPage  from './pages/ContactPage';
 function App() {
   const navigate = useNavigate(); // Get the navigate function
 
@@ -27,6 +27,9 @@ function App() {
         <Route path="/complaintPage" element={<ComplaintPage />} />
         <Route path="/RegistrationPage" element={<RegistrationPage />} />
         <Route path="/customer-dashboard" element={<CustomerDashboard />} />
+        <Route path="/contact" element={<ContactPage />} />
+
+
       </Routes>
     </div>
   );
