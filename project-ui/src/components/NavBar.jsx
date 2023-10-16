@@ -18,9 +18,7 @@ const NavBar = () => {
                             <li className="nav-item mx-3">
                                 <a className="nav-link active" aria-current="page" href="/" style={{ color: 'white' }}>Personal</a>
                             </li>
-                            <li className="nav-item mx-3">
-                                <a className="nav-link" href="#" style={{ color: 'white' }}>Business</a>
-                            </li>
+                           
                             <li className="nav-item mx-3">
                                 <a className="nav-link" href="/aboutUs" style={{ color: 'white' }}>About Us</a>
                             </li>
@@ -30,6 +28,9 @@ const NavBar = () => {
                          
                             <li className="nav-item mx-3">
                                 <a className="nav-link active" aria-current="page" href="RegistrationPage" style={{ color: 'white' }}>Apply Now</a>
+                            </li>
+                            <li className="nav-item mx-3">
+                                <a className="nav-link" href="/contact" style={{ color: 'white' }}>Contact Us</a>
                             </li>
                             <li className="nav-item mx-3">
                                 <div className="dropdown">
