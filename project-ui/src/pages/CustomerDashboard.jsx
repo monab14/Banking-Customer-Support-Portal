@@ -34,13 +34,13 @@ const CustomerDashboard = () => {
 
   useEffect(() => {
     // Fetch customer data
-    fetch('http://localhost:8080/api/customer/1')
+    fetch('http://localhost:8090/api/customer/1')
       .then(response => response.json())
       .then(data => setCustomerData(data))
       .catch(error => console.error('Error fetching customer data:', error));
 
     // Fetch complaint data
-    fetch('http://localhost:8080/complaints/complaint/2')
+    fetch('http://localhost:8090/complaints/complaint/2')
       .then(response => response.json())
       .then(data => setComplaintData(data))
       .catch(error => console.error('Error fetching complaint data:', error));
@@ -48,7 +48,7 @@ const CustomerDashboard = () => {
 
   const toggleDropdown = () => {
     if (!isDropdownOpen) {
-      fetch('http://localhost:8080/api/customer/1')
+      fetch('http://localhost:8090/api/customer/1')
         .then(response => response.json())
         .then(data => setCustomerData(data))
         .catch(error => console.error('Error fetching data:', error));

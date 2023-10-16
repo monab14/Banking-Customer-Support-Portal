@@ -1,5 +1,7 @@
 import React from 'react';
 import AdminLogin from "../../images/AdminLogin.png";
+import NavBar from '../../components/NavBar';
+
 
 const imageStyle = {
   width: '50%',
@@ -73,7 +75,10 @@ const logoStyle = {
 
 const AdminLoginPage = () => {
   return (
+    <div>
+      <NavBar/>
     <div className="admin-login-page" style={{ display: 'flex', width: '100vw', height: '100vh' }}>
+     
     <div className="Container" style={{ ...containerStyle }}>
         <div className="mt-3" style={{...outerContainerStyle}}>
         <div className="" style={{ ...logoStyle }}>
@@ -131,7 +136,7 @@ const AdminLoginPage = () => {
           />
         </div>
       </div>
-    </div>
+    </div></div>
   );
 };
 

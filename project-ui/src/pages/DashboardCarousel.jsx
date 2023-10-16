@@ -29,14 +29,14 @@ const DashboardCarousel = () => {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src="4.jpg"
+                        src="MonaImages/4.jpg"
                         alt="fourth slide"
                     />
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src="5.jpg"
+                        src="MonaImages/5.jpg"
                         alt="fifth slide"
                     />
                 </Carousel.Item>
