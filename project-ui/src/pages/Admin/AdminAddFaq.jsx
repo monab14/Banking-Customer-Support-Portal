@@ -141,7 +141,7 @@ const AdminAddFaq = () => {
               <div className="row">
                 {faqs.length === 0 ? (
                   <div className="col-10 text-center " style={{ fontSize: '23px' }} >
-                    <p ><strong>No Faq Available </strong></p>
+                    <p ><strong> </strong></p>
                   </div>
                 ) : (
                   showTable && (

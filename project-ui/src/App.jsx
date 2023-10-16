@@ -11,6 +11,8 @@ import AdminAddFaq from './pages/Admin/AdminAddFaq';
 import CustomerSupportPage from './pages/customer/CustomerSupportPage';
 import ComplaintPage from './pages/customer/ComplaintPage';
 import ContactPage  from './pages/ContactPage';
+import ThankYouPage from './pages/customer/ThankYouPage';
+
 function App() {
   const navigate = useNavigate(); // Get the navigate function
 
@@ -23,9 +25,10 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/Adminlogin" element={<AdminLoginPage />} />
         <Route path="/adminAddFaq" element={<AdminAddFaq />} />
+        <Route path="/RegistrationPage" element={<RegistrationPage />} />
+        <Route path="/thank-you" element={<ThankYouPage navigate={navigate} />} />
         <Route path="/aboutUs" element={<AboutUs />} />
         <Route path="/complaintPage" element={<ComplaintPage />} />
-        <Route path="/RegistrationPage" element={<RegistrationPage />} />
         <Route path="/customer-dashboard" element={<CustomerDashboard />} />
         <Route path="/contact" element={<ContactPage />} />
 

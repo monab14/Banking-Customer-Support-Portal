@@ -1,5 +1,5 @@
 import React from 'react';
-import Footer from '../../components/Footer';
+import NavBar from '../../components/NavBar';
 
 const ComplaintPage = () => {
   const formStyle = {
@@ -9,8 +9,17 @@ const ComplaintPage = () => {
     margin: '0 auto',
   };
 
+  const buttonStyle = {
+    display: 'block',
+    margin: '30px auto',
+    
+  };
+
   return (
+    <div>
+    <NavBar/>
     <div className="container">
+     
       <img src='MonaImages/cst.png' alt="Customer Support" width='1100px' style={{ padding: '70px' }} />
       <form style={{ padding: '0px 70px' }}>
         <div className="mb-3">
@@ -26,15 +35,12 @@ const ComplaintPage = () => {
           <div className="form-floating">
             <textarea className="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style={{ height: '100px', padding: '0px 70px' }}></textarea>
             <label htmlFor="floatingTextarea2">Comments</label>
-            
           </div>
+          <button type="button" className="btn btn-outline-primary" style={buttonStyle}>Submit</button>
         </div>
-        <img src=''></img>
-      
+        <img src='MonaImages/complaint.png' width='980px'></img>
       </form>
-     
-    
-    </div>
+    </div></div>
   );
 }
 
