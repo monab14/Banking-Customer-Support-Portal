@@ -1,18 +1,26 @@
 import React from 'react';
 
 const Chatbot = () => {
-  
-const containerStyle = {
-    backgroundColor: '#F0F2EF',
-    borderRadius: '10px',
-    padding: '10px',
-    marginTop: '20px', 
+  const buttonStyle = {
+    position: 'fixed',
+    bottom: '20px',
+    right: '20px',
+    backgroundColor: '#750D37',
+    color: 'white',
+    borderRadius: '5px',
+    padding: '10px 20px',
+    border: 'none',
+    cursor: 'pointer',
+    outline: 'none',
   };
+ const handleClick = () => {
+    // Open your chatbot UI or perform any other action on button click
+  };
+
   return (
-    <div className="chatbot mb-5 mt-5 container rounded" style={containerStyle}>
-      <h2 class="text-center" style={{ color: '#750D37' }}>Chat with Us</h2>
-      {/* Chatbot UI goes here */}
-    </div>
+    <button style={buttonStyle} onClick={handleClick}>
+      Ask Radz
+    </button>
   );
 };
 
