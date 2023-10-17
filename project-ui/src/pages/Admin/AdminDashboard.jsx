@@ -1,34 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Slider from 'react-slick';
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const [AdminData, setAdminData] = useState(null);
   const [complaintData, setComplaintData] = useState(null);
    const [showComplaintsCard, setShowComplaintsCard] = useState(false);
-
-    const [greeting, setGreeting] = useState("");
-
-  useEffect(() => {
-  
-
-    // Update the greeting every minute
-    const interval = setInterval(() => {
-      const now = new Date();
-      const hours = now.getHours();
-
-      if (hours >= 5 && hours < 12) {
-        setGreeting("Good Morning");
-      } else if (hours >= 12 && hours < 17) {
-        setGreeting("Good Afternoon");
-      } else if (hours >= 17 && hours < 19) {
-        setGreeting("Good Evening");
-      } else if (hours >= 19 || hours < 5){
-        setGreeting("Good Night");
-      }
-    }, 600);
-
-    return () => clearInterval(interval);}, []);
+ 
    const handleViewComplaints = () => {
      setShowComplaintsCard(true);
    };
@@ -36,28 +16,87 @@ const AdminDashboard = () => {
    const handleGoBack = () => {
     setShowComplaintsCard(false);
   };
-  
+  const Card = ({ imageUrl }) => (
+    <div style={cardStyle}>
+        <img src={imageUrl} alt="Card" style={ cardImageStyle}  />
+    </div>
+);const cardStyle = {
+    width: '80%', 
+    height: '60%',  
+    border: '1px solid #ccc',
+    borderRadius: '8px',
+    boxSizing: 'border-box',
+    display: 'flex', 
+    justifyContent: 'center', 
+    alignItems: 'center',
+    marginBottom: '20px',
+    margin: '0 10px',
+    
+};
+
+const cardImageStyle = {
+    width: '100%',
+    height: 'auto', 
+    objectFit: 'cover',
+    borderRadius: '8px', 
+};
   const handleLogout = () => {
-    // Perform any logout actions (e.g., clearing session)
-    // Then redirect to the login page
+    
     navigate('/adminlogin');
   };
 
   useEffect(() => {
-    // Fetch customer data
+    
     fetch('http://localhost:8080/admins/1')
       .then(response => response.json())
       .then(data => setAdminData(data))
       .catch(error => console.error('Error fetching customer data:', error));
 
-    // Fetch complaint data
+  
     fetch('http://localhost:8080/complaints/all')
       .then(response => response.json())
       .then(data => setComplaintData(data))
       .catch(error => console.error('Error fetching complaint data:', error));
   }, []);
 
-  
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+  };
+
+  const cardsData = [
+        {
+            
+            imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBqop2dpaj_GECWNOkEL1WPrSsXkHMDWi2jw&usqp=CAU',
+        },
+        {
+            
+            imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQy4ju4RtFrTJEwnVx2UPG0wKl994Mok1A0w&usqp=CAU',
+        },
+        {
+            
+            imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwrzv0k3WIvclfJofY1xQZOAGxcn-ytRNtzQ&usqp=CAU',
+        },
+        {
+            
+            imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxfqtiY0DnpPSrG7OvzH1O7QD1_8Q4HN5A0A&usqp=CAU',
+        },
+        {
+            
+            imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuhhkLnWRAKk71Ah_2gknGq7QBv9H8G2StD2xJ4pTLfUC7f7nW5uFMH8mISdl8ZDDDPtw&usqp=CAU',
+        },
+        {
+            
+            imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZQr2HJ-OEVHqviVnpLYU2KxUVxixKUk_riQ&usqp=CAU',
+        },
+        {
+            
+            imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA9gHlouJHIKXxOS0AnyquT8BzPBeTLHz3KA&usqp=CAU',
+        },
+    ];
   return (
     <div style={{ backgroundColor: '#f0f0f0' }}>
       <div className="dashboard-banner d-flex align-items-center justify-content-left" style={{ height: '60px', backgroundColor: '#871f40', color: '#ffffff', padding: '8px' }}>
@@ -65,7 +104,21 @@ const AdminDashboard = () => {
         <img src="/MonaImages/axislogo.jpg" alt="Axis Bank Logo" height="50" />
         </div>
         </div>
-        <div style={{ backgroundColor: 'white', height: '20px', display: 'flex', justifyContent: 'space-between', padding: '0 16px', alignItems: 'center', boxShadow: '0px 4px 8px rgba(1, 1, 1, 0.3)'}}>
+        <div style={{ backgroundColor: 'white', height: '50px', display: 'flex', justifyContent: 'space-between', padding: '0 16px', alignItems: 'center', boxShadow: '0px 4px 8px rgba(1, 1, 1, 0.3)'}}>
+        <nav>
+  <ul style={{ listStyle: 'none', display: 'flex',  margin: 300, padding: 10}}>
+  <a href="#">
+    <img src="/Home.jpg" alt="Home logo" style={{ width: '80px', height: '50px',marginRight:'190px'}} /></a>
+
+    <li style={{ marginRight: '200px',marginTop:'15px' }}>
+      <a href="adminAddFaq"><h5 style={{ color: 'black' }}>Add FAQS</h5></a>
+    </li>
+    <li style={{ marginTop:'15px' }}>
+  <a href="#"><h5 style={{ color: 'black' }}>Support Team</h5></a>
+</li>
+
+  </ul>
+</nav>
 
       </div>
 
@@ -126,20 +179,20 @@ const AdminDashboard = () => {
   <div className="mt-2">
     <div className="d-flex align-items-center justify-content-between">
     <div className="col-md-8">
-    <h2 style={{ marginLeft: '20px' }}> {greeting}, Admin</h2>
+    <h2 style={{ marginLeft: '20px' }}>  Admin  Dashboard</h2>
 
       </div>
-    <div className="col-md-4"></div> 
+    <div className="col-md-3"></div> 
       
       <div className="d-flex align-items-center">
-        <div className="mr-2">
+        <div className="mr-3">
           <h5>{AdminData ? `${AdminData.username} ` : 'Your Profile'}</h5>
         </div>
         <img src="contacts.png" alt="Contacts" className="card-img-top ml-auto" style={{ width: '70px', height: '50px', objectFit: 'cover'}} />
         
         <button
           className="btn btn-danger" 
-          style={{ backgroundColor: '#871f40', borderColor: '#871f40' }}
+          style={{ backgroundColor: '#871f40', borderColor: '#871f40' ,marginRight:'10px'}}
           onClick={handleLogout}
         >
           Logout
@@ -147,44 +200,109 @@ const AdminDashboard = () => {
       </div>
    </div>
 
-<div className="container bg-white p-5 mt-1" style={{ height: '1200px', width: '1200px', marginLeft: '40px',boxShadow: '0px 4px 8px rgba(1, 1, 1, 0.3)' }}>
-    <div className="row"> 
-      <div className="col-md-4 mb-4"> 
-        <div className="card mt-4 w-70"> 
-          <div className="card-body">
-            <h5 className="card-title"style={{ color: '#871f40' }}>Account Details</h5>
-            <p className="card-text">
-              Account Balance (1 Account)<br />
-              ₹25000.00<br />
-              <hr className="my-3" style={{ borderColor: 'black' }} />
-              Account Number: XXXXXXXX<br />
-              ₹25000.00<br />
-              <hr className="my-3" style={{ borderColor: 'black' }} />
-              <em style={{ fontSize: '14px' }}>Grow your money by investing in mutual funds.</em>
-            </p>
-          </div>
-        </div>
-      </div>
+<div className="container bg-white p-5 mt-1" style={{ height: '1600px', width: '1200px', marginLeft: '40px',boxShadow: '0px 4px 8px rgba(1, 1, 1, 0.3)' }}>
+
+    <div className="row" style={{marginTop:'1px'}}> 
+      
       {complaintData && (
-  <div className="col-md-6 mb-4">
-    <div className="card mt-4 w-50 " style={{ height: '92%' }}>
-      <div className="card-body text-center">
-        <h5 className="card-title">Complaints List</h5>
-        <img src="complaint.jpg" alt="Complaints" className="card-img-top" style={{ width: '150px', height: '150px', objectFit: 'cover' }} />
+    <div className="card mt-2 " style={{width:'300px',marginRight:'50px', height: '300px',padding:'20px',boxShadow: '0px 4px 8px rgba(1, 1, 1, 0.3)'}}>
+      <div className="card-body text-center" style={{color: '#871f40',marginTop:'0px'}}>
+        <h4 className="card-title">COMPLAINTS LIST</h4>
+        <img src="sup.jpg" alt="Complaints" className="card-img-top" style={{ marginTop:'0px',width: '160px', height: '170px', objectFit: 'cover' }} />
         <button className="btn btn-primary"style={{ backgroundColor: '#871f40' }} onClick={handleViewComplaints}>
-          View Customer Complaints
+          Customer Complaints
         </button>
       </div>
     </div>
+ 
+)}     
+<div className=" used cards" style={{ width:'700px',height: '300px',marginTop:'10px' ,boxShadow: '0px 4px 8px rgba(1, 1, 1, 0.3)'}}>
+<div className="row">
+  <div className="col-md-3 mb-3">
+    <div className="card">
+      <div className="card-body"style={{ width:'130px',height: '130px' }}>
+        <img src="acc.jpg" className="card-img-top" style={{ width: '90px', height: '70px', objectFit: 'cover',paddingLeft: '-10px' }}alt="Card 1" />
+        <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <h6 className="card-text-center">ACCOUNTS</h6></a>
+      </div>
+    </div>
   </div>
-)}
+  <div className="col-md-3 mb-3">
+    <div className="card">
+      <div className="card-body"style={{ width:'110px',height: '130px',paddingLeft: '-10px' }}>
+        <img src="Mutualfunds.jpg" className="card-img-top" style={{ width: '80px', height: '60px', objectFit: 'cover',paddingLeft: '-10px' }}alt="Card 1" />
+        <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <h6 className="card-text text-center">MUTUAL FUNDS</h6></a>
+      </div>
+    </div>
+  </div>
+  <div className="col-md-3 mb-3">
+    <div className="card" style={{ width:'140px',height: '130px' }}>
+      <div className="card-body">
+        <img src="RD.jpg" className="card-img-top" style={{ width: '75px', height: '65px', objectFit: 'cover' ,paddingRight: '5px'}}alt="Card 1" />
+        <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <h6 className="card-text text-center">FD/RD</h6></a>
+      </div>
+    </div>
+  </div>
+
+  <div className="col-md-3 mb-3">
+    <div className="card">
+      <div className="card-body" style={{ width:'130px',height: '130px',paddingleft:'25px' }}>
+        <img src="forexCards.jpg" className="card-img-top" style={{ width: '75px', height: '60px', objectFit: 'cover' ,paddingLeft: '-10px'}}alt="Card 1" />
+        <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <h6 className="card-text text-center">FOREX CARDS</h6></a>
+      </div>
+    </div>
+  </div>
+  <div className="col-md-3 mb-3">
+    <div className="card">
+      <div className="card-body" style={{ width:'100px',height: '130px',paddingleft:'25px' }}>
+        <img src="Loa.jpg" className="card-img-top" style={{ width: '70px', height: '70px', objectFit: 'cover' ,paddingLeft: '-10px'}}alt="Card 1" />
+        <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <h6 className="card-text text-center">LOANS</h6></a>
+      </div>
+    </div>
+  </div>
+  <div className="col-md-3 mb-3">
+    <div className="card">
+      <div className="card-body"style={{ width:'140px',height: '130px',paddingleft:'20px' }}>
+        <img src="services.jpg" className="card-img-top" style={{ width: '60px', height: '70px', objectFit: 'cover' ,paddingLeft: '20px'}}alt="Card 1" />
+        <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <h6 className="card-text text-center">SERVICES</h6></a>
+      </div>
+    </div>
+  </div>
+  <div className="col-md-3 mb-3">
+    <div className="card">
+      <div className="card-body"style={{ width:'140px',height: '130px',paddingleft:'20px' }}>
+        <img src="pay.jpg" className="card-img-top" style={{ width: '80px', height: '70px', objectFit: 'cover' ,paddingLeft: '0px'}}alt="Card 1" />
+        <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <h6 className="card-text text-center">PAYMENTS</h6></a>
+      </div>
+    </div>
+  </div>
+  <div className="col-md-3 mb-3">
+    <div className="card">
+      <div className="card-body"style={{ width:'140px',height: '130px',paddingleft:'20px' }}>
+        <img src="fund transfer.jpg" className="card-img-top" style={{ width: '90px', height: '50px', objectFit: 'cover' ,paddingLeft: '0px'}}alt="Card 1" />
+        <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <h6 className="card-text text-center">FUNDS TRANSFER</h6></a>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
+
+ </div>
       
         {showComplaintsCard && (
           <div className="card" style={{  width: '1120px',boxShadow: '0px 4px 8px rgba(1, 1, 1, 0.3)' }}>
             <div className="card-body">
               <h5 className="card-title">Customer Complaint  Details</h5>
               <table className="table">
-                <thead>
+                <thead >
                   <tr>
                     <th>Customer ID</th>
                     <th>Category</th>
@@ -192,6 +310,7 @@ const AdminDashboard = () => {
                     <th>Created At</th>
                     <th>Resolved At</th>
                     <th>Complaint Text</th>
+                     <th>Assign to Customer Support</th> 
                   </tr>
                 </thead>
                 <tbody>
@@ -203,6 +322,15 @@ const AdminDashboard = () => {
                       <td>{complaint.createdAt}</td>
                       <td>{complaint.resolvedAt}</td>
                       <td>{complaint.complaintText}</td>
+                      <td>
+          <button 
+            className="btn btn-primary"style={{ backgroundColor: '#871f40', borderColor: '#871f40'}}
+
+            onClick={() => window.location.href = '#'}
+          >
+            Assign
+          </button>
+        </td>
                      
                       
                     </tr>
@@ -215,127 +343,26 @@ const AdminDashboard = () => {
               </div>
           </div>
         )}
- 
-   
-     
-    <hr style={{ borderColor: '#333', marginTop: '20px' }} />
-    <h4 style={{ color: '#871f40' }}>RECENTLY USED</h4>
 
-    <div className="row">
-  <div className="col-md-3 mb-3">
-    <div className="card">
-      <div className="card-body">
-        <img src="acc.jpg" className="card-img-top" style={{ width: '145px', height: '70px', objectFit: 'cover',paddingLeft: '40px' }}alt="Card 1" />
-        <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
-        <h6 className="card-text text-center">ACCOUNTS</h6></a>
-      </div>
-    </div>
-  </div>
-  <div className="col-md-3 mb-3">
-    <div className="card">
-      <div className="card-body"style={{ paddingLeft: '50px' }}>
-        <img src="Mutualfunds.jpg" className="card-img-top" style={{ width: '115px', height: '70px', objectFit: 'cover' }}alt="Card 1" />
-        <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
-        <h6 className="card-text text-center">MUTUAL FUNDS</h6></a>
-      </div>
-    </div>
-  </div>
-  <div className="col-md-3 mb-3">
-    <div className="card">
-      <div className="card-body">
-        <img src="RD.jpg" className="card-img-top" style={{ width: '125px', height: '70px', objectFit: 'cover' ,paddingLeft: '50px'}}alt="Card 1" />
-        <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
-        <h6 className="card-text text-center">FD/RD</h6></a>
-      </div>
-    </div>
-  </div>
-
-  <div className="col-md-3 mb-3">
-    <div className="card">
-      <div className="card-body">
-        <img src="forexCards.jpg" className="card-img-top" style={{ width: '125px', height: '70px', objectFit: 'cover' ,paddingLeft: '50px'}}alt="Card 1" />
-        <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
-        <h6 className="card-text text-center">FOREX CARDS</h6></a>
-      </div>
-    </div>
-  </div>
-  <div className="col-md-3 mb-3">
-    <div className="card">
-      <div className="card-body">
-        <img src="Loa.jpg" className="card-img-top" style={{ width: '160px', height: '70px', objectFit: 'cover' ,paddingLeft: '30px'}}alt="Card 1" />
-        <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
-        <h6 className="card-text text-center">LOANS</h6></a>
-      </div>
-    </div>
-  </div>
-  <div className="col-md-3 mb-3">
-    <div className="card">
-      <div className="card-body">
-        <img src="services.jpg" className="card-img-top" style={{ width: '130px', height: '70px', objectFit: 'cover' ,paddingLeft: '60px'}}alt="Card 1" />
-        <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
-        <h6 className="card-text text-center">SERVICES</h6></a>
-      </div>
-    </div>
-  </div>
-  
-  <div className="col-md-3 mb-3">
-    <div className="card">
-      <div className="card-body">
-        <img src="fund transfer.jpg" className="card-img-top" style={{ width: '150px', height: '70px', objectFit: 'cover' ,paddingLeft: '30px'}}alt="Card 1" />
-        <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
-        <h6 className="card-text text-center">FUNDS TRANSFER</h6></a>
-      </div>
-    </div>
-  </div>
-  
-  <div className="col-md-3 mb-3">
-    <div className="card">
-      <div className="card-body">
-        <img src="pay.jpg" className="card-img-top" style={{ width: '160px', height: '70px', objectFit: 'cover' ,paddingLeft: '40px'}}alt="Card 1" />
-        <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
-        <h6 className="card-text text-center">PAYMENTS</h6>
-      </a>
-      </div>
-    </div>
-  </div>
-</div>
 <hr style={{ borderColor: '#333', marginTop: '20px' }} />
-
-<div className="card mt-2 mx-5" style={{ width: '420px' }}>
-  <div className="card-body">
-    <h4 className="card-title">Security Notice</h4>
-    <p className="card-text">
-      For your security, please do not share your account information,
-      password, or any sensitive information with anyone. Axis Bank will
-      never ask for this information through email or phone.
-    </p>
-    <ul>
-  <li>
-    <a href="#" style={{ color: '#871f40' }}>Contact Customer Support</a>
-  </li>
-  <li>
-    <a href="#" style={{ color: '#871f40' }}>New User?</a>
-  </li>
-</ul>
-  </div>
-</div>
-
-
-
-
+  <h2 className= 'mt-5 mb-3' style={{ color: '#750D37' }}>Latest Updates</h2>
+                <Slider {...sliderSettings}>
+                {cardsData.map((card, index) => (
+                    <Card
+                        key={index}
+                        imageUrl={card.imageUrl}
+                    />
+                ))}
+                </Slider>
+<img src="img.png" className="card-img-top" style={{ width: '1300px', height: '500px', objectFit: 'half' ,paddingLeft: '40px'}}alt="Card 1" />
 
     </div>
   </div>
 </div>
-
-
           </div>
         </div>
       </div>
-      </div>
-
-  
-    
+      </div>  
   );
 };
 

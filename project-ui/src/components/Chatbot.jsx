@@ -8,7 +8,7 @@ const Chatbot = () => {
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [userMessage, setUserMessage] = useState('');
   const [chatHistory, setChatHistory] = useState([]);
-  const [selectedAction, setSelectedAction] = useState(''); 
+  
     
   const chatbotContainerStyle = {
     position: 'fixed',
@@ -97,8 +97,8 @@ const Chatbot = () => {
    };
     
     const handleButtonClick = (action) => {
-    setSelectedAction(action);
-    setIsChatbotVisible(false); 
+    setChatHistory([...chatHistory, { type: 'bot', message: action }]);
+    
   };
   
   return (
@@ -290,7 +290,6 @@ const Chatbot = () => {
        </div>
     
       )}
-       
     <div className='container' style={{ backgroundColor: '#f2f2f2'}}>
           <img
         src={AskRadz}

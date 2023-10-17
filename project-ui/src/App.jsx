@@ -13,11 +13,11 @@ import ContactPage  from './pages/ContactPage';
 import ThankYouPage from './pages/customer/ThankYouPage';
 import CustomerDashboard from './pages/CustomerDashboard';
 import CustomerSupportTeamLogin from './pages/CustomerSupportTeamLogin';
-
+import AdminDashboard from './pages/Admin/AdminDashboard';
 
 
 function App() {
-  const navigate = useNavigate(); // Get the navigate function
+  const navigate = useNavigate(); 
 
   return (
     <div className="App">
@@ -26,7 +26,6 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/Adminlogin" element={<AdminLoginPage />} />
-
         <Route path="/Support" element={<CustomerSupportPage />} />
         <Route path="/faqs" element={<FaqPage />} /> 
         <Route path="/adminAddFaq" element={<AdminAddFaq />} />
@@ -37,6 +36,7 @@ function App() {
         <Route path="/complaintPage" element={<ComplaintPage />} />
         <Route path="/customer-dashboard" element={<CustomerDashboard />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
 
       </Routes>
     </div>
