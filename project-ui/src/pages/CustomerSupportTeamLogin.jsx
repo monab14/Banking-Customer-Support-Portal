@@ -1,7 +1,5 @@
 import React from 'react';
-import AdminLogin from "../../images/AdminLogin.png";
-import NavBar from '../../components/NavBar';
-
+import NavBar from '../components/NavBar';
 
 const imageStyle = {
   width: '50%',
@@ -75,26 +73,20 @@ const logoStyle = {
 
 const CustomerSupportTeamLogin = () => {
   return (
-    <div>
+    <div style={{width:'100%'}}>
       <NavBar/>
     <div className="admin-login-page" style={{ display: 'flex', width: '100vw', height: '100vh' }}>
      
     <div className="Container" style={{ ...containerStyle }}>
         <div className="mt-3" style={{...outerContainerStyle}}>
-        <div className="" style={{ ...logoStyle }}>
-          <img
-            src="https://bv.world/wp-content/uploads/2023/01/AxisBank-logo.jpg" 
-            alt="Logo"
-            style={{ width: '180px', height: '50px' }} 
-          />
-        </div>
+       
         <div className= 'mt-3'>
         <div className="mt-5" style={innerContainerStyle}>
           <a className="navbar-brand mb-3" href="#">
-            <img src={AdminLogin} alt="AdminLogin" width="150px" />
+            {/* <img src='' alt="AdminLogin" width="150px" /> */}
           </a>
-          <h2 style={{ color: '#750D37' }}>Admin Login</h2>
-          <h6 style={{ color: '#750D37' }}>Sign in to access the admin panel</h6>
+          <h2 style={{ color: '#750D37' }}>Support Team Login</h2>
+          <h6 style={{ color: '#750D37' }}>Sign in to access the support panel</h6>
           <form style={{ width: '100%', textAlign: 'center'  }}>
             <div className="login-input-container mt-3" style={{ ...inputStyle }}>
               <label className="form-label">Username :</label>
@@ -132,7 +124,7 @@ const CustomerSupportTeamLogin = () => {
           <img
             src="https://etimg.etb2bimg.com/photo/66990128.cms"
             alt="Bank"
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            style={{ width: '90%', height: '90%', objectFit: 'cover' }}
           />
         </div>
       </div>

@@ -16,6 +16,8 @@ import ComplaintPage from './pages/customer/ComplaintPage';
 import ContactPage  from './pages/ContactPage';
 import ThankYouPage from './pages/customer/ThankYouPage';
 import CustomerDashboard from './pages/CustomerDashboard';
+import CustomerSupportTeamLogin from './pages/CustomerSupportTeamLogin';
+
 
 
 function App() {
@@ -35,6 +37,7 @@ function App() {
         <Route path="/Support" element={<CustomerSupportPage />} />
         <Route path="/faqs" element={<FaqPage />} /> 
         <Route path="/adminAddFaq" element={<AdminAddFaq />} />
+        <Route path="/teamLogin" element={<CustomerSupportTeamLogin />} />
         <Route path="/RegistrationPage" element={<RegistrationPage />} />
         <Route path="/thank-you" element={<ThankYouPage navigate={navigate} />} />
         <Route path="/aboutUs" element={<AboutUs />} />
