@@ -11,7 +11,7 @@ const FaqSection = () => {
   ];
 
   const containerStyle = {
-    backgroundColor: '#F0F2EF',
+    backgroundColor: '#f6f6f6',
     borderRadius: '10px',
     padding: '10px',
     marginTop: '20px', 
@@ -27,7 +27,7 @@ const FaqSection = () => {
   };
 
   return (
-    <div className="faq-section">
+    <div className="faq-section" style={containerStyle}>
       <div className="container mt-5 mb-5 px-5 rounded mx-auto" style={containerStyle}>
         <h2 className="text-center" style={{ color: '#750D37' }}>Frequently Asked Questions</h2>
       

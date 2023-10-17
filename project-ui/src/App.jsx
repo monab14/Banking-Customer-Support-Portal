@@ -1,10 +1,10 @@
 import React from 'react';
-
 import { Routes, Route, useNavigate } from 'react-router-dom';
-
-import NavBar from './components/NavBar';
 import HomePage from './components/HomePage';
+<<<<<<< HEAD
 import CustomerDashboard from './pages/CustomerDashboard'
+=======
+>>>>>>> 7b48412ff0ee610fbf0494cd3c57cb59d8abf0f5
 import LoginPage from './pages/customer/LoginPage';
 import AdminLoginPage from './pages/Admin/Adminlogin';
 import RegistrationPage from './pages/customer/RegistrationPage';
@@ -12,11 +12,10 @@ import AboutUs from './pages/NavBarItems/AboutUs';
 import AdminAddFaq from './pages/Admin/AdminAddFaq';
 import FaqPage from './pages/customer/FaqPage'
 import CustomerSupportPage from './pages/customer/CustomerSupportPage';
-
 import ComplaintPage from './pages/customer/ComplaintPage';
 import ContactPage  from './pages/ContactPage';
 import ThankYouPage from './pages/customer/ThankYouPage';
-import AdminSolveQuery from './pages/Admin/AdminSolveQuery';
+import CustomerDashboard from './pages/CustomerDashboard';
 
 
 function App() {
@@ -29,7 +28,10 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/Adminlogin" element={<AdminLoginPage />} />
+<<<<<<< HEAD
 
+=======
+>>>>>>> 7b48412ff0ee610fbf0494cd3c57cb59d8abf0f5
         <Route path="/Support" element={<CustomerSupportPage />} />
         <Route path="/faqs" element={<FaqPage />} /> 
         <Route path="/adminAddFaq" element={<AdminAddFaq />} />
@@ -38,6 +40,7 @@ function App() {
         <Route path="/aboutUs" element={<AboutUs />} />
         <Route path="/complaintPage" element={<ComplaintPage />} />
         <Route path="/customer-dashboard" element={<CustomerDashboard />} />
+        <Route path="/contact" element={<ContactPage />} />
 
       </Routes>
     </div>

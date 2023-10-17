@@ -6,23 +6,34 @@ import Footer from './Footer';
 import NavBar from './NavBar';
 
 const HomePage = () => {
-    const containerStyle = {
-        backgroundColor: '#F0F2EF',
-        borderRadius: '10px',
-        padding: '10px',
-    };
-
+    const imgStyle = {
+        width: '100%',
+        height :'300px'
+      };
+   
     return (
         <div className="HomePage">
             <NavBar/>
-            <div className=" container mb-5 mt-5 rounded" style={containerStyle}>
-                <h1 className="text-center" style={{ color: '#750D37' }}>Welcome to Axis bank</h1>
+            <div className=" container " style={{textAlign:'center'}}>
+            <h1 style={{ color: '#750D37' }}><strong>Welcome to Axis Bank.</strong></h1>
+               
             </div>
-
-            <BannerCarousel />
+            <img src='MonaImages/dil se open.jpg' width='1520px' height='500px'></img>
+            <br/> <br/><br/>
             
+            <img src='MonaImages/home.png' width='1520px' height='500px' style={imgStyle}></img>
+            <BannerCarousel/>
             <FaqSection />
-            <Chatbot />
+            <img src='MonaImages/home2.png' width='1520px' height='500px'  ></img>
+
+            
+           
+            
+
+            {/* <BannerCarousel /> */}
+            
+            
+            {/* <Chatbot /> */}
             <Footer/>
         </div>
     );
