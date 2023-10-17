@@ -7,6 +7,8 @@ import user from '../../images/user.png';
 import ComplaintWrapperButton from '../../components/ComplaintWrapperButton';
 import endImage from '../../images/endImage.png';
 import end1Image from '../../images/end1Image.png';
+import Chatbot from '../../components/Chatbot';
+
 const Card = ({ imageUrl }) => (
     <div style={cardStyle}>
         <img src={imageUrl} alt="Card" style={ cardImageStyle}  />
@@ -281,6 +283,7 @@ const textSlides = [
                     alt="end1Image"
                     style={{ width: '100%', height: 'auto' }}
                     />
+                    <Chatbot /> 
                 </div>
             </div>
         </div>

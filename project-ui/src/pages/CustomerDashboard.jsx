@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DashboardCarousel from './DashboardCarousel'; 
+import Chatbot from '../components/Chatbot';
+
 const CustomerDashboard = () => {
   const navigate = useNavigate();
   const [customerData, setCustomerData] = useState(null);
@@ -351,6 +353,7 @@ const CustomerDashboard = () => {
     <a href="#" style={{ color: '#871f40' }}>New User?</a>
   </li>
 </ul>
+<Chatbot /> 
   </div>
 </div>
 

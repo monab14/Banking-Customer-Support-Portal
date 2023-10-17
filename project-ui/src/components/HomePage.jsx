@@ -27,13 +27,8 @@ const HomePage = () => {
             <img src='MonaImages/home2.png' width='1520px' height='500px'  ></img>
 
             
-           
             
-
-            {/* <BannerCarousel /> */}
-            
-            
-            {/* <Chatbot /> */}
+         <Chatbot /> 
             <Footer/>
         </div>
     );

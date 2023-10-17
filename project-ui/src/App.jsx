@@ -1,10 +1,6 @@
 import React from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import HomePage from './components/HomePage';
-<<<<<<< HEAD
-import CustomerDashboard from './pages/CustomerDashboard'
-=======
->>>>>>> 7b48412ff0ee610fbf0494cd3c57cb59d8abf0f5
 import LoginPage from './pages/customer/LoginPage';
 import AdminLoginPage from './pages/Admin/Adminlogin';
 import RegistrationPage from './pages/customer/RegistrationPage';
@@ -28,10 +24,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/Adminlogin" element={<AdminLoginPage />} />
-<<<<<<< HEAD
 
-=======
->>>>>>> 7b48412ff0ee610fbf0494cd3c57cb59d8abf0f5
         <Route path="/Support" element={<CustomerSupportPage />} />
         <Route path="/faqs" element={<FaqPage />} /> 
         <Route path="/adminAddFaq" element={<AdminAddFaq />} />
