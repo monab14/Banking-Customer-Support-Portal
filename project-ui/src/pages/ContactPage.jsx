@@ -170,11 +170,12 @@ const ContactPage = () => {
         <br />
         <span style={{ color: '#871f40' }}>1-860-500-5555</span>
         <br />
-        <br />
+        
         To report the loss of Credit Card, Debit Card, and Pre-Paid Card, call on the number below
         <br />
         <br />
         <span style={{ color: '#871f40' }}>022-6798-7700</span>
+        <br /> <br/> <br /> <br /> <br/> <br /> <br /> <br />
       </>
     }
   />
@@ -204,6 +205,7 @@ const ContactPage = () => {
         <br /> <br />
         
         <span><a style={{ color: '#871f40' }} href='https://www.axisbank.com/docs/default-source/download-document/personal/accounts/customer-request-form.pdf?sfvrsn=2'>Download form </a> and submit it at your nearest branch. </span> 
+        
         </>
       } />
     </div>
@@ -218,9 +220,13 @@ const ContactPage = () => {
       <ul>
         <li>Watch out for Vishing / Phishing</li>
         <li>Beware of fictitious offers</li>
+        <br /> <br/> <br /> <br /> <br/> <br /> <br /> <br /> <br /> <br /> <br /> 
       </ul>
+      
     }
+    
   />
+  
 </div>
 
   </div>
