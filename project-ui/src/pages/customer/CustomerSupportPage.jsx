@@ -50,7 +50,7 @@ const textSliderStyle = {
 const CustomerSupportPage = () => {
     const [showDropdown, setShowDropdown] = useState(false);
     const [searchValue, setSearchValue] = useState('');
-    const dropdownOptions = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];
+    const dropdownOptions = ['Credit Card', 'Debit Card', 'Bank Statement', 'Loan Services'];
     const inputRef = useRef(null);
     const dropdownRef = useRef(null);
     const [selectedOption, setSelectedOption] = useState(null);
@@ -110,7 +110,6 @@ const CustomerSupportPage = () => {
         marginBottom: '30px',
         position: 'relative',
         borderRadius: '20px',
-        overflow: 'hidden',
         background: '#fff',
         padding: '10px 20px',
         width: '80%',
@@ -136,15 +135,16 @@ const CustomerSupportPage = () => {
  const dropdownStyle = {
         position: 'absolute',
         top: '100%',
-        left: 0,
         width: '100%',
-        background: '#fff',
+        textAlign: 'left',
+        background: 'white',
+        color: '#871f40',
         border: '1px solid #ccc',
         borderRadius: '4px',
         boxShadow: '0px 2px 4px rgba(0, 0, 0, 0.1)',
         zIndex: 1,
+        padding: '20px',
     };
-
 
 const titleContainerStyle = {
         marginBottom: '20px',
@@ -231,20 +231,24 @@ const textSlides = [
                 </div>
 
                 <div style={searchBarContainerStyle} ref={inputRef}>
-                    <img src={user} alt="user" style={searchIconStyle} onClick={handleToggleDropdown} />
+                    <img src={user} alt="user" style={searchIconStyle} />
                     <input
                         type="text"
                         placeholder="How May I Help You ?"
                         style={searchBarInputStyle}
                         value={selectedOption || searchValue}
                         onChange={handleSearchChange}
+                        onClick={handleToggleDropdown} 
                     />
                     {showDropdown && (
+                        
                         <div style={dropdownStyle} ref={dropdownRef}>
+                            
                             {dropdownOptions.map((option, index) => (
                                 <div key={index} onClick={() => handleOptionClick(option)}>
                                     {option}
                                 </div>
+
                             ))}
                         </div>
                     )}

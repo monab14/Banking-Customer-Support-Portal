@@ -57,7 +57,10 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       const response = await axios.get('http://localhost:8090/api/welcome', formData);
-      console.log(response.data);
+      if (response.status === 200)
+      {
+        localStorage.setItem("loggedIn", true);
+       }
       navigate('/customer-dashboard');
     } catch (error) {
       console.error('Error occurred while logging in:', error);

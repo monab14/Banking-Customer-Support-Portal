@@ -30,7 +30,7 @@ const CustomerDashboard = () => {
     setIsRmInfoVisible(false);
   };
   const handleLogout = () => {
-    
+    localStorage.removeItem("loggedIn");
     navigate('/login');
   };
 

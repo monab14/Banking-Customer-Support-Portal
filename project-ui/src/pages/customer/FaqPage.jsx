@@ -1,7 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import SupportNavBar from './SupportNavBar';
-
+import axios from 'axios';
 const FaqPage = () => {
+  const [faqs, setFaqs] = useState([]);
+
+  const fetchFaqs = async () => {
+    try {
+      const response = await axios.post('http://localhost:8090/api/faqs');
+      setFaqs(response.data);
+    } catch (error) {
+      console.error('Error fetching FAQs:', error);
+    }
+  };
+
+  
+
   const [dropdown1, setDropdown1] = useState('');
   const [dropdown2, setDropdown2] = useState('');
   const [dropdown3, setDropdown3] = useState('');
@@ -12,26 +25,57 @@ const FaqPage = () => {
     'Bank Accounts',
     'Cards',
     'Loans',
-    'Digital Banking',
-    'Insurance'
+    'Digital Banking'
   ];
 
   const dropdown2Options = {
     'Report A Fraud Or Dispute': ['Report a Fraud', 'Report a Dispute'],
-    'Bank Accounts': ['Option 1 for Bank Accounts', 'Option 2 for Bank Accounts'],
-    // ... Define options for other dropdown1 selections
+    'Bank Accounts': ['Current Accounts', 'Savings Account'],
+    'Cards': ['Credit Card', 'Debit cards', 'FOREX cards'],
+    'Loans': ['Home Loans', 'Personal'],
+    'Digital Banking':['Axis Mobile app', 'Axis pay Upi']
   };
 
   const dropdown3Options = {
-    'Raise a Fraud': ['Debit and Credit Cards', 'UPI', 'Internet and Mobile Banking'],
-    'Raise a Dispute': ['Debit and Credit Cards', 'UPI', 'Internet and Mobile Banking'],
-    // ... Define options for other dropdown2 selections
+    'Report a Fraud': ['Debit and Credit Cards', 'UPI', 'Internet and Mobile Banking'],
+    'Report a Dispute': ['Debit and Credit Cards', 'UPI', 'Internet and Mobile Banking'],
+    'Current Accounts': ['Debit Card', ' SMS alert Facility', 'Account Transfer', 'Charges and Balance'],
+    'Savings Account': ['Welcome Kit', 'Account Opening', 'Update Details', 'Fees and Charges', 'Types of Funds Transfer'],
+    'Credit Card': ['Credit Card Application', 'Credit Card Pin'],
+    'Debit cards': ['Replace and Update my Debit Card','Generate Debit Card Pin'],
+    'FOREX cards': ['Update details', 'Forex cards and Pin'],
+    'Home Loans': ['Loan Application', 'Update Personal Details' ],
+    'Personal': [ 'Loan Application','Update Personal Details' ],
+    'Axis Mobile app': ['Insta Services', 'Mutuals Funds' ],
+    'Axis pay Upi':['Transaction through UPI', 'Accounts and Contants']
   };
 
   const dropdown4Options = {
     'Debit and Credit Cards': ['What is a Disputed Transaction', 'What are the documents required to raise a dispute?', 'Where do I submit these documents', 'What is the action taken on dispited transaction' ],
-    'UPI': ['What is a Disputed Transaction', 'Account debited but beneficiary account not credited',  'How do I raise a '],
-    // ... Define options for other dropdown3 selections
+    'UPI': ['What is a Disputed Transaction', 'Account debited but beneficiary account not credited',  'What are the timelines for resolution '],
+    'Internet and Mobile Banking': ['What is a Disputed Transaction', 'Unauthorised funds transfer have been initiated from my axis mobile app or Internet banking'],
+    'Debit Card': ['What are the types of Debit Crads available for current accounts', 'What are the charges applicable for a Debit Card'],
+    ' SMS alert Facility': ['Why should I register for SMS alert facility', 'How do I register for SMS facility'],
+    'Account Transfer': ['How do I transfer my account from one branch to another', 'Will account details change if I tranfer my account to another Branch'],
+    'Charges and Balance': ['How di I check the balance in my Current Account', 'Charges applicable on my current Account'],
+    'Welcome Kit': ['What does savings account welcome kit comprise', 'I have not received the welcome kit for my saving account'],
+    'Account Opening': ['What is a Savings account', ' Who can open a saving bank account'],
+    'Update Details': ['How do I update email Id for my bank account', 'How do I update the mobile number for my saving account'],
+    'Fees and Charges': ['What are consolidated charges', 'what is average balance', 'I wnat refund of NEFT transaction charges'],
+    'Types of Funds Transfer': ['What is RTGS', 'What is NEFT'],
+    'Credit Card Application': ['How do I apply for a credit card', 'How do I check status of my credit card application'],
+    'Credit Card Pin': ['How do I generate mu primary or addon credit card pin', 'How can I generate a credit card pin online for a new credit card'],
+    'Replace and Update my Debit Card': ['How do I replace or upgrade my Debit Card'],
+    'Generate Debit Card Pin': ['How do I generate my Debit card Pin'],
+    'Update details': ['Update Passport', 'Update Mobile Number'],
+    'Forex cards and Pin': ['Generate Forex card pin', 'Block Forex card'],
+    'Loan Application': ['He do I apply for Home or personal Loan'],
+    'Update Personal Details': ['Loan Application', 'Loan Statement'],
+    'Insta Services': ['Update pan', 'Update KYC'],
+    'Mutuals Funds': ['How can I register for this Service', 'Can I cancel the transaction'],
+    'Transaction through UPI': ['How do I send money via BHIM Axis Pay UPI App', 'How do I reset or change UPI PIN'],
+    'Accounts and Contants':['How do I delete an account from BHIM pay ', 'How do I add contacts in BHIM axis pay']
+
   };
 
   const handleDropdown1Change = (e) => {
@@ -59,8 +103,8 @@ const FaqPage = () => {
   const handleSubmit = () => {
     
     console.log('Submitted:', dropdown1, dropdown2, dropdown3, dropdown4);
+    fetchFaqs(); 
 
-    
     setDropdown1('');
     setDropdown2('');
     setDropdown3('');
