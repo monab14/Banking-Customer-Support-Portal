@@ -29,7 +29,7 @@ const FaqSection = () => {
   return (
     <div className="faq-section" style={containerStyle}>
       <div className="container mt-5 mb-5 px-5 rounded mx-auto" style={containerStyle}>
-        <h2 className="text-center" style={{ color: '#750D37' }}>Frequently Asked Questions</h2>
+        <h2 className="text-center" style={{ color: '#871f40' }}>Frequently Asked Questions</h2>
       
         <div className="accordion accordion-flush" id="accordionFlushExample" style={{textAlign:'center'}}>
           {faqs.map((faq, index) => (

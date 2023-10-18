@@ -71,14 +71,14 @@ const FaqPage = () => {
     <div>
       <SupportNavBar />
       <div className="container mt-5 p-4" style={{ backgroundColor: '#F7F7F7', borderRadius: '20px' }}>
-        <h1 className="text-center" style={{ color: '#750D37' }}>Frequently Asked Questions</h1>
+        <h1 className="text-center" style={{ color: '#871f40' }}>Frequently Asked Questions</h1>
         <div className="container mt-5 p-5" style={{ backgroundColor: '#FFF', borderRadius: '20px' }}>
           <h4 style={{
             fontSize: '1.6rem',
             fontFamily: 'lato-light',
             paddingBottom: '15px',
             maxWidth: '100%',
-            color: '#750D37',
+            color: '#871f40',
             lineHeight: '2',
             marginBottom: '20px'
           }}>
@@ -118,7 +118,7 @@ const FaqPage = () => {
             <button
               type="submit"
               className="btn btn-primary mb-3"
-              style={{ backgroundColor: '#750D37', color: '#FFF' }}
+              style={{ backgroundColor: '#871f40', color: '#FFF' }}
               onClick={handleSubmit}
             >
               Submit

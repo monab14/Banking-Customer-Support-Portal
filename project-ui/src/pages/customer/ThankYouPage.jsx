@@ -17,7 +17,7 @@ const handleLoginClick = () => {
         <div className="col-md-6">
           <div className="card" style={{ backgroundColor: '#F0F2EF' }}>
             <div className="card-body">
-              <h2 className="card-title text-center mb-4" style={{ color: '#750D37' }}>Thank You for Registering</h2>
+              <h2 className="card-title text-center mb-4" style={{ color: '#871f40' }}>Thank You for Registering</h2>
               <p className="text-center">Your registration was successful!</p>
               <p className="text-center">Your Customer ID is: <strong>{customerId}</strong></p>
               <p className="text-center">An email with your Customer ID has been sent to your registered email address.</p>
@@ -25,7 +25,7 @@ const handleLoginClick = () => {
                 padding: '10px 20px',
                 fontSize: '18px',
                 cursor: 'pointer',
-                backgroundColor: '#750D37', 
+                backgroundColor: '#871f40', 
                 color: '#F0F2EF', 
                 borderRadius: '20px', 
                 border: 'none',

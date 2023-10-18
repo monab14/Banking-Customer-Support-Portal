@@ -54,7 +54,7 @@ const AdminSolveQuery = () => {
 
       <div className="faq-section">
         <div className="container mt-5 mb-5 px-5 rounded mx-auto" style={containerStyle}>
-          <h2 className="text-center" style={{ color: '#750D37' }}>All Queries</h2>
+          <h2 className="text-center" style={{ color: '#871f40' }}>All Queries</h2>
 
           <div className="accordion" id="accordionFlushExample" style={{ textAlign: 'center' }}>
             {faqs.map((faq) => (

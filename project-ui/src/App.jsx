@@ -14,6 +14,8 @@ import ThankYouPage from './pages/customer/ThankYouPage';
 import CustomerDashboard from './pages/CustomerDashboard';
 import CustomerSupportTeamLogin from './pages/CustomerSupportTeamLogin';
 import AdminDashboard from './pages/Admin/AdminDashboard';
+import TicketStatus from './pages/customer/TicketStatus';
+
 
 
 function App() {
@@ -30,6 +32,7 @@ function App() {
         <Route path="/faqs" element={<FaqPage />} /> 
         <Route path="/adminAddFaq" element={<AdminAddFaq />} />
         <Route path="/teamLogin" element={<CustomerSupportTeamLogin />} />
+        <Route path="/ticket-status" element={<TicketStatus/>} />
         <Route path="/RegistrationPage" element={<RegistrationPage />} />
         <Route path="/thank-you" element={<ThankYouPage navigate={navigate} />} />
         <Route path="/aboutUs" element={<AboutUs />} />

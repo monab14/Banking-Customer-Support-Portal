@@ -26,6 +26,26 @@ const RegistrationForm = () => {
     enteredOTP: '',
     isPasswordValid: false
 });
+
+const validateAadhar = (aadhar) => {
+  const aadharRegex = /^\d{12}$/;
+  return aadharRegex.test(aadhar);
+};
+
+const validatePhoneNumber = (phoneNumber) => {
+  const phoneRegex = /^\+91\d{10}$/; // Updated regex for +91 format
+  return phoneRegex.test(phoneNumber);
+};
+
+const validateEmail = (email) => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email) && email.endsWith('@gmail.com');
+};
+
+  const validatePassword = (password) => {
+    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=]).{8,20}$/;
+    return passwordRegex.test(password);
+  };
     
     const generateNumericCustomerId = () => {
     const numericCustomerId = Math.floor(100000 + Math.random() * 900000); 
@@ -98,19 +118,54 @@ const handleOTPSubmit = (e) => {
 };
 
 
-const handlePasswordSubmit = (e) => {
+const handlePasswordSubmit = async (e) => {
     e.preventDefault();
-    const { password, confirmPassword } = formData;
+    const { password, confirmPassword, aadharNumber, phoneNumber, email, enteredOTP } = formData;
+
+    if (!validateAadhar(aadharNumber)) {
+      toast.error('Invalid Aadhar Number. Please enter a 12-digit number.');
+      return;
+    }
+
+    if (!validatePhoneNumber(phoneNumber)) {
+      toast.error('Invalid Phone Number. Please enter a 10-digit number.');
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      toast.error('Invalid Email Address. Please enter a valid email.');
+      return;
+    }
+
+    if (!validatePassword(password)) {
+      toast.error('Invalid Password. It must be 8-20 characters long with at least one digit, one uppercase, one lowercase, and one special character.');
+      return;
+    }
+    e.preventDefault();
+    
     if (password === confirmPassword) {
-    const customerId = generateNumericCustomerId(); 
-    sendRegistrationEmail(customerId);
-        
+      const customerId = generateNumericCustomerId(); 
+      sendRegistrationEmail(customerId);
+  
+      const response = await fetch('http://localhost:8090/api/addcustomer', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData), // Assuming formData contains all necessary details
+      });
+  
+      if (response.ok) {
         toast.success('Registration successful!');
         navigate(`/thank-you?customerId=${customerId}`);
+      } else {
+        toast.error('Failed to register. Please try again.');
+      }
     } else {
-    toast.error('Passwords do not match. Please try again.');
+      toast.error('Passwords do not match. Please try again.');
     }
-};
+  };
+  
 
     
 return (
@@ -138,7 +193,7 @@ return (
         </div>
         </div>
             <div className="card-body  mb-5">
-            <h2 className="card-title text-center mb-5 " style = {{ color : '#750D37', padding: '10px'}}>Customer Registration</h2>
+            <h2 className="card-title text-center mb-5 " style = {{ color : '#871f40', padding: '10px'}}>Customer Registration</h2>
             <form onSubmit={showOTPInput ? handleOTPSubmit : handleSendOTP}>
                 <div className="mb-3 auto-col" >
                 <input
@@ -150,12 +205,11 @@ return (
                     onChange={handleChange}
                     required 
                     style={{
-                    color: '#750D37', 
+                    color: '#871f40', 
                     }}
                 />
                 </div>
-                <div className="mb-3 col">
-                
+                <div className="mb-3 auto-col" >
                 <input
                     type="text"
                     name="lastName"
@@ -165,10 +219,11 @@ return (
                     onChange={handleChange}
                     required
                     style={{
-                    color: '#750D37', 
+                    color: '#871f40', 
                     }}
                 />
                 </div>
+               
                 <div className="mb-3">
                 <input
                     type="email"
@@ -180,7 +235,7 @@ return (
                     onChange={handleChange}
                     required
                     style={{
-                    color: '#750D37', 
+                    color: '#871f40', 
                     }}
                 />
                 </div>
@@ -194,7 +249,7 @@ return (
                     onChange={handleChange}
                     required
                     style={{
-                    color: '#750D37', 
+                    color: '#871f40', 
                     }}
                 />
                 </div>
@@ -208,7 +263,7 @@ return (
                     onChange={handleChange}
                     required
                     style={{
-                    color: '#750D37', 
+                    color: '#871f40', 
                     }}
                 />
                 </div>
@@ -219,7 +274,7 @@ return (
                     value={formData.gender}
                     onChange={handleChange}
                     required
-                    style = {{color: '#750D37' }}
+                    style = {{color: '#871f40' }}
                 >
                     <option value=""> Select Gender</option>
                     <option value="male">Male</option>
@@ -236,7 +291,7 @@ return (
                     onChange={handleChange}
                     required
                     style={{
-                    color: '#750D37', 
+                    color: '#871f40', 
                     }}
                 />
                 </div>
@@ -251,7 +306,7 @@ return (
             onChange={handleChange}
             required
             style={{
-            color: '#750D37', 
+            color: '#871f40', 
             }}
             />
         </div>
@@ -262,7 +317,7 @@ return (
                 padding: '10px 20px',
                 fontSize: '18px',
                 cursor: 'pointer',
-                backgroundColor: '#750D37', 
+                backgroundColor: '#871f40', 
                 color: '#F0F2EF', 
                 borderRadius: '20px', 
                 border: 'none',
@@ -275,7 +330,7 @@ return (
                 <div className ="row g-3 align-items-center mt-2">
                 <div className ="col-auto">
                 <label for="inputPassword6" class="form-label" style={{
-                    color: '#750D37', 
+                    color: '#871f40', 
                     }}>Password : </label>
                 </div>
                     <div className="mb-3 col mt-3">
@@ -288,13 +343,13 @@ return (
                         onChange={handleChange}
                         required
                         style={{
-                    color: '#750D37', 
+                    color: '#871f40', 
                     }}
                     />
                     </div>
                     <div class="col" >
                     <span id="passwordHelpInline" class="form-text" style={{
-                    color: '#750D37',
+                    color: '#871f40',
                     }}>
                     Must be 8-20 characters long.
                     </span>
@@ -303,7 +358,7 @@ return (
                 <div className ="row g-3 align-items-center mt-3">
                 <div className ="col-auto">
                 <label for="inputPassword6" class="col-form-label" style={{
-                    color: '#750D37'
+                    color: '#871f40'
                     }}>Confirm Password : </label>
                 </div>      
                     <div className="mb-3 col mt-3">
@@ -316,13 +371,13 @@ return (
                         onChange={handleChange}
                         required
                         style={{
-                    color: '#750D37'
+                    color: '#871f40'
                     }}
                     />
                     </div>
                     <div class="col">
                     <span id="passwordHelpInline" class="form-text" style={{
-                    color: '#750D37'
+                    color: '#871f40'
                     }}>
                     Must be 8-20 characters long.
                     </span>
@@ -333,7 +388,7 @@ return (
                 padding: '10px 20px',
                 fontSize: '18px',
                 cursor: 'pointer',
-                backgroundColor: '#750D37', 
+                backgroundColor: '#871f40', 
                 color: '#F0F2EF', 
                 borderRadius: '20px', 
                 border: 'none',

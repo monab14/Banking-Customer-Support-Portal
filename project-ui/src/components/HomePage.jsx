@@ -15,7 +15,7 @@ const HomePage = () => {
         <div className="HomePage">
             <NavBar/>
             <div className=" container " style={{textAlign:'center'}}>
-            <h1 style={{ color: '#750D37' }}><strong>Welcome to Axis Bank.</strong></h1>
+            <h1 style={{ color: '#871f40' }}><strong>Welcome to Axis Bank.</strong></h1>
                
             </div>
             <img src='MonaImages/dil se open.jpg' width='1520px' height='500px'></img>
