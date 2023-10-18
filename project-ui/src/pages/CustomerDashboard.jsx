@@ -5,6 +5,7 @@ import Chatbot from '../components/Chatbot';
 
 const CustomerDashboard = () => {
   const navigate = useNavigate();
+  const [customerId, setCustomerId] = useState(null);
   const [customerData, setCustomerData] = useState(null);
   const [complaintData, setComplaintData] = useState(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -35,17 +36,17 @@ const CustomerDashboard = () => {
 
   useEffect(() => {
     // Fetch customer data
-    fetch('http://localhost:8090/api/customer/1')
+    fetch(`http://localhost:8090/api/customer/1`)
       .then(response => response.json())
       .then(data => setCustomerData(data))
       .catch(error => console.error('Error fetching customer data:', error));
 
     // Fetch complaint data
-    fetch('http://localhost:8090/complaints/complaint/2')
+    fetch(`http://localhost:8090/complaints/complaint/1`)
       .then(response => response.json())
       .then(data => setComplaintData(data))
       .catch(error => console.error('Error fetching complaint data:', error));
-  }, []);
+  }, [customerId]);
   
    const handleToggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);

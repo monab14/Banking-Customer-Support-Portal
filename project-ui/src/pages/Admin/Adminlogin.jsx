@@ -89,19 +89,18 @@ const AdminLoginPage = () => {
       [name]: value
     });
   };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.get('http://localhost:8090/api/welcome', formData);
-      console.log(response.data); 
-      navigate('/admin-dashboard');
-
-    } catch (error) {
-      console.error('Error occurred while logging in:', error);
-      console.error('Invalid username or password. Please try again.');
-    }
-  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await axios.post('http://localhost:8090/admins/register', formData);
+    console.log(response.data); 
+    navigate('/admin-dashboard');
+  } catch (error) {
+    console.error('Error occurred while logging in:', error);
+    console.error('Invalid username or password. Please try again.');
+  }
+};
+  
      
   return (
     <div>
@@ -133,7 +132,8 @@ const AdminLoginPage = () => {
               <input
                 type="text"
                 id="username"
-                name="username"
+                      name="username"
+                      onChange={handleFormChange}
                 className="form-control"
                 required
               />
@@ -143,7 +143,8 @@ const AdminLoginPage = () => {
               <input
                 type="password"
                 id="password"
-                className="form-control"
+                      className="form-control"
+                    onChange={handleFormChange}  
                 placeholder="*********"
                 required
               />
@@ -152,7 +153,7 @@ const AdminLoginPage = () => {
               <a href="#">Forgot Password ?</a>
             </div>
             <div className="mt-3" style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-              <button type="submit" style={{ ...buttonStyle }}>
+              <button type="submit" style={{ ...buttonStyle }} onClick={handleSubmit}>
                 <span style={iconStyle}>🔒</span> Login
               </button>
             </div>

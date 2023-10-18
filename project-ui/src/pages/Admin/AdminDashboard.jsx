@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
+
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const [AdminData, setAdminData] = useState(null);
@@ -101,14 +102,14 @@ const cardImageStyle = {
     <div style={{ backgroundColor: '#f0f0f0' }}>
       <div className="dashboard-banner d-flex align-items-center justify-content-left" style={{ height: '60px', backgroundColor: '#871f40', color: '#ffffff', padding: '8px' }}>
         <div className="logo" >
-        <img src="/MonaImages/axislogo.jpg" alt="Axis Bank Logo" height="50" />
+        <img src="/MonaImages/axislogo.jpg" alt="Axis Bank Logo" height="50px" />
         </div>
         </div>
         <div style={{ backgroundColor: 'white', height: '50px', display: 'flex', justifyContent: 'space-between', padding: '0 16px', alignItems: 'center', boxShadow: '0px 4px 8px rgba(1, 1, 1, 0.3)'}}>
         <nav>
   <ul style={{ listStyle: 'none', display: 'flex',  margin: 300, padding: 10}}>
-  <a href="#">
-    <img src="/Home.jpg" alt="Home logo" style={{ width: '80px', height: '50px',marginRight:'190px'}} /></a>
+  
+    
 
     <li style={{ marginRight: '200px',marginTop:'15px' }}>
       <a href="adminAddFaq"><h5 style={{ color: 'black' }}>Add FAQS</h5></a>

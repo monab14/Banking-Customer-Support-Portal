@@ -33,7 +33,8 @@ const validateAadhar = (aadhar) => {
 };
 
 const validatePhoneNumber = (phoneNumber) => {
-  const phoneRegex = /^\+91\d{10}$/; // Updated regex for +91 format
+const phoneRegex = /^(?:\+91)?\d{10}$/;
+// Updated regex for +91 format
   return phoneRegex.test(phoneNumber);
 };
 
