@@ -15,6 +15,7 @@ import CustomerDashboard from './pages/CustomerDashboard';
 import CustomerSupportTeamLogin from './pages/CustomerSupportTeamLogin';
 import AdminDashboard from './pages/Admin/AdminDashboard';
 import TicketStatus from './pages/customer/TicketStatus';
+import AdminSolveQuery from './pages/Admin/AdminSolveQuery';
 
 
 
@@ -40,6 +41,7 @@ function App() {
         <Route path="/customer-dashboard" element={<CustomerDashboard />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/solveQuery" element={<AdminSolveQuery />} />
 
       </Routes>
     </div>
