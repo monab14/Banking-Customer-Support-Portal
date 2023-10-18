@@ -59,9 +59,11 @@ const [showEmailForm, setShowEmailForm] = useState(false);
   const chatbotContainerStyle = {
     position: 'fixed',
     bottom: '80px',
+    width: '35%',
+    height: '80%',
     right: '20px',
     backgroundColor: '#871f40',
-    color: 'white',
+    color: 'black',
     borderRadius: '5px',
     border: '1px solid #ccc',
     boxShadow: '0px 0px 5px 0px rgba(0,0,0,0.5)',

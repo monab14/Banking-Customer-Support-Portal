@@ -28,7 +28,7 @@ const HomePage = () => {
 
             
             
-         <Chatbot /> 
+           <Chatbot /> 
             <Footer/>
         </div>
     );
