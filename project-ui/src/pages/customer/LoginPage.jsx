@@ -1,11 +1,10 @@
 
-import React,{useState} from 'react';
+import React, {useState} from 'react';
 import login from "../../images/login.png";
 import NavBar from '../../components/NavBar';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 
 
   const imageStyle = {
@@ -71,6 +70,7 @@ import 'react-toastify/dist/ReactToastify.css';
   };
 
 const LoginPage = () => {
+  
 const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -94,50 +94,6 @@ const navigate = useNavigate();
       console.error('Error occurred while logging in:', error);
       setError('Invalid username or password. Please try again.');
     }
-  };
-
-
-  const [loginDetails, setLoginDetails] = useState({
-    username: '',
-    password: '',
-  });
-
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-
-    try {
-      const response = await axios.get('http://localhost:8090/api/allcustomer');
-      const customers = response.data;
-
-      const matchingCustomer = customers.find(
-        (customer) =>
-          customer.email === loginDetails.username &&
-          customer.password === loginDetails.password
-      );
-
-      if (matchingCustomer) {
-        // Display success toast and redirect
-        toast.success('Login successful!', {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 2000, // Close after 2 seconds
-        });
-        window.location.href = '/customer-dashboard';
-      } else {
-        // Display error toast
-        toast.error('Invalid username or password. Please try again.', {
-          position: toast.POSITION.TOP_CENTER,
-          autoClose: 3000, // Close after 3 seconds
-        });
-      }
-    } catch (error) {
-      console.error('Error fetching customer data:', error);
-    }
-  };
-
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setLoginDetails({ ...loginDetails, [name]: value });
   };
 
   return (
@@ -234,8 +190,10 @@ const navigate = useNavigate();
               </div>
             </form>
           </div>
+
         </div>
-      </div><ToastContainer /></div>
+      </div>
+    </div>
   );
 };
 
