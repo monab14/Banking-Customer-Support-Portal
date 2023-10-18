@@ -48,7 +48,7 @@ const inputStyle = {
   padding: '10px',
   width: '100%',
   fontSize: '16px',
-  color: '#750D37',
+  color: '#871f40',
 };
 
 const buttonStyle = {
@@ -56,7 +56,7 @@ const buttonStyle = {
   padding: '10px 20px',
   fontSize: '18px',
   cursor: 'pointer',
-  backgroundColor: '#750D37',
+  backgroundColor: '#871f40',
   color: '#F0F2EF',
   borderRadius: '20px',
   border: 'none',
@@ -122,9 +122,12 @@ const AdminLoginPage = () => {
           <a className="navbar-brand mb-3" href="#">
             <img src={AdminLogin} alt="AdminLogin" width="150px" />
           </a>
-          <h2 style={{ color: '#750D37' }}>Admin Login</h2>
-          <h6 style={{ color: '#750D37' }}>Sign in to access the admin panel</h6>
-          <form onSubmit={handleSubmit} style={{ width: '100%', textAlign: 'center'  }}>
+
+=======
+          <h2 style={{ color: '#871f40' }}>Admin Login</h2>
+          <h6 style={{ color: '#871f40' }}>Sign in to access the admin panel</h6>
+          <form style={{ width: '100%', textAlign: 'center'  }}>
+
             <div className="login-input-container mt-3" style={{ ...inputStyle }}>
               <label className="form-label">Username :</label>
               <input

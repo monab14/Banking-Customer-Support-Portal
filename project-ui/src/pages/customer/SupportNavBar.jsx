@@ -60,10 +60,10 @@ const handleConfirmationClose = () => {
   };
     
   return (
-    <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: '#750D37' }}>
+    <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: '#871f40' }}>
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
-          <img src={logoAxis} alt="Logo" style={{ height: '50px', width: 'auto', padding: '5px' }} />
+          <img src='MonaImages/axislogo.jpg' alt="Logo" style={{ height: '50px', width: 'auto', padding: '5px' }} />
         </a>
         <button
           className="navbar-toggler"

@@ -1,11 +1,12 @@
 import React from 'react';
 
+
 const ComplaintWrapperButton = ({ onClick }) => {
   const buttonStyle = {
     position: 'fixed',
     bottom: '20px',
     left: '20px',
-    backgroundColor: '#750D37',
+    backgroundColor: '#871f40',
     color: 'white',
     padding: '10px 20px',
     borderRadius: '20px',
@@ -16,7 +17,7 @@ const ComplaintWrapperButton = ({ onClick }) => {
   return (
     <div style={buttonStyle} onClick={onClick}>
       <h6>Raise A Complaint</h6>
-      <p>Click Here</p>
+      <a href='/complaintPage' class="link-info link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><p>Click Here</p></a>
     </div>
   );
 };

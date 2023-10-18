@@ -122,7 +122,7 @@ const CustomerSupportPage = () => {
         cursor: 'pointer',
         marginRight: '10px',
         fontSize: '20px',
-        color: '#750D37',
+        color: '#871f40',
         width: '20px',
         height: '20px',
     };
@@ -191,7 +191,7 @@ const textSlides = [
         },
         {
             
-            imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQy4ju4RtFrTJEwnVx2UPG0wKl994Mok1A0w&usqp=CAU',
+            imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZQr2HJ-OEVHqviVnpLYU2KxUVxixKUk_riQ&usqp=CAU',
         },
         {
             
@@ -207,7 +207,7 @@ const textSlides = [
         },
         {
             
-            imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZQr2HJ-OEVHqviVnpLYU2KxUVxixKUk_riQ&usqp=CAU',
+            imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQy4ju4RtFrTJEwnVx2UPG0wKl994Mok1A0w&usqp=CAU',
         },
         {
             
@@ -225,9 +225,9 @@ const textSlides = [
                 <div style={titleContainerStyle}>
                     <h1>
                         <span style={{ color: '#808080' }}>Axis Bank Support</span>
-                        <span style={{ color: '#750D37', fontFamily: 'Italian' }}> DilSe Open</span>
+                        <span style={{ color: '#871f40', fontFamily: 'Italian' }}> Dil Se Open</span>
                     </h1>
-                    <p style={{ color: '#750D37' }}>We are here to assist you. Please feel free to reach out.</p>
+                    <p style={{ color: '#871f40' }}>We are here to assist you. Please feel free to reach out.</p>
                 </div>
 
                 <div style={searchBarContainerStyle} ref={inputRef}>
@@ -258,7 +258,7 @@ const textSlides = [
                 </Slider>
                 </div>
 
-                <h2 className= 'mt-5 mb-3' style={{ color: '#750D37' }}>Latest Updates</h2>
+                <h2 className= 'mt-5 mb-3' style={{ color: '#871f40' }}>Latest Updates</h2>
                 <Slider {...sliderSettings}>
                 {cardsData.map((card, index) => (
                     <Card

@@ -16,6 +16,8 @@ import CustomerSupportTeamLogin from './pages/CustomerSupportTeamLogin';
 import AdminDashboard from './pages/Admin/AdminDashboard';
 import TicketStatus from './pages/customer/TicketStatus';
 import AdminRegisterPage from './pages/Admin/AdminRegisterPage';
+import AdminSolveQuery from './pages/Admin/AdminSolveQuery';
+
 
 function App() {
   const navigate = useNavigate(); 
@@ -31,6 +33,7 @@ function App() {
         <Route path="/faqs" element={<FaqPage />} /> 
         <Route path="/adminAddFaq" element={<AdminAddFaq />} />
         <Route path="/teamLogin" element={<CustomerSupportTeamLogin />} />
+        <Route path="/ticket-status" element={<TicketStatus/>} />
         <Route path="/RegistrationPage" element={<RegistrationPage />} />
         <Route path="/thank-you" element={<ThankYouPage navigate={navigate} />} />
         <Route path="/aboutUs" element={<AboutUs />} />
@@ -38,12 +41,13 @@ function App() {
         <Route path="/customer-dashboard" element={<CustomerDashboard />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
-        <Route path="/ticket-status" element={<TicketStatus />} />
         <Route path="/adminRegister" element={<AdminRegisterPage />} />
+        <Route path="/solveQuery" element={<AdminSolveQuery />} />
+
 
       </Routes>
     </div>
   );
 }
 
-export default App;
+export default App;

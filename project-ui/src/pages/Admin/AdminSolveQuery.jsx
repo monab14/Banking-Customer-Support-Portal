@@ -2,15 +2,7 @@ import React, { useState, useEffect } from 'react';
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
 import axios from 'axios';
-
-const faqs = [
-  { question: 'Query 1', answer: 'Answer 1', complaintId: 1 },
-  { question: 'Query 2', answer: 'Answer 2', complaintId: 2 },
-  { question: 'Query 3', answer: 'Answer 3', complaintId: 3 },
-  { question: 'Query 4', answer: 'Answer 4', complaintId: 4 },
-  { question: 'Query 5', answer: 'Answer 5', complaintId: 5 },
-  { question: 'Query 6', answer: 'Answer 6', complaintId: 6 },
-];
+import Button from '../../components/Button';
 
 const containerStyle = {
   backgroundColor: '#F0F2EF',
@@ -22,6 +14,8 @@ const containerStyle = {
 const AdminSolveQuery = () => {
   const [complaints, setComplaints] = useState([]);
   const [activeFAQ, setActiveFAQ] = useState(null);
+  const [selectedOptions, setSelectedOptions] = useState({});
+  const [selectedOptionColors, setSelectedOptionColors] = useState({});
 
   useEffect(() => {
     const fetchComplaintData = async () => {
@@ -40,10 +34,21 @@ const AdminSolveQuery = () => {
 
   const handleToggle = (complaintId) => {
     if (activeFAQ === complaintId) {
-      setActiveFAQ(null); // Close the FAQ if it's already open
+      setActiveFAQ(null);
     } else {
-      setActiveFAQ(complaintId); // Open the FAQ if it's closed
+      setActiveFAQ(complaintId);
     }
+  };
+
+  const handleOptionSelect = (complaintId, option, color) => {
+    setSelectedOptions((prevSelectedOptions) => ({
+      ...prevSelectedOptions,
+      [complaintId]: option,
+    }));
+    setSelectedOptionColors((prevSelectedOptionColors) => ({
+      ...prevSelectedOptionColors,
+      [complaintId]: color,
+    }));
   };
 
   return (
@@ -54,27 +59,38 @@ const AdminSolveQuery = () => {
 
       <div className="faq-section">
         <div className="container mt-5 mb-5 px-5 rounded mx-auto" style={containerStyle}>
-          <h2 className="text-center" style={{ color: '#750D37' }}>All Queries</h2>
+          <h2 className="text-center" style={{ color: '#871f40' }}>All Queries</h2>
 
           <div className="accordion" id="accordionFlushExample" style={{ textAlign: 'center' }}>
-            {faqs.map((faq) => (
-              <div key={faq.complaintId} className="accordion-item">
+            {complaints.map((complaint) => (
+              <div key={complaint.complaintId} className="accordion-item">
                 <h2 className="accordion-header">
                   <button
-                    className={`accordion-button ${activeFAQ === faq.complaintId ? '' : 'collapsed'}`}
+                    className={`accordion-button ${activeFAQ === complaint.complaintId ? '' : 'collapsed'}`}
                     type="button"
-                    onClick={() => handleToggle(faq.complaintId)}
+                    onClick={() => handleToggle(complaint.complaintId)}
                   >
-                    {faq.question}
-                    <i className={`fas fa-chevron-down ms-auto ${activeFAQ === faq.complaintId ? 'up' : 'down'}`}></i>
+                    {complaint.complaintId}
                   </button>
                 </h2>
                 <div
-                  id={`faqCollapse${faq.complaintId}`}
-                  className={`accordion-collapse ${activeFAQ === faq.complaintId ? 'show' : ''}`}
+                  id={`faqCollapse${complaint.complaintId}`}
+                  className={`accordion-collapse ${activeFAQ === complaint.complaintId ? 'show' : ''}`}
                 >
                   <div className="accordion-body">
-                    {activeFAQ === faq.complaintId && <ComplaintTable complaint={complaints.find(c => c.complaintId === faq.complaintId)} />}
+                    {activeFAQ === complaint.complaintId && (
+                      <>
+                        <ComplaintTable
+                          complaint={complaint}
+                          selectedOption={selectedOptions[complaint.complaintId] || ''}
+                        />
+                        <Button
+                          onSelectOption={(option, color) =>
+                            handleOptionSelect(complaint.complaintId, option, color)
+                          }
+                        />
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
@@ -90,7 +106,7 @@ const AdminSolveQuery = () => {
   );
 };
 
-const ComplaintTable = ({ complaint }) => {
+const ComplaintTable = ({ complaint, selectedOption }) => {
   if (!complaint) {
     return <p>No data available.</p>;
   }
@@ -102,20 +118,16 @@ const ComplaintTable = ({ complaint }) => {
           <th>Complaint ID</th>
           <th>Customer Name</th>
           <th>Category</th>
-          <th>Status</th>
-          <th>Created At</th>
-          <th>Resolved At</th>
+          <th>Selected Option</th>
           <th>Complaint Text</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>{complaint.complaintId}</td>
-          <td>{complaint.customer ? complaint.customer.customerName : 'N/A'}</td>
+          <td>{complaint.customer && complaint.customer.firstName}</td>
           <td>{complaint.category}</td>
-          <td>{complaint.status}</td>
-          <td>{complaint.createdAt}</td>
-          <td>{complaint.resolvedAt}</td>
+          <td>{selectedOption}</td>
           <td>{complaint.complaintText}</td>
         </tr>
       </tbody>
