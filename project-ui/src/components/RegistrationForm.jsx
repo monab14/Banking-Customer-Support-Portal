@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import registrationImage from '../images/registrationImage.jpeg'
 import smallImage from '../images/smallImage.png'
 import NavBar from './NavBar';
-
+import axios from 'axios';
 
 const RegistrationForm = () => {
     const navigate = useNavigate();
@@ -71,8 +71,20 @@ const handleSendOTP = (e) => {
     
 const handleOTPSubmit = (e) => {
     e.preventDefault();
-    const { enteredOTP } = formData; 
-    const otpFromEmail = formData.enteredOTP;
+    const { enteredOTP, aadharNumber } = formData; 
+   
+    const otpRegex = /^\d{4}$/;
+    const aadharRegex = /^\d{12}$/;
+    if (!otpRegex.test(enteredOTP)) {
+            toast.error('Invalid OTP. OTP must be a 4-digit number.');
+            return;
+        }
+
+        if (!aadharRegex.test(aadharNumber)) {
+            toast.error('Invalid Aadhar number. Aadhar number must be a 12-digit number.');
+            return;
+        }
+         const otpFromEmail = formData.enteredOTP;
     if (enteredOTP === otpFromEmail) {
     setFormData({ ...formData, isOTPVerified: true });
     toast.success('OTP verified successfully!');
@@ -98,19 +110,26 @@ const handleOTPSubmit = (e) => {
 };
 
 
-const handlePasswordSubmit = (e) => {
+const handlePasswordSubmit = async (e) => {
     e.preventDefault();
     const { password, confirmPassword } = formData;
     if (password === confirmPassword) {
     const customerId = generateNumericCustomerId(); 
     sendRegistrationEmail(customerId);
         
-        toast.success('Registration successful!');
-        navigate(`/thank-you?customerId=${customerId}`);
-    } else {
-    toast.error('Passwords do not match. Please try again.');
-    }
-};
+      try {
+                const response = await axios.post('http://localhost:8090/api/addcustomer', formData);
+                console.log(response.data); 
+                toast.success('Registration successful!');
+                navigate(`/thank-you?customerId=${customerId}`);
+            } catch (error) {
+                console.error('Error occurred while registering:', error);
+                toast.error('Registration failed. Please try again.');
+            }
+        } else {
+            toast.error('Passwords do not match. Please try again.');
+        }
+    }; 
 
     
 return (

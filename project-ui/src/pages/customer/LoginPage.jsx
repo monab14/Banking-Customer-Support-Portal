@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import login from "../../images/login.png";
 import NavBar from '../../components/NavBar';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const imageStyle = {
   width: '50%',
@@ -65,6 +67,30 @@ const logoStyle = {
 };
 
 const LoginPage = () => {
+const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+   username: '',
+    password: '',
+  });
+ const [error, setError] = useState(null);
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.get('http://localhost:8090/api/welcome', formData);
+      console.log(response.data); 
+      navigate('/customer-dashboard');
+
+    } catch (error) {
+      console.error('Error occurred while logging in:', error);
+      setError('Invalid username or password. Please try again.');
+    }
+  };
   return (
     <div><NavBar/>
     <div className="login-page" style={{ display: 'flex', width: '100vw', height: '100vh' }}>
@@ -89,7 +115,7 @@ const LoginPage = () => {
           </a>
         <h2 style={{ color: '#750D37', textAlign: 'left' }}>Customer Login</h2>
         <h6 style = {{ color : '#750D37'}}> Sign in to continue to the website </h6>
-        <form style={{ width: '100%' }}>
+        <form style={{ width: '100%' }} onSubmit={handleSubmit}>
           <div className="login-input-container mt-3 mb-3" style={{ ...inputStyle }}>
             <label className= "form-label">Username : </label>
                 <input
@@ -119,6 +145,7 @@ const LoginPage = () => {
             </button>
         </div>
         </form>
+        {error && <div style={{ color: 'red', textAlign: 'center', marginTop: '10px' }}>{error}</div>}
         </div>
       </div>
     </div></div>

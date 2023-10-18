@@ -57,7 +57,7 @@ const TicketStatus = () => {
       
       <div style={{ paddingLeft: '130px', marginTop: '10px' }}><h6 style={{ color: 'grey' }}>Quick Actions</h6></div>
       <div style={{ paddingLeft: '130px' }}><h3 style={{ color: '#871f40'}}>Ticket Request Status</h3></div>
-        <div style={{ paddingLeft: '130px' }}><h6><a href="#" style={{textDecoration: 'none', color: 'inherit'}}>Home</a> >Service Request Status</h6></div>
+        <div style={{ paddingLeft: '130px' }}><h6><a href="#" style={{textDecoration: 'none', color: 'inherit'}}>Home</a> Service Request Status</h6></div>
         
       <div className="container mt-4">
         <div className="row">

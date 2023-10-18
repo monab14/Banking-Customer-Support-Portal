@@ -29,8 +29,7 @@ const CustomerDashboard = () => {
     setIsRmInfoVisible(false);
   };
   const handleLogout = () => {
-    // Perform any logout actions (e.g., clearing session)
-    // Then redirect to the login page
+    
     navigate('/login');
   };
 
@@ -47,18 +46,11 @@ const CustomerDashboard = () => {
       .then(data => setComplaintData(data))
       .catch(error => console.error('Error fetching complaint data:', error));
   }, []);
-
-  const toggleDropdown = () => {
-    if (!isDropdownOpen) {
-      fetch('http://localhost:8090/api/customer/1')
-        .then(response => response.json())
-        .then(data => setCustomerData(data))
-        .catch(error => console.error('Error fetching data:', error));
-    }
   
+   const handleToggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
+    console.log(isDropdownOpen); 
   };
-  
   
 
   return (
@@ -67,7 +59,8 @@ const CustomerDashboard = () => {
         <div className="logo" >
         <img src="/MonaImages/axislogo.jpg" alt="Axis Bank Logo" height="50" />
         </div>
-      </div>
+         </div>
+
 
 <div className="container ml-1">
         <div className="row">
@@ -124,56 +117,37 @@ const CustomerDashboard = () => {
           </div>
           <div className="col-md-10">
   <div className="mt-2">
-    <div className="d-flex align-items-center justify-content-between">
-    <div className="col-md-8">
+    <div className="d-flex align-items-center justify-content-end ml-auto">
+    <div className = "textAlign " style={{ textAlign: 'center' }}>
     <h2 style={{ marginLeft: '50px' }}>Dashboard</h2>
 
+    </div>
+    
+<div className= "col-md-4 ml-auto text-right" style={{ marginLeft: '250px', textAlign: 'right' }}> 
+        <div className=" d-flex align-items-center justify-content-end ml-auto">
+         {customerData && (
+          <div className="dropdown">
+        <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={handleToggleDropdown} style={{ backgroundColor: '#750D37', color: 'white' }}>
+          {`${customerData.firstName} ${customerData.lastName}`}
+        </button>
+        <div className={`dropdown-menu${isDropdownOpen ? ' show' : ''}`} aria-labelledby="dropdownMenuButton">
+          <p className="dropdown-item">Customer ID: {customerData.customerid}</p>
+          <p className="dropdown-item">First Name: {customerData.firstName}</p>
+          <p className="dropdown-item">Last Name: {customerData.lastName}</p>
+          <p className="dropdown-item">Email: {customerData.email}</p>
+          <p className="dropdown-item">Phone Number: {customerData.phoneNumber}</p>
+          <p className="dropdown-item">Aadhar Number: {customerData.aadharNumber}</p>
+          <p className="dropdown-item">Gender: {customerData.gender}</p>
+          <p className="dropdown-item">Address: {customerData.address}</p>
+          
+            </div>
       </div>
-    <div className="col-md-6"></div> 
-      
-      <div className="d-flex align-items-center ml-auto ">
-        <div className="mr-2">
-          <h5>{customerData ? `${customerData.firstName} ${customerData.lastName}` : 'Your Profile'}</h5>
-        </div>
-        <img src="contacts.png" alt="Contacts" className="card-img-top ml-auto" style={{ width: '70px', height: '50px', objectFit: 'cover' }} />
-        <button
-          className="btn btn-link dropdown-toggle ml-1" 
-          data-toggle="dropdown" 
-          aria-haspopup="true" 
-          aria-expanded="false"
-          style={{ color: '#871f40', fontSize: '1.5rem' }}
+      )}
+    <button className="btn btn-secondary" style={{ backgroundColor: '#750D37', color: 'white' }}  onClick={handleLogout}>Logout</button>
+  </div>
+  </div>
+  </div>
 
-        >
-          <span className="sr-only ">Toggle Dropdown</span>
-        </button>
-        <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <div className="card">
-            <div className="card-body">
-              <h5 className="card-title">Customer Details</h5>
-              {customerData && (
-                <p className="card-text">
-                  Customer ID: {customerData.customerid}<br/>
-                  First Name: {customerData.firstName}<br/>
-                  Last Name: {customerData.lastName}<br/>
-                  Email: {customerData.email}<br/>
-                  Phone Number: {customerData.phoneNumber}<br/>
-                  Aadhar Number: {customerData.aadharNumber}<br/>
-                  Gender: {customerData.gender}<br/>
-                  Address: {customerData.address}<br/>
-                </p>
-              )}
-            </div>  
-          </div>
-        </div>
-        <button
-          className="btn btn-danger" 
-          style={{ backgroundColor: '#871f40', borderColor: '#871f40' }}
-          onClick={handleLogout}
-        >
-          Logout
-        </button>
-      </div>
-   </div>
 
 <div className="container bg-white p-5 mt-1" style={{ height: '1200px', width: '1200px', marginLeft: '70px' }}>
     <div className="row"> 
@@ -356,23 +330,13 @@ const CustomerDashboard = () => {
 <Chatbot /> 
   </div>
 </div>
-
-
-
-
-
     </div>
   </div>
 </div>
-
-
           </div>
         </div>
       </div>
       </div>
-
-  
-    
   );
 };
 

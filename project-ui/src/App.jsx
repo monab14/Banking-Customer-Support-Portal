@@ -14,7 +14,8 @@ import ThankYouPage from './pages/customer/ThankYouPage';
 import CustomerDashboard from './pages/CustomerDashboard';
 import CustomerSupportTeamLogin from './pages/CustomerSupportTeamLogin';
 import AdminDashboard from './pages/Admin/AdminDashboard';
-
+import TicketStatus from './pages/customer/TicketStatus';
+import AdminRegisterPage from './pages/Admin/AdminRegisterPage';
 
 function App() {
   const navigate = useNavigate(); 
@@ -37,6 +38,8 @@ function App() {
         <Route path="/customer-dashboard" element={<CustomerDashboard />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
+        <Route path="/ticket-status" element={<TicketStatus />} />
+        <Route path="/adminRegister" element={<AdminRegisterPage />} />
 
       </Routes>
     </div>

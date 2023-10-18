@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import AdminLogin from "../../images/AdminLogin.png";
 import NavBar from '../../components/NavBar';
-
+import  { useNavigate } from 'react-router-dom';
+import AdminDashboard from './AdminDashboard';
+import axios from 'axios';
 
 const imageStyle = {
   width: '50%',
@@ -74,6 +76,33 @@ const logoStyle = {
 };
 
 const AdminLoginPage = () => {
+    const navigate = useNavigate(); 
+    const [formData, setFormData] = useState({
+    username: '',
+    password: ''
+  });
+
+  const handleFormChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.get('http://localhost:8090/api/welcome', formData);
+      console.log(response.data); 
+      navigate('/admin-dashboard');
+
+    } catch (error) {
+      console.error('Error occurred while logging in:', error);
+      console.error('Invalid username or password. Please try again.');
+    }
+  };
+     
   return (
     <div>
       <NavBar/>
@@ -95,7 +124,7 @@ const AdminLoginPage = () => {
           </a>
           <h2 style={{ color: '#750D37' }}>Admin Login</h2>
           <h6 style={{ color: '#750D37' }}>Sign in to access the admin panel</h6>
-          <form style={{ width: '100%', textAlign: 'center'  }}>
+          <form onSubmit={handleSubmit} style={{ width: '100%', textAlign: 'center'  }}>
             <div className="login-input-container mt-3" style={{ ...inputStyle }}>
               <label className="form-label">Username :</label>
               <input
