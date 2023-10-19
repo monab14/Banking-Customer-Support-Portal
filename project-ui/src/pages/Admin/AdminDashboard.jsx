@@ -48,13 +48,13 @@ const cardImageStyle = {
 
   useEffect(() => {
     
-    fetch('http://localhost:8080/admins/1')
+    fetch('http://localhost:8090/admins/1')
       .then(response => response.json())
       .then(data => setAdminData(data))
       .catch(error => console.error('Error fetching customer data:', error));
 
   
-    fetch('http://localhost:8080/complaints/all')
+    fetch('http://localhost:8090/complaints/all')
       .then(response => response.json())
       .then(data => setComplaintData(data))
       .catch(error => console.error('Error fetching complaint data:', error));
