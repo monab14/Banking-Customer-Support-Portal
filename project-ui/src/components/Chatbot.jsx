@@ -40,7 +40,7 @@ const Chatbot = () => {
   const [password, setPassword] = useState("");
   const [showEmailForm, setShowEmailForm] = useState(false);
   const [showAddressForm, setShowAddressForm] = useState(false);
-  const [showMobileNumberForm, setShowMobileNumberForm] = useState(false);
+  const [showPhoneNumberForm, setShowPhoneNumberForm] = useState(false);
 
   const handleLoginFormSubmit = async (e) => {
     e.preventDefault();
@@ -53,10 +53,7 @@ const Chatbot = () => {
       console.log(response.data);
       setIsLoggedIn(true);
       setShowLogin(false);
-      setChatHistory([
-        ...chatHistory,
-        { type: "bot", message: "Logged in successfully." },
-      ]);
+      setChatHistory([{ type: "bot", message: "Logged in successfully." }]);
     } catch (error) {
       console.error("Error occurred during login:", error);
     }
@@ -153,10 +150,10 @@ const Chatbot = () => {
         setShowValidationMessage(true);
       } else {
         setIsValidationStep(false);
-        setChatHistory([...chatHistory, { type: "user" }]);
+        setChatHistory([{ type: "user" }]);
       }
     } else {
-      setChatHistory([...chatHistory, { type: "user", message: userMessage }]);
+      setChatHistory([{ type: "user", message: userMessage }]);
     }
     setUserMessage("");
   };
@@ -175,13 +172,11 @@ const Chatbot = () => {
 
       if (response.ok) {
         setChatHistory([
-          ...chatHistory,
           { type: "bot", message: "Email updated successfully." },
         ]);
       } else {
         console.error("Failed to update email");
         setChatHistory([
-          ...chatHistory,
           {
             type: "bot",
             message: "Failed to update email. Please try again later.",
@@ -192,7 +187,6 @@ const Chatbot = () => {
       console.error("Error updating email:", error);
 
       setChatHistory([
-        ...chatHistory,
         {
           type: "bot",
           message: "Error updating email. Please try again later.",
@@ -224,13 +218,11 @@ const Chatbot = () => {
 
       if (response.ok) {
         setChatHistory([
-          ...chatHistory,
           { type: "bot", message: "Address updated successfully." },
         ]);
       } else {
         console.error("Failed to update address");
         setChatHistory([
-          ...chatHistory,
           {
             type: "bot",
             message: "Failed to update address. Please try again later.",
@@ -240,7 +232,6 @@ const Chatbot = () => {
     } catch (error) {
       console.error("Error updating address:", error);
       setChatHistory([
-        ...chatHistory,
         {
           type: "bot",
           message: "Error updating address. Please try again later.",
@@ -249,15 +240,15 @@ const Chatbot = () => {
     }
   };
 
-  const handleMobileNumberFormSubmit = (e) => {
+  const handlePhoneNumberFormSubmit = (e) => {
     e.preventDefault();
-    const newMobileNumber = e.target.elements.mobileNumber.value;
+    const newPhoneNumber = e.target.elements.phoneNumber.value;
     const customerId = 1;
-    handleMobileNumberUpdate(newMobileNumber, customerId);
-    setShowMobileNumberForm(false);
+    handlePhoneNumberUpdate(newPhoneNumber, customerId);
+    setShowPhoneNumberForm(false);
   };
 
-  const handleMobileNumberUpdate = async (newMobileNumber, customerId) => {
+  const handlePhoneNumberUpdate = async (newPhoneNumber, customerId) => {
     try {
       const response = await fetch(
         `http://localhost:8090/api/customer/${customerId}`,
@@ -266,19 +257,17 @@ const Chatbot = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ mobileNumber: newMobileNumber }),
+          body: JSON.stringify({ phoneNumber: newPhoneNumber }),
         }
       );
 
       if (response.ok) {
         setChatHistory([
-          ...chatHistory,
           { type: "bot", message: "Mobile number updated successfully." },
         ]);
       } else {
         console.error("Failed to update mobile number");
         setChatHistory([
-          ...chatHistory,
           {
             type: "bot",
             message: "Failed to update mobile number. Please try again later.",
@@ -288,7 +277,6 @@ const Chatbot = () => {
     } catch (error) {
       console.error("Error updating mobile number:", error);
       setChatHistory([
-        ...chatHistory,
         {
           type: "bot",
           message: "Error updating mobile number. Please try again later.",
@@ -300,32 +288,26 @@ const Chatbot = () => {
   const handleButtonClick = (action) => {
     if (!localStorage.getItem("loggedIn") && !isLoggedIn) {
       setShowLogin(true);
-      setChatHistory([...chatHistory, { type: "bot" }]);
+      setChatHistory([{ type: "bot" }]);
     } else {
       switch (action) {
         case "Update mobile number":
           setChatHistory([
-            ...chatHistory,
             { type: "bot", message: " Please enter your new Mobile number." },
           ]);
-          setShowMobileNumberForm(true);
+          setShowPhoneNumberForm(true);
           break;
         case "Update address":
           setChatHistory([
-            ...chatHistory,
             { type: "bot", message: "Please enter your new Address." },
           ]);
           setShowAddressForm(true);
           break;
         case "PIN reset":
-          setChatHistory([
-            ...chatHistory,
-            { type: "bot", message: "PIN reset successful." },
-          ]);
+          setChatHistory([{ type: "bot", message: "PIN reset successful." }]);
           break;
         case "Update E-mail":
           setChatHistory([
-            ...chatHistory,
             { type: "bot", message: "Please enter your new email address:" },
           ]);
           setShowEmailForm(true);
@@ -382,7 +364,7 @@ const Chatbot = () => {
               <div
                 style={{
                   padding: "20px",
-                  backgroundImage: `url(${require("../images/BGImage.png")})`, // Replace "path/to/your/image.jpg" with the actual path to your background image
+                  backgroundImage: `url(${require("../images/BGImage.png")})`,
                   backgroundSize: "cover",
                   borderRadius: "10px",
                   backgroundRepeat: "no-repeat",
@@ -527,7 +509,7 @@ const Chatbot = () => {
               </form>
             )}
 
-            {showMobileNumberForm && (
+            {showPhoneNumberForm && (
               <form
                 style={{
                   backgroundColor: "#f2f2f2",
@@ -536,11 +518,11 @@ const Chatbot = () => {
                   boxShadow: "0px 0px 5px 0px rgba(0, 0, 0, 0.5)",
                   marginTop: "20px",
                 }}
-                onSubmit={handleMobileNumberFormSubmit}
+                onSubmit={handlePhoneNumberFormSubmit}
               >
                 <input
                   type="text"
-                  name="mobileNumber"
+                  name="phoneNumber"
                   placeholder="Enter your new mobile number"
                   required
                   style={{
@@ -613,35 +595,10 @@ const Chatbot = () => {
               <div style={{ ...chatbotContainerStyle, ...loginFormStyle }}>
                 <h4 style={{ color: "#750D37", textAlign: "center" }}>Login</h4>
 
-                {!localStorage.getItem("loggedIn") && <form onSubmit={handleLoginFormSubmit}>
-                  <label
-                    htmlFor="username"
-                    style={{
-                      display: "block",
-                      marginBottom: "5px",
-                      color: "#750D37",
-                      fontWeight: "bold",
-                    }}
-                  >
-                    Username:
-                  </label>
-                  <input
-                    type="text"
-                    id="username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)}
-                    style={{
-                      width: "100%",
-                      padding: "10px",
-                      borderRadius: "5px",
-                      border: "1px solid #ccc",
-                      fontSize: "16px",
-                      boxSizing: "border-box",
-                    }}
-                  />
-                  <div style={{ marginBottom: "20px" }}>
+                {!localStorage.getItem("loggedIn") && (
+                  <form onSubmit={handleLoginFormSubmit}>
                     <label
-                      htmlFor="password"
+                      htmlFor="username"
                       style={{
                         display: "block",
                         marginBottom: "5px",
@@ -649,13 +606,13 @@ const Chatbot = () => {
                         fontWeight: "bold",
                       }}
                     >
-                      Password:
+                      Username:
                     </label>
                     <input
-                      type="password"
-                      id="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      type="text"
+                      id="username"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
                       style={{
                         width: "100%",
                         padding: "10px",
@@ -665,18 +622,44 @@ const Chatbot = () => {
                         boxSizing: "border-box",
                       }}
                     />
-                  </div>
-                  <button
-                    type="submit"
-                    style={{
-                      ...submitButtonStyle,
-                      ...(isLoggedIn ? selectedButtonStyle : {}),
-                    }}
-                  >
-                    Log In
-                  </button>
-                </form>
-                }
+                    <div style={{ marginBottom: "20px" }}>
+                      <label
+                        htmlFor="password"
+                        style={{
+                          display: "block",
+                          marginBottom: "5px",
+                          color: "#750D37",
+                          fontWeight: "bold",
+                        }}
+                      >
+                        Password:
+                      </label>
+                      <input
+                        type="password"
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        style={{
+                          width: "100%",
+                          padding: "10px",
+                          borderRadius: "5px",
+                          border: "1px solid #ccc",
+                          fontSize: "16px",
+                          boxSizing: "border-box",
+                        }}
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      style={{
+                        ...submitButtonStyle,
+                        ...(isLoggedIn ? selectedButtonStyle : {}),
+                      }}
+                    >
+                      Log In
+                    </button>
+                  </form>
+                )}
               </div>
             )}
 
@@ -684,6 +667,7 @@ const Chatbot = () => {
               className="container"
               style={{
                 padding: "10px",
+
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "flex-start",
