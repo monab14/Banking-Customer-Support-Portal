@@ -3,11 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
-<<<<<<< HEAD
-
-=======
-//import Button2 from '../../components/Button2';
->>>>>>> b40a59a (c)
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const [AdminData, setAdminData] = useState(null);
