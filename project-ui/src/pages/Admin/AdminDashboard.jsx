@@ -3,16 +3,44 @@ import { useNavigate } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
+<<<<<<< HEAD
 
+=======
+//import Button2 from '../../components/Button2';
+>>>>>>> b40a59a (c)
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const [AdminData, setAdminData] = useState(null);
   const [complaintData, setComplaintData] = useState(null);
    const [showComplaintsCard, setShowComplaintsCard] = useState(false);
- 
+   const [selectedComplaint, setSelectedComplaint] = useState(null);
+   const [selectedTeam, setSelectedTeam] = useState(null);
    const handleViewComplaints = () => {
      setShowComplaintsCard(true);
    };
+
+   const handleAssignComplaint = () => {
+    // Send an API request to assign the selected complaint to the selected team
+    if (selectedComplaint && selectedTeam) {
+      const complaintId = selectedComplaint.complaintId;
+      const teamName = selectedTeam; // You should have the selected team name
+
+      // Send a POST request to your backend to assign the complaint
+      fetch(`http://localhost:8090/api/assign/${complaintId}/${teamName}`, {
+        method: 'POST',
+      })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log('Complaint assigned successfully:', data);
+      })
+      .catch((error) => console.error('Error assigning complaint:', error));
+    }
+  };
    
    const handleGoBack = () => {
     setShowComplaintsCard(false);
@@ -58,6 +86,11 @@ const cardImageStyle = {
       .then(response => response.json())
       .then(data => setComplaintData(data))
       .catch(error => console.error('Error fetching complaint data:', error));
+
+    // fetch('http://localhost:8090/api/assign/${complaintId}/${teamName}')
+    //   .then(response => response.json())
+    //   .then(data => setSelectedComplaint(data))
+    //   .catch(error => console.error('Error fetching team data:', error));
   }, []);
 
   const sliderSettings = {
@@ -306,31 +339,42 @@ const cardImageStyle = {
                 <thead >
                   <tr>
                     <th>Customer ID</th>
+                    <th>Complaint ID</th>
                     <th>Category</th>
                     <th>Status</th>
                     <th>Created At</th>
                     <th>Resolved At</th>
                     <th>Complaint Text</th>
-                     <th>Assign to Customer Support</th> 
+                     <th>Assign to</th> 
                   </tr>
                 </thead>
                 <tbody>
                   {complaintData.map((complaint) => (
                     <tr key={complaint.complaintId}>
                       <td>{complaint.customer.customerid}</td>
+                      <td>{complaint.complaintId}</td>
                       <td>{complaint.category}</td>
                       <td>{complaint.status}</td>
                       <td>{complaint.createdAt}</td>
                       <td>{complaint.resolvedAt}</td>
                       <td>{complaint.complaintText}</td>
                       <td>
-          <button 
-            className="btn btn-primary"style={{ backgroundColor: '#871f40', borderColor: '#871f40'}}
-
-            onClick={() => window.location.href = '#'}
-          >
-            Assign
-          </button>
+                      <div>
+                        <select onChange={(e) => setSelectedTeam(e.target.value)}>
+                          <option value="">Select Team</option>
+                          <option value="Team1">Debit Card</option>
+                          <option value="Team2">Credit Card</option>
+                          <option value="Team3">Loan Team</option>
+                          <option value="Team4">Customer Care</option>
+                        </select>
+                        <button
+                          className="btn btn-primary"
+                          style={{ backgroundColor: '#871f40' }}
+                          onClick={handleAssignComplaint}
+                        >
+                          Assign
+                        </button>
+                      </div>
         </td>
                      
                       

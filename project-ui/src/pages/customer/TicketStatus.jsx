@@ -23,7 +23,7 @@ const TicketStatus = () => {
       setIsCustomerIdValid(true);
 
       try {
-        const response = await fetch(`http://localhost:8080/api/${customerid}/alltickets`, {
+        const response = await fetch(`http://localhost:8090/api/${customerid}/alltickets`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ Get the status of your Service Request 24x7 by simply entering your SR number or
       </div>
       </div>
       <div className="d-flex align-items">
-        <img src="/Digital.jpg" alt="Image" style={{ width:'150px',height: '140px', marginTop: '-20px'}} />
+        <img src="/Digital.jpg" alt="Digital" style={{ width:'150px',height: '140px', marginTop: '-20px'}} />
           <div><h4 style={{ color: '#871f40'}}>Digital</h4>
           <p style={{ fontFamily: 'Times New Roman', fontSize: '16px' }}>
 Check the status of your Service Request digitally, without logging into Internet or Mobile Banking.</p>
