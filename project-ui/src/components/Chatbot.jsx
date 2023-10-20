@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaTimes, FaPaperPlane } from "react-icons/fa"; // Importing Font Awesome close icon
+import { FaTimes, FaPaperPlane } from "react-icons/fa"; 
 import AskRadz from "../images/AskRadz.png";
 import axios from "axios";
 
