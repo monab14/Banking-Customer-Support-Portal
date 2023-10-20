@@ -17,6 +17,7 @@ import AdminDashboard from './pages/Admin/AdminDashboard';
 import TicketStatus from './pages/customer/TicketStatus';
 import AdminRegisterPage from './pages/Admin/AdminRegisterPage';
 import AdminSolveQuery from './pages/Admin/AdminSolveQuery';
+import SupportTeam from './pages/Admin/SupportTeam';
 
 
 function App() {
@@ -43,6 +44,7 @@ function App() {
         <Route path="/admin-dashboard" element={<AdminDashboard />} />
         <Route path="/adminRegister" element={<AdminRegisterPage />} />
         <Route path="/solveQuery" element={<AdminSolveQuery />} />
+        <Route path="/supportTeam" element={<SupportTeam />} />
 
 
       </Routes>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import DashboardCarousel from './DashboardCarousel';
+import DashboardCarousel from './SupportCarousel';
 import Chatbot from '../components/Chatbot';
 import { Link } from 'react-router-dom';
 import ComplaintWrapperButton from '../components/ComplaintWrapperButton';

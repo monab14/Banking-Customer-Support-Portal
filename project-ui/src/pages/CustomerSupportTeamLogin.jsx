@@ -22,7 +22,7 @@ const CustomerSupportTeamLogin = () => {
       if (response.status === 200) {
         // Handle success (optional)
         console.log('Team created successfully:', response.data);
-        window.location.href = "/customer-dashboard";
+        window.location.href = "/supportTeam";
       }
     } catch (error) {
       // Handle errors (optional)
