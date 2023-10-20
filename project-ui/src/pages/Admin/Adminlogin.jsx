@@ -4,6 +4,7 @@ import NavBar from '../../components/NavBar';
 import  { useNavigate } from 'react-router-dom';
 import AdminDashboard from './AdminDashboard';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const imageStyle = {
   width: '50%',
@@ -118,9 +119,9 @@ const handleSubmit = async (e) => {
         </div>
         <div className= 'mt-3'>
         <div className="mt-5" style={innerContainerStyle}>
-          <a className="navbar-brand mb-3" href="#">
+          <Link className="navbar-brand mb-3" to="#">
             <img src={AdminLogin} alt="AdminLogin" width="150px" />
-          </a>
+          </Link>
 
 =======
           <h2 style={{ color: '#871f40' }}>Admin Login</h2>
@@ -150,7 +151,7 @@ const handleSubmit = async (e) => {
               />
             </div>
             <div className="forgot-password mb-3" style={{ textAlign: 'right', width: '100%' }}>
-              <a href="#">Forgot Password ?</a>
+              <Link to="#">Forgot Password ?</Link>
             </div>
             <div className="mt-3" style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
               <button type="submit" style={{ ...buttonStyle }} onClick={handleSubmit}>

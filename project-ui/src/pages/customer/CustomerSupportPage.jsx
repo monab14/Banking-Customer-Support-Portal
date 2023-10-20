@@ -4,48 +4,49 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import SupportNavBar from './SupportNavBar';
 import user from '../../images/user.png';
-import ComplaintWrapperButton from '../../components/ComplaintWrapperButton';
+
 import endImage from '../../images/endImage.png';
 import end1Image from '../../images/end1Image.png';
 import Chatbot from '../../components/Chatbot';
+import ComplaintWrapperButtontwo from '../../components/ComplaintWrapperButtontwo';
 
 const Card = ({ imageUrl }) => (
     <div style={cardStyle}>
-        <img src={imageUrl} alt="Card" style={ cardImageStyle}  />
+        <img src={imageUrl} alt="Card" style={cardImageStyle} />
     </div>
 );
 const cardStyle = {
-    width: '100%', 
-    height: '100%',  
+    width: '100%',
+    height: '100%',
     border: '1px solid #ccc',
     borderRadius: '8px',
     boxSizing: 'border-box',
-    display: 'flex', 
-    justifyContent: 'center', 
+    display: 'flex',
+    justifyContent: 'center',
     alignItems: 'center',
     marginBottom: '20px',
     margin: '0 10px',
-    
+
 };
 
 const cardImageStyle = {
     width: '100%',
-    height: 'auto', 
+    height: 'auto',
     objectFit: 'cover',
-    borderRadius: '8px', 
+    borderRadius: '8px',
 };
 const TextSlider = ({ text }) => (
-  <div style={textSliderStyle}>
-    <p>{text}</p>
-  </div>
+    <div style={textSliderStyle}>
+        <p>{text}</p>
+    </div>
 );
 
 const textSliderStyle = {
-  width: '100%',
-  textAlign: 'center',
-  fontSize: '18px',
-  fontWeight: 'bold',
-  margin: '20px 0',
+    width: '100%',
+    textAlign: 'center',
+    fontSize: '18px',
+    fontWeight: 'bold',
+    margin: '20px 0',
 };
 const CustomerSupportPage = () => {
     const [showDropdown, setShowDropdown] = useState(false);
@@ -61,9 +62,9 @@ const CustomerSupportPage = () => {
 
     const handleOptionClick = (option) => {
         if (dropdownOptions.includes(option)) {
-        setSelectedOption(option);
-    }
-        setShowDropdown(false); 
+            setSelectedOption(option);
+        }
+        setShowDropdown(false);
     };
 
     const handleSearchChange = (e) => {
@@ -71,7 +72,7 @@ const CustomerSupportPage = () => {
     };
 
     const handleClickOutside = (event) => {
-       if (
+        if (
             inputRef.current &&
             !inputRef.current.contains(event.target) &&
             dropdownRef.current &&
@@ -92,7 +93,7 @@ const CustomerSupportPage = () => {
         flexDirection: 'column',
         alignItems: 'center',
         fontFamily: 'Arial, sans-serif',
-        position: 'relative', 
+        position: 'relative',
     };
 
     const contentContainerStyle = {
@@ -132,7 +133,7 @@ const CustomerSupportPage = () => {
         border: 'none',
         outline: 'none',
     };
- const dropdownStyle = {
+    const dropdownStyle = {
         position: 'absolute',
         top: '100%',
         width: '100%',
@@ -146,7 +147,7 @@ const CustomerSupportPage = () => {
         padding: '20px',
     };
 
-const titleContainerStyle = {
+    const titleContainerStyle = {
         marginBottom: '20px',
         backgroundColor: '#FFFFFF',
         padding: '10px',
@@ -156,68 +157,68 @@ const titleContainerStyle = {
         dots: true,
         infinite: true,
         speed: 500,
-       
+
         slidesToShow: 3,
         slidesToScroll: 1,
-        centerMode: true, 
-        centerPadding: '0', 
+        centerMode: true,
+        centerPadding: '0',
         responsive: [
             {
                 breakpoint: 1024,
                 settings: {
-                    slidesToShow: 2, 
+                    slidesToShow: 2,
                 },
             },
             {
                 breakpoint: 768,
                 settings: {
-                    slidesToShow: 1, 
+                    slidesToShow: 1,
                 },
             },
         ],
     };
 
-const textSlides = [
-    'Internet Banking',
-    'Disputed Transaction',
-    'Generate a Debit Card pin',
-    'Status of Credit card',
-    
-  ];
+    const textSlides = [
+        'Internet Banking',
+        'Disputed Transaction',
+        'Generate a Debit Card pin',
+        'Status of Credit card',
+
+    ];
     const cardsData = [
         {
-            
+
             imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBqop2dpaj_GECWNOkEL1WPrSsXkHMDWi2jw&usqp=CAU',
         },
         {
-            
+
             imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZQr2HJ-OEVHqviVnpLYU2KxUVxixKUk_riQ&usqp=CAU',
         },
         {
-            
+
             imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRwrzv0k3WIvclfJofY1xQZOAGxcn-ytRNtzQ&usqp=CAU',
         },
         {
-            
+
             imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxfqtiY0DnpPSrG7OvzH1O7QD1_8Q4HN5A0A&usqp=CAU',
         },
         {
-            
+
             imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuhhkLnWRAKk71Ah_2gknGq7QBv9H8G2StD2xJ4pTLfUC7f7nW5uFMH8mISdl8ZDDDPtw&usqp=CAU',
         },
         {
-            
+
             imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQy4ju4RtFrTJEwnVx2UPG0wKl994Mok1A0w&usqp=CAU',
         },
         {
-            
+
             imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA9gHlouJHIKXxOS0AnyquT8BzPBeTLHz3KA&usqp=CAU',
         },
     ];
-     const handleComplaintWrapperClick = () => {
-    
-    console.log('Complaint Wrapper Clicked!');
-  };
+    const handleComplaintWrapperClick2 = () => {
+
+        console.log('Complaint Wrapper Clicked!');
+    };
     return (
         <div style={containerStyle}>
             <SupportNavBar />
@@ -238,12 +239,12 @@ const textSlides = [
                         style={searchBarInputStyle}
                         value={selectedOption || searchValue}
                         onChange={handleSearchChange}
-                        onClick={handleToggleDropdown} 
+                        onClick={handleToggleDropdown}
                     />
                     {showDropdown && (
-                        
+
                         <div style={dropdownStyle} ref={dropdownRef}>
-                            
+
                             {dropdownOptions.map((option, index) => (
                                 <div key={index} onClick={() => handleOptionClick(option)}>
                                     {option}
@@ -253,41 +254,41 @@ const textSlides = [
                         </div>
                     )}
                 </div>
-                
-                <div className = 'mt-3'>
+
+                <div className='mt-3'>
+                    <Slider {...sliderSettings}>
+                        {textSlides.map((text, index) => (
+                            <TextSlider key={index} text={text} />
+                        ))}
+                    </Slider>
+                </div>
+
+                <h2 className='mt-5 mb-3' style={{ color: '#871f40' }}>Latest Updates</h2>
                 <Slider {...sliderSettings}>
-                    {textSlides.map((text, index) => (
-                        <TextSlider key={index} text={text} />
+                    {cardsData.map((card, index) => (
+                        <Card
+                            key={index}
+                            imageUrl={card.imageUrl}
+                        />
                     ))}
                 </Slider>
-                </div>
 
-                <h2 className= 'mt-5 mb-3' style={{ color: '#871f40' }}>Latest Updates</h2>
-                <Slider {...sliderSettings}>
-                {cardsData.map((card, index) => (
-                    <Card
-                        key={index}
-                        imageUrl={card.imageUrl}
-                    />
-                ))}
-                </Slider>
-
-                <ComplaintWrapperButton onClick={handleComplaintWrapperClick} />
+                <ComplaintWrapperButtontwo onClick={handleComplaintWrapperClick2} />
 
                 <div className='mt-5'>
-                <img
-                    src={endImage} 
-                    alt="endImage"
-                    style={{ width: '100%', height: 'auto' }}
+                    <img
+                        src={endImage}
+                        alt="endImage"
+                        style={{ width: '100%', height: 'auto' }}
                     />
                 </div>
                 <div className='mt-5'>
-                <img
-                    src={end1Image} 
-                    alt="end1Image"
-                    style={{ width: '100%', height: 'auto' }}
+                    <img
+                        src={end1Image}
+                        alt="end1Image"
+                        style={{ width: '100%', height: 'auto' }}
                     />
-                    <Chatbot /> 
+                    <Chatbot />
                 </div>
             </div>
         </div>

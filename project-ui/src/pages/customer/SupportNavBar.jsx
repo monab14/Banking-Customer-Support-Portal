@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import logoAxis from '../../images/logoAxis.jpeg';
 import ConfirmationModal    from '../../components/ConfirmationModel';
 const dropdownMenuOptions = [
@@ -62,9 +63,9 @@ const handleConfirmationClose = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light" style={{ backgroundColor: '#871f40' }}>
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">
+        <Link className="navbar-brand" to="/">
           <img src='MonaImages/axislogo.jpg' alt="Logo" style={{ height: '50px', width: 'auto', padding: '5px' }} />
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -107,14 +108,14 @@ const handleConfirmationClose = () => {
         
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/faqs" style={{ color: 'white', marginRight: '20px' }}>
+              <Link className="nav-link" to="/faqs" style={{ color: 'white', marginRight: '20px' }}>
                 FAQs
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/ticket-status" style={{ color: 'white', marginRight: '20px' }}>
+              <Link className="nav-link" to="/ticket-status" style={{ color: 'white', marginRight: '20px' }}>
                 Ticket Request Status
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

@@ -3,6 +3,7 @@ import login from "../../images/login.png";
 import NavBar from '../../components/NavBar';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const parentContainerStyle = {
   display: 'flex',
@@ -109,7 +110,7 @@ const LoginPage = () => {
                 />
               </div>
               <div className="forgot-password mb-3" style={{ textAlign: 'right', width: '100%' }}>
-                <a href="#">Forgot Password?</a>
+                <Link to="#">Forgot Password?</Link>
               </div>
               <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
                 <button type="submit" style={{ margin: '20px 0', padding: '10px 20px', fontSize: '18px', cursor: 'pointer', backgroundColor: '#871f40', color: '#F0F2EF', borderRadius: '20px', border: 'none' }}>

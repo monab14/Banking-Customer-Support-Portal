@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import DashboardCarousel from './DashboardCarousel';
 import Chatbot from '../components/Chatbot';
+import { Link } from 'react-router-dom';
+import ComplaintWrapperButton from '../components/ComplaintWrapperButton';
 
 const CustomerDashboard = () => {
   const navigate = useNavigate();
@@ -57,7 +59,10 @@ const CustomerDashboard = () => {
     setIsDropdownOpen(!isDropdownOpen);
     console.log(isDropdownOpen);
   };
+  const handleComplaintWrapperClick = () => {
 
+    console.log('Complaint Wrapper Clicked!');
+};
 
 
   return (
@@ -72,7 +77,7 @@ const CustomerDashboard = () => {
 
 
       </div>
-
+      
 
       <div className="container ml-1">
         <div className="row">
@@ -83,48 +88,48 @@ const CustomerDashboard = () => {
                 <h6 className="card-title mb-0" style={{ fontSize: '14px', fontWeight: 'normal', color: '#000' }}>Dashboard</h6>
               </div>
 
-              <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <Link to="#" style={{ textDecoration: 'none', color: 'inherit' }}>
 
                 <div className="mb-3 border-top ">
                   <img src="/account.jpg" className="card-img-top pt-2" alt="Accounts Icon" style={{ width: '80px', height: '60px', objectFit: 'cover' }} />
                   <h6 className="card-title mb-0" style={{ fontSize: '14px', fontWeight: 'normal', color: '#fff' }}>ACCOUNTS</h6>
                 </div>
-              </a>
-              <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+              </Link>
+              <Link to="#" style={{ textDecoration: 'none', color: 'inherit' }}>
                 <div className="mb-3 border-top">
                   <img src="/support.jpg" className="card-img-top pt-2" alt="FD Icon" style={{ width: '80px', height: '60px', objectFit: 'cover' }} />
                   <h6 className="card-title mb-0" style={{ fontSize: '14px', fontWeight: 'normal', color: '#fff' }}>SUPPORT</h6>
-                </div></a>
-              <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+                </div></Link>
+              <Link to="#" style={{ textDecoration: 'none', color: 'inherit' }}>
                 <div className="mb-3 border-top">
                   <img src="/Payments.jpg" className="card-img-top pt-2" alt="Payments Icon" style={{ width: '80px', height: '60px', objectFit: 'cover' }} />
                   <h6 className="card-title mb-0" style={{ fontSize: '14px', fontWeight: 'normal', color: '#fff' }}>PAYMENTS</h6>
-                </div></a>
-              <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+                </div></Link>
+              <Link to="#" style={{ textDecoration: 'none', color: 'inherit' }}>
                 <div className="mb-3 border-top">
                   <img src="/Loan.jpg" className="card-img-top pt-2" alt="Loans Icon" style={{ width: '80px', height: '60px', objectFit: 'cover' }} />
                   <h6 className="card-title mb-0" style={{ fontSize: '14px', fontWeight: 'normal', color: '#fff' }}>LOANS</h6>
-                </div></a>
-              <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+                </div></Link>
+              <Link to="#" style={{ textDecoration: 'none', color: 'inherit' }}>
                 <div className="mb-3 border-top">
                   <img src="/cards.jpg" className="card-img-top pt-2" alt="Cards Icon" style={{ width: '80px', height: '60px', objectFit: 'cover' }} />
                   <h6 className="card-title mb-0" style={{ fontSize: '14px', fontWeight: 'normal', color: '#fff' }}>CARDS</h6>
-                </div></a>
-              <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+                </div></Link>
+              <Link to="#" style={{ textDecoration: 'none', color: 'inherit' }}>
                 <div className="mb-3 border-top">
                   <img src="/Investment.jpg" className="card-img-top pt-2" alt="investment Icon" style={{ width: '80px', height: '60px', objectFit: 'cover' }} />
                   <h6 className="card-title mb-0" style={{ fontSize: '14px', fontWeight: 'normal', color: '#fff' }}>INVESTMENT</h6>
-                </div></a>
-              <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+                </div></Link>
+              <Link to="#" style={{ textDecoration: 'none', color: 'inherit' }}>
                 <div className="mb-3 border-top">
                   <img src="/FDRD.jpg" className="card-img-top pt-2" alt="FD Icon" style={{ width: '80px', height: '60px', objectFit: 'cover' }} />
                   <h6 className="card-title mb-0" style={{ fontSize: '14px', fontWeight: 'normal', color: '#fff' }}>FD/RD</h6>
-                </div></a>
-              <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+                </div></Link>
+              <Link to="#" style={{ textDecoration: 'none', color: 'inherit' }}>
                 <div className="mb-3 border-top">
                   <img src="/insurance.jpg" className="card-img-top pt-2" alt="FD Icon" style={{ width: '80px', height: '60px', objectFit: 'cover' }} />
                   <h6 className="card-title mb-0" style={{ fontSize: '14px', fontWeight: 'normal', color: '#fff' }}>INSURANCE</h6>
-                </div></a>
+                </div></Link>
             </div>
           </div>
           <div className="col-md-10">
@@ -280,8 +285,8 @@ const CustomerDashboard = () => {
                       <div className="card" style={{ boxShadow: '0px 4px 8px rgba(1, 1, 1, 0.3)' }}>
                         <div className="card-body">
                           <img src="acc.jpg" className="card-img-top" style={{ width: '145px', height: '70px', objectFit: 'cover', paddingLeft: '40px' }} alt="Card 1" />
-                          <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
-                            <h6 className="card-text text-center">ACCOUNTS</h6></a>
+                          <Link to="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <h6 className="card-text text-center">ACCOUNTS</h6></Link>
                         </div>
                       </div>
                     </div>
@@ -289,8 +294,8 @@ const CustomerDashboard = () => {
                       <div className="card" style={{ boxShadow: '0px 4px 8px rgba(1, 1, 1, 0.3)' }}>
                         <div className="card-body" style={{ paddingLeft: '50px' }}>
                           <img src="Mutualfunds.jpg" className="card-img-top" style={{ width: '115px', height: '70px', objectFit: 'cover' }} alt="Card 1" />
-                          <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
-                            <h6 className="card-text text-center">MUTUAL FUNDS</h6></a>
+                          <Link to="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <h6 className="card-text text-center">MUTUAL FUNDS</h6></Link>
                         </div>
                       </div>
                     </div>
@@ -298,8 +303,8 @@ const CustomerDashboard = () => {
                       <div className="card" style={{ boxShadow: '0px 4px 8px rgba(1, 1, 1, 0.3)' }}>
                         <div className="card-body">
                           <img src="RD.jpg" className="card-img-top" style={{ width: '125px', height: '70px', objectFit: 'cover', paddingLeft: '50px' }} alt="Card 1" />
-                          <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
-                            <h6 className="card-text text-center">FD/RD</h6></a>
+                          <Link to="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <h6 className="card-text text-center">FD/RD</h6></Link>
                         </div>
                       </div>
                     </div>
@@ -308,8 +313,8 @@ const CustomerDashboard = () => {
                       <div className="card" style={{ boxShadow: '0px 4px 8px rgba(1, 1, 1, 0.3)' }}>
                         <div className="card-body">
                           <img src="forexCards.jpg" className="card-img-top" style={{ width: '125px', height: '70px', objectFit: 'cover', paddingLeft: '50px' }} alt="Card 1" />
-                          <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
-                            <h6 className="card-text text-center">FOREX CARDS</h6></a>
+                          <Link to="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <h6 className="card-text text-center">FOREX CARDS</h6></Link>
                         </div>
                       </div>
                     </div>
@@ -317,8 +322,8 @@ const CustomerDashboard = () => {
                       <div className="card" style={{ boxShadow: '0px 4px 8px rgba(1, 1, 1, 0.3)' }}>
                         <div className="card-body">
                           <img src="Loa.jpg" className="card-img-top" style={{ width: '160px', height: '70px', objectFit: 'cover', paddingLeft: '30px' }} alt="Card 1" />
-                          <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
-                            <h6 className="card-text text-center">LOANS</h6></a>
+                          <Link to="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <h6 className="card-text text-center">LOANS</h6></Link>
                         </div>
                       </div>
                     </div>
@@ -326,8 +331,8 @@ const CustomerDashboard = () => {
                       <div className="card" style={{ boxShadow: '0px 4px 8px rgba(1, 1, 1, 0.3)' }}>
                         <div className="card-body">
                           <img src="services.jpg" className="card-img-top" style={{ width: '130px', height: '70px', objectFit: 'cover', paddingLeft: '60px' }} alt="Card 1" />
-                          <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
-                            <h6 className="card-text text-center">SERVICES</h6></a>
+                          <Link to="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <h6 className="card-text text-center">SERVICES</h6></Link>
                         </div>
                       </div>
                     </div>
@@ -336,8 +341,8 @@ const CustomerDashboard = () => {
                       <div className="card" style={{ boxShadow: '0px 4px 8px rgba(1, 1, 0, 0.3)' }}>
                         <div className="card-body">
                           <img src="fund transfer.jpg" className="card-img-top" style={{ width: '150px', height: '70px', objectFit: 'cover', paddingLeft: '30px' }} alt="Card 1" />
-                          <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
-                            <h6 className="card-text text-center">FUNDS TRANSFER</h6></a>
+                          <Link to="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <h6 className="card-text text-center">FUNDS TRANSFER</h6></Link>
                         </div>
                       </div>
                     </div>
@@ -346,9 +351,9 @@ const CustomerDashboard = () => {
                       <div className="card" style={{ boxShadow: '0px 4px 8px rgba(1, 1, 0, 0.3)' }}>
                         <div className="card-body">
                           <img src="pay.jpg" className="card-img-top" style={{ width: '160px', height: '70px', objectFit: 'cover', paddingLeft: '40px' }} alt="Card 1" />
-                          <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+                          <Link to="#" style={{ textDecoration: 'none', color: 'inherit' }}>
                             <h6 className="card-text text-center">PAYMENTS</h6>
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -365,10 +370,10 @@ const CustomerDashboard = () => {
                       </p>
                       <ul>
                         <li>
-                          <a href="#" style={{ color: '#871f40' }}>Contact Customer Support</a>
+                          <Link to="#" style={{ color: '#871f40' }}>Contact Customer Support</Link>
                         </li>
                         <li>
-                          <a href="#" style={{ color: '#871f40' }}>New User?</a>
+                          <Link to="#" style={{ color: '#871f40' }}>New User?</Link>
                         </li>
                       </ul>
                       <Chatbot />
@@ -380,6 +385,8 @@ const CustomerDashboard = () => {
           </div>
         </div>
       </div>
+      <ComplaintWrapperButton onClick={handleComplaintWrapperClick} />
+
     </div>
 
   );

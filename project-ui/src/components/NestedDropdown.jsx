@@ -1,22 +1,23 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const NestedDropdown = () => {
   return (
     <ul className="dropdown-menu">
       <li>
-        <a className="dropdown-item" href="#">
+        <Link className="dropdown-item" to="#">
           Block Debit Card
-        </a>
+        </Link>
       </li>
       <li>
-        <a className="dropdown-item" href="#">
+        <Link className="dropdown-item" to="#">
           Block Credit Card
-        </a>
+        </Link>
       </li>
       <li>
-        <a className="dropdown-item" href="#">
+        <Link className="dropdown-item" to="#">
           Update Debit Card
-        </a>
+        </Link>
       </li>
     </ul>
   );

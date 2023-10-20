@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Button = ({ onSelectOption }) => {
   const [selectedOption, setSelectedOption] = useState('Select an Option');
@@ -25,34 +26,34 @@ const Button = ({ onSelectOption }) => {
       </button>
       <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <li>
-          <a
+          <Link
             className="dropdown-item"
-            href="#"
+            to="#"
             onClick={() => handleOptionSelect('Solved', 'green')}
             style={{ color: 'green' }}
           >
             Solved
-          </a>
+          </Link>
         </li>
         <li>
-          <a
+          <Link
             className="dropdown-item"
-            href="#"
+            to="#"
             onClick={() => handleOptionSelect('In Process', 'blue')}
             style={{ color: 'blue' }}
           >
             In Process
-          </a>
+          </Link>
         </li>
         <li>
-          <a
+          <Link
             className="dropdown-item"
-            href="#"
+            to="#"
             onClick={() => handleOptionSelect('Not Solved', 'red')}
             style={{ color: 'red' }}
           >
             Not Solved
-          </a>
+          </Link>
         </li>
       </ul>
     </div>

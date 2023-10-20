@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const AdminNavBar = () => {
     return (
@@ -7,7 +8,7 @@ const AdminNavBar = () => {
                 <nav className="navbar navbar-expand-lg " style={{ backgroundColor: '#871f40' }}>
                     <div className="container-fluid">
                         <div className="d-flex align-items-center">
-                            <a className="navbar-brand" href="/"><img src='MonaImages/axislogo.jpg' style={{ height: '2cm', width: '10cm', padding: '12px 80px' }} alt="Logo" /></a>
+                            <Link className="navbar-brand" to="/"><img src='MonaImages/axislogo.jpg' style={{ height: '2cm', width: '10cm', padding: '12px 80px' }} alt="Logo" /></Link>
 
                             <ul className="navbar-nav  mb-lg-0">
                                 <li className="nav-item d-flex align-items-center">
@@ -18,7 +19,7 @@ const AdminNavBar = () => {
                                         </h1>
                                     </div>
 
-                                    <a className="navbar-brand " href="/"><img src='https://www.svgrepo.com//show/293550/customer-service-support.svg' style={{ height: '2.5cm', width: '10cm' }} alt="CustomerSupportLogo" /></a>
+                                    <Link className="navbar-brand " to="/"><img src='https://www.svgrepo.com//show/293550/customer-service-support.svg' style={{ height: '2.5cm', width: '10cm' }} alt="CustomerSupportLogo" /></Link>
 
                                 </li>
                             </ul>

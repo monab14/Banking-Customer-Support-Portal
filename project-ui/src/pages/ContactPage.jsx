@@ -7,6 +7,7 @@ import twitter from '../images/twitter.png';
 import MyCard from '../components/MyCard';
 import NavBar from '../components/NavBar';
 import Footer from '../components/Footer';
+import { Link } from 'react-router-dom';
 
 const ContactPage = () => {
   const pageContainerStyle = {
@@ -106,48 +107,48 @@ const ContactPage = () => {
         </h2>
         <div style={socialMediaContainer}>
           <div>
-            <a
-              href="https://www.facebook.com/axisbank"
+            <Link
+              to="https://www.facebook.com/axisbank"
               target="_blank"
               rel="noopener noreferrer"
               style={textBelowImageStyle}
             >
               <img src={f1} style={socialMediaImageStyle} alt="Facebook" />
               <div style={{ color: '#871f40' }}>Follow us on Facebook</div>
-            </a>
+            </Link>
           </div>
           <div>
-            <a
-              href="https://www.instagram.com/axis_bank/"
+            <Link
+              to="https://www.instagram.com/axis_bank/"
               target="_blank"
               rel="noopener noreferrer"
               style={textBelowImageStyle}
             >
               <img src={insta} style={socialMediaImageStyle} alt="Instagram" />
               <div style={{ color: '#871f40' }}>Join us on Instagram</div>
-            </a>
+            </Link>
           </div>
           <div>
-            <a
-              href="https://www.youtube.com/axisbank"
+            <Link
+              to="https://www.youtube.com/axisbank"
               target="_blank"
               rel="noopener noreferrer"
               style={textBelowImageStyle}
             >
               <img src={youtube} style={socialMediaImageStyle} alt="Youtube" />
               <div style={{ color: '#871f40' }}>Subscribe on YouTube</div>
-            </a>
+            </Link>
           </div>
           <div>
-            <a
-              href="https://twitter.com/axisbank"
+            <Link
+              to="https://twitter.com/axisbank"
               target="_blank"
               rel="noopener noreferrer"
               style={textBelowImageStyle}
             >
               <img src={twitter} style={socialMediaImageStyle} alt="Twitter" />
               <div style={{ color: '#871f40' }}>Follow us on Twitter</div>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -189,7 +190,7 @@ const ContactPage = () => {
       {
         <>
         
-        <span> <a style={{ color: '#871f40' }} href='https://www.axisbank.com/docs/default-source/download-document/personal/accounts/customer-request-form.pdf?sfvrsn=2'> Download form  </a>and submit it at your nearest branch.</span>
+        <span> <Link style={{ color: '#871f40' }} to='https://www.axisbank.com/docs/default-source/download-document/personal/accounts/customer-request-form.pdf?sfvrsn=2'> Download form  </Link>and submit it at your nearest branch.</span>
         <br />
         <br />
         
@@ -199,12 +200,12 @@ const ContactPage = () => {
         <span>Register your mobile number at your nearest ATM. </span>
         <br /> 
         or <br />
-        <span><a style={{ color: '#871f40' }} href='https://www.axisbank.com/docs/default-source/download-document/personal/accounts/customer-request-form.pdf?sfvrsn=2'> Download form </a> and submit it at your nearest branch. </span>
+        <span><Link style={{ color: '#871f40' }} to='https://www.axisbank.com/docs/default-source/download-document/personal/accounts/customer-request-form.pdf?sfvrsn=2'> Download form </Link> and submit it at your nearest branch. </span>
         <br /> <br />
         <span style={{ color: '#871f40' }}> <strong>Register for E-statements </strong> </span>
         <br /> <br />
         
-        <span><a style={{ color: '#871f40' }} href='https://www.axisbank.com/docs/default-source/download-document/personal/accounts/customer-request-form.pdf?sfvrsn=2'>Download form </a> and submit it at your nearest branch. </span> 
+        <span><Link style={{ color: '#871f40' }} to='https://www.axisbank.com/docs/default-source/download-document/personal/accounts/customer-request-form.pdf?sfvrsn=2'>Download form </Link> and submit it at your nearest branch. </span> 
         
         </>
       } />

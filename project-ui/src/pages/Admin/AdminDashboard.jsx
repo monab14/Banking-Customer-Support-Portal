@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
+import { Link } from 'react-router-dom';
+
 const AdminDashboard = () => {
   const navigate = useNavigate();
   const [AdminData, setAdminData] = useState(null);
@@ -140,10 +142,10 @@ const cardImageStyle = {
     
 
     <li style={{ marginRight: '200px',marginTop:'15px' }}>
-      <a href="adminAddFaq"><h5 style={{ color: 'black' }}>Add FAQS</h5></a>
+      <Link to="adminAddFaq"><h5 style={{ color: 'black' }}>Add FAQS</h5></Link>
     </li>
     <li style={{ marginTop:'15px' }}>
-  <a href="#"><h5 style={{ color: 'black' }}>Support Team</h5></a>
+  <Link to="#"><h5 style={{ color: 'black' }}>Support Team</h5></Link>
 </li>
 
   </ul>
@@ -160,48 +162,48 @@ const cardImageStyle = {
                 <h6 className="card-title mb-0" style={{ fontSize: '14px', fontWeight: 'normal', color: '#000' }}>Dashboard</h6>
               </div>
              
-              <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+              <Link to="#" style={{textDecoration: 'none', color: 'inherit'}}>
               
               <div className="mb-3 border-top ">
               <img src="/account.jpg" className="card-img-top pt-2" alt="Accounts Icon" style={{ width: '80px', height: '60px', objectFit: 'cover' }} />
                 <h6 className="card-title mb-0" style={{ fontSize: '14px', fontWeight: 'normal', color: '#fff' }}>ACCOUNTS</h6>
               </div>
-              </a>
-              <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+              </Link>
+              <Link to="#" style={{textDecoration: 'none', color: 'inherit'}}>
               <div className="mb-3 border-top">
                 <img src="/support.jpg" className="card-img-top pt-2" alt="FD Icon" style={{ width: '80px', height: '60px', objectFit: 'cover' }} />
                 <h6 className="card-title mb-0" style={{ fontSize: '14px', fontWeight: 'normal', color: '#fff' }}>SUPPORT</h6>
-              </div></a>
-              <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+              </div></Link>
+              <Link to="#" style={{textDecoration: 'none', color: 'inherit'}}>
               <div className="mb-3 border-top">
               <img src="/Payments.jpg" className="card-img-top pt-2" alt="Payments Icon" style={{ width: '80px', height: '60px', objectFit: 'cover' }} />
                 <h6 className="card-title mb-0" style={{ fontSize: '14px', fontWeight: 'normal', color: '#fff' }}>PAYMENTS</h6>
-              </div></a>
-              <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+              </div></Link>
+              <Link to="#" style={{textDecoration: 'none', color: 'inherit'}}>
               <div className="mb-3 border-top">
                 <img src="/Loan.jpg" className="card-img-top pt-2" alt="Loans Icon" style={{ width: '80px', height: '60px', objectFit: 'cover' }} />
                 <h6 className="card-title mb-0" style={{ fontSize: '14px', fontWeight: 'normal', color: '#fff' }}>LOANS</h6>
-              </div></a>
-              <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+              </div></Link>
+              <Link to="#" style={{textDecoration: 'none', color: 'inherit'}}>
               <div className="mb-3 border-top">
               <img src="/cards.jpg" className="card-img-top pt-2" alt="Cards Icon" style={{ width: '80px', height: '60px', objectFit: 'cover' }} />
                 <h6 className="card-title mb-0" style={{ fontSize: '14px', fontWeight: 'normal', color: '#fff' }}>CARDS</h6>
-              </div></a>
-              <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+              </div></Link>
+              <Link to="#" style={{textDecoration: 'none', color: 'inherit'}}>
               <div className="mb-3 border-top">
                 <img src="/Investment.jpg" className="card-img-top pt-2" alt="investment Icon" style={{ width: '80px', height: '60px', objectFit: 'cover' }} />
                 <h6 className="card-title mb-0" style={{ fontSize: '14px', fontWeight: 'normal', color: '#fff' }}>INVESTMENT</h6>
-              </div></a>
-              <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+              </div></Link>
+              <Link to="#" style={{textDecoration: 'none', color: 'inherit'}}>
               <div className="mb-3 border-top">
                 <img src="/FDRD.jpg" className="card-img-top pt-2" alt="FD Icon" style={{ width: '80px', height: '60px', objectFit: 'cover' }} />
                 <h6 className="card-title mb-0" style={{ fontSize: '14px', fontWeight: 'normal', color: '#fff' }}>FD/RD</h6>
-              </div></a>
-              <a href="#" style={{textDecoration: 'none', color: 'inherit'}}>
+              </div></Link>
+              <Link to="#" style={{textDecoration: 'none', color: 'inherit'}}>
               <div className="mb-3 border-top">
                 <img src="/insurance.jpg" className="card-img-top pt-2" alt="FD Icon" style={{ width: '80px', height: '60px', objectFit: 'cover' }} />
                 <h6 className="card-title mb-0" style={{ fontSize: '14px', fontWeight: 'normal', color: '#fff' }}>INSURANCE</h6>
-              </div></a>
+              </div></Link>
             </div>
           </div>
           <div className="col-md-10">
@@ -251,8 +253,8 @@ const cardImageStyle = {
     <div className="card">
       <div className="card-body"style={{ width:'130px',height: '130px' }}>
         <img src="acc.jpg" className="card-img-top" style={{ width: '90px', height: '70px', objectFit: 'cover',paddingLeft: '-10px' }}alt="Card 1" />
-        <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
-        <h6 className="card-text-center">ACCOUNTS</h6></a>
+        <Link to="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <h6 className="card-text-center">ACCOUNTS</h6></Link>
       </div>
     </div>
   </div>
@@ -260,8 +262,8 @@ const cardImageStyle = {
     <div className="card">
       <div className="card-body"style={{ width:'110px',height: '130px',paddingLeft: '-10px' }}>
         <img src="Mutualfunds.jpg" className="card-img-top" style={{ width: '80px', height: '60px', objectFit: 'cover',paddingLeft: '-10px' }}alt="Card 1" />
-        <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
-        <h6 className="card-text text-center">MUTUAL FUNDS</h6></a>
+        <Link to="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <h6 className="card-text text-center">MUTUAL FUNDS</h6></Link>
       </div>
     </div>
   </div>
@@ -269,8 +271,8 @@ const cardImageStyle = {
     <div className="card" style={{ width:'140px',height: '130px' }}>
       <div className="card-body">
         <img src="RD.jpg" className="card-img-top" style={{ width: '75px', height: '65px', objectFit: 'cover' ,paddingRight: '5px'}}alt="Card 1" />
-        <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
-        <h6 className="card-text text-center">FD/RD</h6></a>
+        <Link to="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <h6 className="card-text text-center">FD/RD</h6></Link>
       </div>
     </div>
   </div>
@@ -279,8 +281,8 @@ const cardImageStyle = {
     <div className="card">
       <div className="card-body" style={{ width:'130px',height: '130px',paddingleft:'25px' }}>
         <img src="forexCards.jpg" className="card-img-top" style={{ width: '75px', height: '60px', objectFit: 'cover' ,paddingLeft: '-10px'}}alt="Card 1" />
-        <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
-        <h6 className="card-text text-center">FOREX CARDS</h6></a>
+        <Link to="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <h6 className="card-text text-center">FOREX CARDS</h6></Link>
       </div>
     </div>
   </div>
@@ -288,8 +290,8 @@ const cardImageStyle = {
     <div className="card">
       <div className="card-body" style={{ width:'100px',height: '130px',paddingleft:'25px' }}>
         <img src="Loa.jpg" className="card-img-top" style={{ width: '70px', height: '70px', objectFit: 'cover' ,paddingLeft: '-10px'}}alt="Card 1" />
-        <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
-        <h6 className="card-text text-center">LOANS</h6></a>
+        <Link to="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <h6 className="card-text text-center">LOANS</h6></Link>
       </div>
     </div>
   </div>
@@ -297,8 +299,8 @@ const cardImageStyle = {
     <div className="card">
       <div className="card-body"style={{ width:'140px',height: '130px',paddingleft:'20px' }}>
         <img src="services.jpg" className="card-img-top" style={{ width: '60px', height: '70px', objectFit: 'cover' ,paddingLeft: '20px'}}alt="Card 1" />
-        <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
-        <h6 className="card-text text-center">SERVICES</h6></a>
+        <Link to="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <h6 className="card-text text-center">SERVICES</h6></Link>
       </div>
     </div>
   </div>
@@ -306,8 +308,8 @@ const cardImageStyle = {
     <div className="card">
       <div className="card-body"style={{ width:'140px',height: '130px',paddingleft:'20px' }}>
         <img src="pay.jpg" className="card-img-top" style={{ width: '80px', height: '70px', objectFit: 'cover' ,paddingLeft: '0px'}}alt="Card 1" />
-        <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
-        <h6 className="card-text text-center">PAYMENTS</h6></a>
+        <Link to="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <h6 className="card-text text-center">PAYMENTS</h6></Link>
       </div>
     </div>
   </div>
@@ -315,8 +317,8 @@ const cardImageStyle = {
     <div className="card">
       <div className="card-body"style={{ width:'140px',height: '130px',paddingleft:'20px' }}>
         <img src="fund transfer.jpg" className="card-img-top" style={{ width: '90px', height: '50px', objectFit: 'cover' ,paddingLeft: '0px'}}alt="Card 1" />
-        <a href="#" style={{ textDecoration: 'none', color: 'inherit' }}>
-        <h6 className="card-text text-center">FUNDS TRANSFER</h6></a>
+        <Link to="#" style={{ textDecoration: 'none', color: 'inherit' }}>
+        <h6 className="card-text text-center">FUNDS TRANSFER</h6></Link>
       </div>
     </div>
   </div>

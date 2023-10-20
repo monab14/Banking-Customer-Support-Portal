@@ -2,6 +2,7 @@
 import NavBar from '../components/NavBar';
 import React, { useState } from 'react';
 import axios from 'axios'; // Import Axios
+import { Link } from 'react-router-dom';
 
 
 const CustomerSupportTeamLogin = () => {
@@ -141,7 +142,7 @@ const CustomerSupportTeamLogin = () => {
                     />
                   </div>
                   <div className="forgot-password mb-3" style={{ textAlign: 'right', width: '100%' }}>
-                    <a href="#">Forgot Password ?</a>
+                    <Link to="#">Forgot Password ?</Link>
                   </div>
                   <div className="mt-3" style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
                     <button type="submit" style={{ ...buttonStyle }}>
