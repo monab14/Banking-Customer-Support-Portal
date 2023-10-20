@@ -103,13 +103,13 @@ const AdminAddFaq = () => {
     flexDirection: 'column',
     textAlign: 'center',
     fontSize: '30px',
-    color: '#871f40' // Added color property // Adjust this value to change text size
+    color: '#871f40' 
   };
 
   const customColumnStyle = {
     padding: '1rem',
     marginTop: '2rem',
-    textAlign: 'left' // Added margin to create space
+    textAlign: 'left' 
   };
 
   return (
@@ -134,7 +134,6 @@ const AdminAddFaq = () => {
 
           </div>
         </div>
-        {/* ... (previous code) */}
         <div className="container mt-3">
           <section className="d-flex justify-content-between">
             <div className="left_data mt-3 p-2 col-lg-12" style={{padding: '150px'}}>
@@ -181,7 +180,7 @@ const AdminAddFaq = () => {
                 style={textAreaStyle}
                 name="question"
                 onChange={(e) => handleChange(e)}
-                value={faq.question} // Use faq, not faqs
+                value={faq.question} 
               ></textarea>
             </div>
             <div className="col mx-4" style={customColumnStyle}>
@@ -190,7 +189,7 @@ const AdminAddFaq = () => {
                 style={textAreaStyle}
                 name="category"
                 onChange={(e) => handleChange(e)}
-                value={faq.category} // Use faq, not faqs
+                value={faq.category} 
               ></textarea>
             </div>
             <div className="col mx-4" style={customColumnStyle}>
@@ -199,7 +198,7 @@ const AdminAddFaq = () => {
                 style={textAreaStyle}
                 name="answer"
                 onChange={(e) => handleChange(e)}
-                value={faq.answer} // Use faq, not faqs
+                value={faq.answer} 
               ></textarea>
             </div>
 

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from "react-router-dom";
 import axios from 'axios';
 import NavBar from '../../components/NavBar';
 
 const ComplaintPage = () => {
-
+const location = useLocation();
+const customerId = new URLSearchParams(location.search).get("customerId");
   const [complaintCategories, setComplaintCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
 
@@ -42,8 +44,8 @@ const ComplaintPage = () => {
   };
 
   const headingStyle = {
-    fontFamily: 'Arial, sans-serif', // Use a professional font here
-    color: '#871f40', // Choose an appropriate color
+    fontFamily: 'Arial, sans-serif', 
+    color: '#871f40',
   };
 
   return (
