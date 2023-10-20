@@ -4,6 +4,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
+import AdminAddFaq from './AdminAddFaq';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -16,28 +17,46 @@ const AdminDashboard = () => {
      setShowComplaintsCard(true);
    };
 
-   const handleAssignComplaint = () => {
-    // Send an API request to assign the selected complaint to the selected team
-    if (selectedComplaint && selectedTeam) {
-      const complaintId = selectedComplaint.complaintId;
-      const teamName = selectedTeam; // You should have the selected team name
+   
 
-      // Send a POST request to your backend to assign the complaint
+   const handleAssignComplaint = (myComplaint) => {
+    
+    if (myComplaint && selectedTeam) {
+      const complaintId = myComplaint.complaintId;
+      const teamName = selectedTeam;
+  
+      console.log('Complaint ID:', complaintId);
+      console.log('Team Name:', teamName);
+  
+      
       fetch(`http://localhost:8090/api/assign/${complaintId}/${teamName}`, {
         method: 'POST',
       })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        return response.json();
-      })
-      .then((data) => {
-        console.log('Complaint assigned successfully:', data);
-      })
-      .catch((error) => console.error('Error assigning complaint:', error));
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then((data) => {
+          console.log('Response data:', data); 
+          if (data && data.success) {
+            alert('Complaint assigned successfully');
+          } else {
+            alert('Failed to assign the complaint');
+          }
+        })
+        .catch((error) => {
+          console.error('Error assigning complaint:', error);
+          alert('An error occurred while assigning the complaint');
+        });
     }
   };
+  
+  
+  
+  
+  
    
    const handleGoBack = () => {
     setShowComplaintsCard(false);
@@ -142,7 +161,7 @@ const cardImageStyle = {
     
 
     <li style={{ marginRight: '200px',marginTop:'15px' }}>
-      <Link to="adminAddFaq"><h5 style={{ color: 'black' }}>Add FAQS</h5></Link>
+      <Link to="/AdminAddFaq"><h5 style={{ color: 'black' }}>Add FAQS</h5></Link>
     </li>
     <li style={{ marginTop:'15px' }}>
   <Link to="#"><h5 style={{ color: 'black' }}>Support Team</h5></Link>
@@ -367,7 +386,8 @@ const cardImageStyle = {
                         <button
                           className="btn btn-primary"
                           style={{ backgroundColor: '#871f40' }}
-                          onClick={handleAssignComplaint}
+                          onClick={() => handleAssignComplaint(complaint)}
+
                         >
                           Assign
                         </button>
