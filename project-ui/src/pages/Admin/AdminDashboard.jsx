@@ -5,6 +5,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
 import AdminAddFaq from './AdminAddFaq';
+import AdminSolveQuery from './AdminSolveQuery';
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -165,6 +166,10 @@ const cardImageStyle = {
     </li>
     <li style={{ marginTop:'15px' }}>
   <Link to="#"><h5 style={{ color: 'black' }}>Support Team</h5></Link>
+</li>
+
+<li style={{ marginTop:'15px', marginLeft: '200px' }}>
+  <Link to="/solveQuery"><h5 style={{ color: 'black' }}>ALL QUERIES</h5></Link>
 </li>
 
   </ul>
@@ -357,7 +362,7 @@ const cardImageStyle = {
                     <th>Customer ID</th>
                     <th>Complaint ID</th>
                     <th>Category</th>
-                    <th>Status</th>
+                    {/* <th>Status</th> */}
                     <th>Created At</th>
                     <th>Resolved At</th>
                     <th>Complaint Text</th>
@@ -370,7 +375,7 @@ const cardImageStyle = {
                       <td>{complaint.customer.customerid}</td>
                       <td>{complaint.complaintId}</td>
                       <td>{complaint.category}</td>
-                      <td>{complaint.status}</td>
+                      {/* <td>{complaint.status}</td> */}
                       <td>{complaint.createdAt}</td>
                       <td>{complaint.resolvedAt}</td>
                       <td>{complaint.complaintText}</td>

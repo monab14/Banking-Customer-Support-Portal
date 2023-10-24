@@ -190,7 +190,10 @@ const ContactPage = () => {
       {
         <>
         
-        <span> <Link style={{ color: '#871f40' }} to='https://www.axisbank.com/docs/default-source/download-document/personal/accounts/customer-request-form.pdf?sfvrsn=2'> Download form  </Link>and submit it at your nearest branch.</span>
+        <span style={{ color: '#871f40' }}>
+           {/* <Link style={{ color: '#871f40' }} to='https://www.axisbank.com/docs/default-source/download-document/personal/accounts/customer-request-form.pdf?sfvrsn=2'>   </Link> */}
+            Download form and submit it at your nearest branch.
+            </span>
         <br />
         <br />
         
@@ -200,12 +203,17 @@ const ContactPage = () => {
         <span>Register your mobile number at your nearest ATM. </span>
         <br /> 
         or <br />
-        <span><Link style={{ color: '#871f40' }} to='https://www.axisbank.com/docs/default-source/download-document/personal/accounts/customer-request-form.pdf?sfvrsn=2'> Download form </Link> and submit it at your nearest branch. </span>
+        <span>
+          {/* <Link style={{ color: '#871f40' }} to='https://www.axisbank.com/docs/default-source/download-document/personal/accounts/customer-request-form.pdf?sfvrsn=2'>  </Link>  */}
+          Download form and submit it at your nearest branch. </span>
         <br /> <br />
         <span style={{ color: '#871f40' }}> <strong>Register for E-statements </strong> </span>
         <br /> <br />
         
-        <span><Link style={{ color: '#871f40' }} to='https://www.axisbank.com/docs/default-source/download-document/personal/accounts/customer-request-form.pdf?sfvrsn=2'>Download form </Link> and submit it at your nearest branch. </span> 
+        <span>
+          {/* <Link style={{ color: '#871f40' }} to='https://www.axisbank.com/docs/default-source/download-document/personal/accounts/customer-request-form.pdf?sfvrsn=2'> </Link> */}
+        Download form and submit it at your nearest branch.
+         </span> 
         
         </>
       } />

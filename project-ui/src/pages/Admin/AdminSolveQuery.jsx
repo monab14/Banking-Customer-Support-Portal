@@ -15,9 +15,14 @@ const AdminSolveQuery = () => {
   const [complaints, setComplaints] = useState([]);
   const [activeFAQ, setActiveFAQ] = useState(null);
   const [selectedOptions, setSelectedOptions] = useState({});
-  const [selectedOptionColors, setSelectedOptionColors] = useState({});
 
   useEffect(() => {
+    // Retrieve selected options from localStorage when the component mounts
+    const savedSelectedOptions = JSON.parse(localStorage.getItem('selectedOptions'));
+    if (savedSelectedOptions) {
+      setSelectedOptions(savedSelectedOptions);
+    }
+
     const fetchComplaintData = async () => {
       try {
         const response = await axios.get('http://localhost:8090/complaints/all');
@@ -40,15 +45,14 @@ const AdminSolveQuery = () => {
     }
   };
 
-  const handleOptionSelect = (complaintId, option, color) => {
+  const handleOptionSelect = (complaintId, option) => {
     setSelectedOptions((prevSelectedOptions) => ({
       ...prevSelectedOptions,
       [complaintId]: option,
     }));
-    setSelectedOptionColors((prevSelectedOptionColors) => ({
-      ...prevSelectedOptionColors,
-      [complaintId]: color,
-    }));
+
+    // Store selected options in localStorage
+    localStorage.setItem('selectedOptions', JSON.stringify(selectedOptions));
   };
 
   return (
@@ -85,8 +89,8 @@ const AdminSolveQuery = () => {
                           selectedOption={selectedOptions[complaint.complaintId] || ''}
                         />
                         <Button
-                          onSelectOption={(option, color) =>
-                            handleOptionSelect(complaint.complaintId, option, color)
+                          onSelectOption={(newOption) =>
+                            handleOptionSelect(complaint.complaintId, newOption)
                           }
                         />
                       </>
@@ -118,7 +122,7 @@ const ComplaintTable = ({ complaint, selectedOption }) => {
           <th>Complaint ID</th>
           <th>Customer Name</th>
           <th>Category</th>
-          <th>Selected Option</th>
+          <th>Status</th>
           <th>Complaint Text</th>
         </tr>
       </thead>
