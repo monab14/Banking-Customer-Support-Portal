@@ -37,7 +37,7 @@ return () => {
                                 <Link className="nav-link active" aria-current="page" to="/Support" style={{ color: 'white' }}>Support</Link>
                             </li>
                             <li className="nav-item mx-3">
-                                <Link className="nav-link active" aria-current="page" to="RegistrationPage" style={{ color: 'white' }}>Apply Now</Link>
+                                <Link className="nav-link active" aria-current="page" to="/RegistrationPage" style={{ color: 'white' }}>Apply Now</Link>
                             </li>
                             <li className="nav-item mx-3">
                                 <Link className="nav-link" to="/contact" style={{ color: 'white' }}>Contact Us</Link>

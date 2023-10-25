@@ -356,11 +356,11 @@ return (
                     />
                     </div>
                     <div class="col" >
-                    <span id="passwordHelpInline" class="form-text" style={{
+                    {/* <span id="passwordHelpInline" class="form-text" style={{
                     color: '#871f40',
                     }}>
                     Must be 8-20 characters long.
-                    </span>
+                    </span> */}
                     </div>
                     </div>
                 <div className ="row g-3 align-items-center mt-3">
@@ -384,11 +384,11 @@ return (
                     />
                     </div>
                     <div class="col">
-                    <span id="passwordHelpInline" class="form-text" style={{
+                    {/* <span id="passwordHelpInline" class="form-text" style={{
                     color: '#871f40'
                     }}>
                     Must be 8-20 characters long.
-                    </span>
+                    </span> */}
                     </div>
                 </div>
                 <div className = "text-center">
