@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import NavBar from '../../components/NavBar';
 import Footer from '../../components/Footer';
 import axios from 'axios';
@@ -15,13 +16,16 @@ const AdminSolveQuery = () => {
   const [complaints, setComplaints] = useState([]);
   const [activeFAQ, setActiveFAQ] = useState(null);
   const [selectedOptions, setSelectedOptions] = useState({});
-
+  const navigate = useNavigate();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
   useEffect(() => {
     // Retrieve selected options from localStorage when the component mounts
     const savedSelectedOptions = JSON.parse(localStorage.getItem('selectedOptions'));
     if (savedSelectedOptions) {
       setSelectedOptions(savedSelectedOptions);
     }
+    const assignedTo = queryParams.get('assignedTo');
 
     const fetchComplaintData = async () => {
       try {
@@ -57,6 +61,7 @@ const AdminSolveQuery = () => {
 
   return (
     <>
+    
       <div>
         <NavBar />
       </div>
@@ -106,7 +111,9 @@ const AdminSolveQuery = () => {
       <div>
         <Footer />
       </div>
+      
     </>
+    
   );
 };
 
@@ -124,6 +131,7 @@ const ComplaintTable = ({ complaint, selectedOption }) => {
           <th>Category</th>
           <th>Status</th>
           <th>Complaint Text</th>
+          <th> Assigned To </th>
         </tr>
       </thead>
       <tbody>
@@ -133,9 +141,11 @@ const ComplaintTable = ({ complaint, selectedOption }) => {
           <td>{complaint.category}</td>
           <td>{selectedOption}</td>
           <td>{complaint.complaintText}</td>
+          <td>{complaint.assignedTeamName}</td>
         </tr>
       </tbody>
     </table>
+    
   );
 };
 

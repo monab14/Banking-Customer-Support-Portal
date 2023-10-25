@@ -4,24 +4,23 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
-import AdminAddFaq from './AdminAddFaq';
-import AdminSolveQuery from './AdminSolveQuery';
+// import AdminAddFaq from './AdminAddFaq';
+// import AdminSolveQuery from './AdminSolveQuery';
 
 const AdminDashboard = () => {
+  
   const navigate = useNavigate();
   const [AdminData, setAdminData] = useState(null);
   const [complaintData, setComplaintData] = useState(null);
    const [showComplaintsCard, setShowComplaintsCard] = useState(false);
    const [selectedComplaint, setSelectedComplaint] = useState(null);
    const [selectedTeam, setSelectedTeam] = useState(null);
+   
    const handleViewComplaints = () => {
      setShowComplaintsCard(true);
    };
 
-   
-
    const handleAssignComplaint = (myComplaint) => {
-    
     if (myComplaint && selectedTeam) {
       const complaintId = myComplaint.complaintId;
       const teamName = selectedTeam;
@@ -29,7 +28,6 @@ const AdminDashboard = () => {
       console.log('Complaint ID:', complaintId);
       console.log('Team Name:', teamName);
   
-      
       fetch(`http://localhost:8090/api/assign/${complaintId}/${teamName}`, {
         method: 'POST',
       })
@@ -40,9 +38,20 @@ const AdminDashboard = () => {
           return response.json();
         })
         .then((data) => {
-          console.log('Response data:', data); 
+          console.log('Response data:', data);
+
           if (data && data.success) {
-            alert('Complaint assigned successfully');
+            const supportTeamName = data.supportTeamName;
+            const supportTeamId = data.supportTeamId;
+            const assignedAt = data.assignedAt;
+            const status = data.status;
+
+            console.log('Support Team Name:', supportTeamName);
+            console.log('Support Team ID:', supportTeamId);
+            console.log('Assigned At:', assignedAt);
+            console.log('Status:', status);
+
+            alert('Complaint assigned successfully to team: ' + supportTeamName);
           } else {
             alert('Failed to assign the complaint');
           }
@@ -51,14 +60,11 @@ const AdminDashboard = () => {
           console.error('Error assigning complaint:', error);
           alert('An error occurred while assigning the complaint');
         });
+        
     }
-  };
+};
+
   
-  
-  
-  
-  
-   
    const handleGoBack = () => {
     setShowComplaintsCard(false);
   };
@@ -149,6 +155,7 @@ const cardImageStyle = {
         },
     ];
   return (
+    
     <div style={{ backgroundColor: '#f0f0f0' }}>
       <div className="dashboard-banner d-flex align-items-center justify-content-left" style={{ height: '60px', backgroundColor: '#871f40', color: '#ffffff', padding: '8px' }}>
         <div className="logo" >
@@ -430,6 +437,7 @@ const cardImageStyle = {
         </div>
       </div>
       </div>  
+      
   );
 };
 
