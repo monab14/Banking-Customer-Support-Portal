@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState ,useEffect} from 'react';
 
 const FaqSection = () => {
-  const faqs = [
-    { question: ' FAQ Question 1', answer: 'Answer 1' },
-    { question: 'FAQ Question 2', answer: 'Answer 2' },
-    { question: 'FAQ Question 3', answer: 'Answer 3' },
-    { question: 'FAQ Question 4', answer: 'Answer 4' },
-    { question: 'FAQ Question 5', answer: 'Answer 5' },
-    { question: 'FAQ Question 6', answer: 'Answer 6' },
-  ];
+  const [faqs, setFaqs] = useState([]);
+  const [expandedIndex, setExpandedIndex] = useState(null);
+  
+  useEffect(() => {
+    // Fetch FAQ data from the API
+    fetch('http://localhost:8090/api/faqs')
+      .then(response => response.json())
+      .then(data => setFaqs(data))
+      .catch(error => console.error('Error fetching FAQs:', error));
+  }, []);
 
   const containerStyle = {
     backgroundColor: '#f6f6f6',
@@ -18,11 +20,10 @@ const FaqSection = () => {
   };
 
   const handleToggle = (index) => {
-    const target = document.getElementById(`faqCollapse${index}`);
-    if (target.classList.contains('show')) {
-      target.classList.remove('show');
+    if (expandedIndex === index) {
+      setExpandedIndex(null);
     } else {
-      target.classList.add('show');
+      setExpandedIndex(index);
     }
   };
 
@@ -35,7 +36,7 @@ const FaqSection = () => {
           {faqs.map((faq, index) => (
             <div key={index} className="accordion-item">
               <h2 className="accordion-header">
-                <button className="accordion-button collapsed" 
+                <button className={`accordion-button ${expandedIndex === index ? '' : 'collapsed'}`} 
                   type="button" 
                   onClick={() => handleToggle(index)}
                 >
@@ -43,7 +44,7 @@ const FaqSection = () => {
                   <i className="fas fa-chevron-down ms-auto"></i>
                 </button>
               </h2>
-              <div id={`faqCollapse${index}`} className="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+              <div id={`faqCollapse${index}`} className={`accordion-collapse collapse ${expandedIndex === index ? 'show' : ''}`} data-bs-parent="#accordionFlushExample">
                 <div className="accordion-body">{faq.answer}</div>
               </div>
             </div>
