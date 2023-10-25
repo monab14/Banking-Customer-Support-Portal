@@ -1,31 +1,122 @@
 import React, { useState } from "react";
-import { FaTimes, FaPaperPlane } from "react-icons/fa"; 
+import { FaTimes, FaPaperPlane } from "react-icons/fa";
 import AskRadz from "../images/AskRadz.png";
 import axios from "axios";
 
-const ChatMessage = ({ type, message }) => {
+const ChatMessage = ({ type, message, timestamp }) => {
   const messageStyle = {
+    padding: "10px",
+    borderRadius: "15px",
     textAlign: type === "user" ? "right" : "left",
     marginBottom: "10px",
-    color: type === "user" ? "#fff" : "#333",
-  };
-  const userMessageStyle = {
-    ...messageStyle,
-    textAlign: "right",
-    color: "#fff",
+    color: type === "user" ? "#fff" : "#fff",
+    justifyContent: type === "user" ? "flex-end" : "flex-start",
+    backgroundColor: type === "user" ? "#750D37" : "#546A76",
+    width: "fit-content",
+    maxWidth: "70%",
+    alignSelf: type === "user" ? "flex-end" : "flex-start",
+    position: "relative",
+    marginLeft: type === "user" ? "200px" : "0",
+    marginRight: type === "user" ? "0" : "70px",
   };
 
-  const botMessageStyle = {
-    ...messageStyle,
-    textAlign: "left",
-    color: "#fff",
-  };
+  const userType = type === "user" ? "" : "AskRadz";
+  const formattedTimestamp = new Intl.DateTimeFormat("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+  }).format(timestamp);
   return (
-    <div style={type === "user" ? userMessageStyle : botMessageStyle}>
-      {message}
+    <div style={messageStyle}>
+      <div
+        style={{
+          fontSize: "12px",
+          color: "#888",
+          position: "absolute",
+          top: "-15px",
+          right: type === "user" ? "0" : "auto",
+          left: type === "bot" ? "0" : "auto",
+        }}
+      >
+        {formattedTimestamp}
+      </div>
+      <div style={{ fontWeight: "bold", marginBottom: "5px" }}>{userType}</div>
+      <div>{message}</div>
     </div>
   );
 };
+
+const faqData = [
+  {
+    question: "What services does the bank offer?",
+    answer:
+      "The bank offers a wide range of services including savings accounts, loans, credit cards, and more.",
+  },
+  {
+    question: "How can I reset my password?",
+    answer:
+      "You can reset your password through the online banking portal or by contacting our customer support.",
+  },
+  {
+    question: "How can I check my account balance?",
+    answer:
+      "You can check your account balance through our mobile banking app, online banking portal, ATMs, or by visiting a nearby branch. Simply log in to your account using your credentials to view your balance.",
+  },
+  {
+    question: "What is the process for applying for a loan?",
+    answer:
+      "To apply for a loan, visit our official website and navigate to the 'Loans' section. Choose the type of loan you need, fill out the online application form, and submit the required documents. Our loan officers will review your application, and you will be notified of the approval status.",
+  },
+  {
+    question: "Can I open a joint account with someone?",
+    answer:
+      "Yes, you can open a joint account with another person, such as a family member or a business partner. Both account holders have equal access to the account and can make transactions. Visit a branch together to open a joint account.",
+  },
+  {
+    question: "What should I do if my credit card is lost or stolen?",
+    answer:
+      "If your credit card is lost or stolen, immediately contact our 24/7 customer support helpline. We will block your card to prevent unauthorized usage and issue a replacement card. It's essential to report the loss as soon as possible to minimize any potential fraudulent activities.",
+  },
+  {
+    question: "How can I enroll in online banking?",
+    answer:
+      "To enroll in online banking, visit our website and click on the 'Register' or 'Enroll Now' option. Provide your account details, create a username, password, and security questions. Once registered, you can log in to your account online, check balances, transfer funds, and manage your finances conveniently.",
+  },
+  {
+    question: "What are the interest rates for savings accounts?",
+    answer:
+      "Our savings account interest rates vary depending on the type of account you choose and the current market conditions. For the most accurate and up-to-date information on interest rates, please visit our official website or contact our customer support.",
+  },
+  {
+    question: "How can I set up automatic bill payments?",
+    answer:
+      "To set up automatic bill payments, log in to your online banking account. Navigate to the bill payment section and add the biller's information, including account number and payment amount. You can schedule recurring payments on specific dates to ensure your bills are paid automatically each month.",
+  },
+  {
+    question: "Is online banking secure?",
+    answer:
+      "Yes, our online banking system is highly secure. We use advanced encryption and security protocols to protect your personal and financial information. Additionally, we regularly update our security measures to safeguard against online threats. It's crucial to keep your login credentials confidential and log out after each session for added security.",
+  },
+  {
+    question:
+      "What should I do if I suspect fraudulent activity on my account?",
+    answer:
+      "If you suspect any fraudulent activity on your account, contact our customer support immediately. We will investigate the issue, block unauthorized transactions, and guide you through the necessary steps to resolve the situation. It's essential to report any suspicious activity promptly to minimize potential financial losses.",
+  },
+  {
+    question: "Can I open a bank account online?",
+    answer:
+      "Yes, you can open a bank account online through our official website. Select the type of account you wish to open, fill out the online application form, and provide the required documents electronically. Once your application is reviewed and approved, you will receive your account details, and your account will be active for use.",
+  },
+  {
+    question: "How can I apply for a credit card?",
+    answer:
+      "To apply for a credit card, visit our website and navigate to the 'Credit Cards' section. Choose the credit card option that suits your needs, fill out the online application form, and submit the necessary documents. Our credit card team will assess your application, and upon approval, you will receive your credit card within a specified timeframe.",
+  },
+];
 
 const Chatbot = () => {
   const [isChatbotVisible, setIsChatbotVisible] = useState(false);
@@ -41,6 +132,13 @@ const Chatbot = () => {
   const [showEmailForm, setShowEmailForm] = useState(false);
   const [showAddressForm, setShowAddressForm] = useState(false);
   const [showPhoneNumberForm, setShowPhoneNumberForm] = useState(false);
+  const [showQuestionOptions, setShowQuestionOptions] = useState(false);
+  const [questionOptions, setQuestionOptions] = useState([
+    "Account Balance",
+    "Transaction Issues",
+    "Card Problems",
+    "Others",
+  ]);
 
   const handleLoginFormSubmit = async (e) => {
     e.preventDefault();
@@ -52,6 +150,7 @@ const Chatbot = () => {
       });
       console.log(response.data);
       setIsLoggedIn(true);
+      localStorage.setItem("loggedIn", "true");
       setShowLogin(false);
       setChatHistory([{ type: "bot", message: "Logged in successfully." }]);
     } catch (error) {
@@ -126,9 +225,14 @@ const Chatbot = () => {
   };
 
   const handleTermsChange = () => {
-    setAcceptedTerms(!acceptedTerms);
-    setShowValidationMessage(false);
+    if (!acceptedTerms && !localStorage.getItem("loggedIn")) {
+      setShowLogin(true);
+    } else {
+      setAcceptedTerms(!acceptedTerms);
+      setShowValidationMessage(false);
+    }
   };
+
   const handleLogin = () => {
     setIsLoggedIn(true);
   };
@@ -157,6 +261,7 @@ const Chatbot = () => {
     }
     setUserMessage("");
   };
+
   const updateEmail = async (newEmail, customerId, setChatHistory) => {
     try {
       const response = await fetch(
@@ -202,7 +307,23 @@ const Chatbot = () => {
     handleAddressUpdate(newAddress, customerId);
     setShowAddressForm(false);
   };
-
+  const handleQuestionOptionSelect = (selectedOption) => {
+    const currentTimeStamp = Date.now();
+    const newChatHistory = [
+      {
+        type: "user",
+        message: `Ask: ${selectedOption}`,
+        timestamp: currentTimeStamp,
+      },
+      {
+        type: "bot",
+        message: `I understand you have a question about ${selectedOption}. Please feel free to ask your question.`,
+        timestamp: currentTimeStamp,
+      },
+    ];
+    setChatHistory(newChatHistory);
+    setShowQuestionOptions(false);
+  };
   const handleAddressUpdate = async (newAddress, customerId) => {
     try {
       const response = await fetch(
@@ -286,7 +407,7 @@ const Chatbot = () => {
   };
 
   const handleButtonClick = (action) => {
-    if (!localStorage.getItem("loggedIn") && !isLoggedIn) {
+    if (!isLoggedIn) {
       setShowLogin(true);
       setChatHistory([{ type: "bot" }]);
     } else {
@@ -303,14 +424,50 @@ const Chatbot = () => {
           ]);
           setShowAddressForm(true);
           break;
-        case "PIN reset":
-          setChatHistory([{ type: "bot", message: "PIN reset successful." }]);
-          break;
+
         case "Update E-mail":
           setChatHistory([
             { type: "bot", message: "Please enter your new email address:" },
           ]);
           setShowEmailForm(true);
+          break;
+        case "Ask Question":
+          const questionOptionsButtons = questionOptions.map(
+            (option, index) => (
+              <button
+                key={index}
+                className="question-option"
+                onClick={() => handleQuestionOptionSelect(option)}
+                style={{
+                  backgroundColor: "white",
+                  color: "#750D37",
+                  border: "none",
+                  borderRadius: "20px",
+                  padding: "10px 20px",
+                  margin: "5px",
+                  cursor: "pointer",
+                  transition: "background-color 0.3s ease",
+                }}
+              >
+                {option}
+              </button>
+            )
+          );
+
+          const botMessage = (
+            <div>
+              <p>I understand you have a question. Please select a topic:</p>
+              <div className="question-options">{questionOptionsButtons}</div>
+            </div>
+          );
+
+          setChatHistory([
+            {
+              type: "bot",
+              message: botMessage,
+            },
+          ]);
+          setShowQuestionOptions(true);
           break;
         default:
           break;
@@ -333,6 +490,49 @@ const Chatbot = () => {
       console.error("Error updating email:", error);
     }
   };
+
+  const handleQuestionSubmit = () => {
+    const userQuestion = userMessage.toLowerCase();
+    const currentTimeStamp = Date.now();
+
+    const matchedQuestion = faqData.find((faq) =>
+      userQuestion.includes(faq.question.toLowerCase())
+    );
+
+    if (matchedQuestion) {
+      const newChatHistory = [
+        {
+          type: "user",
+          message: userMessage,
+          timestamp: currentTimeStamp,
+        },
+        {
+          type: "bot",
+          message: matchedQuestion.answer,
+          timestamp: currentTimeStamp,
+        },
+      ];
+      setChatHistory(newChatHistory);
+    } else {
+      const newChatHistory = [
+        ...chatHistory,
+        {
+          type: "user",
+          message: userMessage,
+          timestamp: currentTimeStamp,
+        },
+        {
+          type: "bot",
+          message: "I'm sorry, I don't have the answer to that question.",
+          timestamp: currentTimeStamp,
+        },
+      ];
+      setChatHistory(newChatHistory);
+    }
+
+    setUserMessage("");
+  };
+
   return (
     <div
       style={{
@@ -445,9 +645,9 @@ const Chatbot = () => {
                       margin: "10px",
                       cursor: "pointer",
                     }}
-                    onClick={() => handleButtonClick("PIN reset")}
+                    onClick={() => handleButtonClick("Ask Question")}
                   >
-                    PIN Reset
+                    Ask Questions
                   </button>
                   <button
                     style={{
@@ -591,11 +791,11 @@ const Chatbot = () => {
               </form>
             )}
 
-            {showLogin && (
+            {showLogin && !isLoggedIn && (
               <div style={{ ...chatbotContainerStyle, ...loginFormStyle }}>
                 <h4 style={{ color: "#750D37", textAlign: "center" }}>Login</h4>
 
-                {!localStorage.getItem("loggedIn") && (
+                {!isLoggedIn && (
                   <form onSubmit={handleLoginFormSubmit}>
                     <label
                       htmlFor="username"
@@ -663,6 +863,8 @@ const Chatbot = () => {
               </div>
             )}
 
+            
+
             <div
               className="container"
               style={{
@@ -670,19 +872,19 @@ const Chatbot = () => {
 
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "flex-start",
-                width: "250px",
+                justifyContent: "flex",
+                width: "100%",
                 borderRadius: "8px",
                 border: "none",
-                backgroundColor: "#750D37",
+
                 color: "#d3d3d3",
                 fontSize: "15px",
                 margin: "10px",
                 cursor: "pointer",
-                alignSelf: "flex-start",
+                alignSelf: "flex",
               }}
             >
-              <div style={{ maxWidth: "80%", alignSelf: "flex-start" }}>
+              <div style={{ maxWidth: "100%", alignSelf: "flex" }}>
                 {chatHistory.map((chat, index) => (
                   <ChatMessage
                     key={index}
@@ -736,16 +938,7 @@ const Chatbot = () => {
               </div>
             )}
 
-            <div
-              className="input-area"
-              style={{
-                backgroundColor: "#f2f2f2",
-                padding: "20px",
-                borderRadius: "10px",
-                boxShadow: "0px 0px 5px 0px rgba(0,0,0,0.5)",
-                marginTop: "20px",
-              }}
-            >
+            <div className="input-area mt-3">
               <input
                 type="text"
                 value={userMessage}
@@ -754,21 +947,27 @@ const Chatbot = () => {
                 style={{
                   flex: 1,
                   padding: "10px",
-                  borderRadius: "5px",
-                  border: "1px solid #ccc",
+                  borderRadius: "20px",
+                  border: "none",
+                  marginRight: "10px",
+                  backgroundColor: "#fff",
+                  color: "#750D37",
+                  fontSize: "16px",
+                  boxSizing: "border-box",
+                  width: "80%",
                 }}
               />
               <button
+                onClick={handleQuestionSubmit}
                 style={{
-                  marginLeft: "10px",
-                  background: "none",
+                  backgroundColor: "#750D37",
+                  color: "#fff",
                   border: "none",
-                  fontSize: "20px",
+                  padding: "10px 20px",
+                  borderRadius: "10px",
                   cursor: "pointer",
-                  color: acceptedTerms ? "#750D37" : "#ccc",
+                  transition: "background-color 0.3s ease",
                 }}
-                onClick={handleSubmit}
-                disabled={!acceptedTerms && isValidationStep}
               >
                 <FaPaperPlane />
               </button>
