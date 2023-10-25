@@ -3,7 +3,9 @@ import SupportNavBar from './SupportNavBar';
 import axios from 'axios';
 const FaqPage = () => {
   const [faqs, setFaqs] = useState([]);
-
+ const [category, setCategory] = useState("");
+ const [answer, setAnswer] = useState(null);
+ const [submitted, setSubmitted] = useState(false);
   const fetchFaqs = async () => {
     try {
       const response = await axios.post('http://localhost:8090/api/faqs');
@@ -100,73 +102,145 @@ const FaqPage = () => {
   const handleDropdown4Change = (e) => {
     setDropdown4(e.target.value);
   };
-  const handleSubmit = () => {
-    
-    console.log('Submitted:', dropdown1, dropdown2, dropdown3, dropdown4);
-    fetchFaqs(); 
 
-    setDropdown1('');
-    setDropdown2('');
-    setDropdown3('');
-    setDropdown4('');
+  const handleCategoryChange = (e) => {
+    setCategory(e.target.value);
+  };
+
+  const handleSubmit = async () => {
+    console.log(
+      "Submitted:",
+      category,
+      dropdown1,
+      dropdown2,
+      dropdown3,
+      dropdown4
+    );
+
+    try {
+      const question = `I have a query related to ${dropdown1} specific to ${dropdown2} for which I have an issue ${dropdown3} with sub issues ${dropdown4}`;
+      await axios.post("http://localhost:8090/api/faqs", {
+        category,
+        dropdown1,
+        dropdown2,
+        dropdown3,
+        dropdown4,
+        question,
+        answer: null,
+      });
+      setSubmitted(true);
+      
+      fetchFaqs();
+    } catch (error) {
+      console.error("Error submitting FAQ:", error);
+    }
+
+    setCategory("");
+    setDropdown1("");
+    setDropdown2("");
+    setDropdown3("");
+    setDropdown4("");
   };
 
   return (
     <div>
       <SupportNavBar />
-      <div className="container mt-5 p-4" style={{ backgroundColor: '#F7F7F7', borderRadius: '20px' }}>
-        <h1 className="text-center" style={{ color: '#871f40' }}>Frequently Asked Questions</h1>
-        <div className="container mt-5 p-5" style={{ backgroundColor: '#FFF', borderRadius: '20px' }}>
-          <h4 style={{
-            fontSize: '1.6rem',
-            fontFamily: 'lato-light',
-            paddingBottom: '15px',
-            maxWidth: '100%',
-            color: '#871f40',
-            lineHeight: '2',
-            marginBottom: '20px'
-          }}>
-            I have a query related to{' '}
+      <div
+        className="container mt-5 p-4"
+        style={{ backgroundColor: "#F7F7F7", borderRadius: "20px" }}
+      >
+        <h1 className="text-center" style={{ color: "#871f40" }}>
+          Frequently Asked Questions
+        </h1>
+        <div
+          className="container mt-5 p-5"
+          style={{ backgroundColor: "#FFF", borderRadius: "20px" }}
+        >
+          <h4
+            style={{
+              fontSize: "1.6rem",
+              fontFamily: "lato-light",
+              paddingBottom: "15px",
+              maxWidth: "100%",
+              color: "#871f40",
+              lineHeight: "2",
+              marginBottom: "20px",
+            }}
+          >
+            I have a query related to{" "}
             <select value={dropdown1} onChange={handleDropdown1Change}>
               <option value="">Start Selection Here</option>
               {dropdown1Options.map((option, index) => (
-                <option key={index} value={option}>{option}</option>
+                <option key={index} value={option}>
+                  {option}
+                </option>
               ))}
-            </select>{' '}
-            specific to{' '}
+            </select>{" "}
+            specific to{" "}
             <select value={dropdown2} onChange={handleDropdown2Change}>
               <option value="">Continue Selecting</option>
               {dropdown2Options[dropdown1] &&
                 dropdown2Options[dropdown1].map((option, index) => (
-                  <option key={index} value={option}>{option}</option>
+                  <option key={index} value={option}>
+                    {option}
+                  </option>
                 ))}
-            </select>{' '}
-            for which I have an issue{' '}
+            </select>{" "}
+            for which I have an issue{" "}
             <select value={dropdown3} onChange={handleDropdown3Change}>
               <option value="">Choose your Query</option>
               {dropdown3Options[dropdown2] &&
                 dropdown3Options[dropdown2].map((option, index) => (
-                  <option key={index} value={option}>{option}</option>
+                  <option key={index} value={option}>
+                    {option}
+                  </option>
                 ))}
-            </select>{' '}
-            with sub issues{' '}
+            </select>{" "}
+            with sub issues{" "}
             <select value={dropdown4} onChange={handleDropdown4Change}>
               <option value="">Select Specifics</option>
               {dropdown4Options[dropdown3] &&
                 dropdown4Options[dropdown3].map((option, index) => (
-                  <option key={index} value={option}>{option}</option>
+                  <option key={index} value={option}>
+                    {option}
+                  </option>
                 ))}
             </select>
           </h4>
+          <div className="mb-3">
+            <h4
+              className="text-center"
+              style={{ color: "#871f40" }}
+            >
+              Category
+            </h4>
+            <select
+              id="category"
+              className="form-select"
+              value={category}
+              onChange={handleCategoryChange}
+              style={{ borderColor: "#871f40", color: "#871f40" }}
+            >
+              <option value="">Select Category</option>
+              {dropdown1Options.map((option, index) => (
+                <option key={index} value={option} style={{ color: "#871f40" }}>
+                  {option}
+                </option>
+              ))}
+            </select>
+          </div>
           <div className="text-center">
             <button
               type="submit"
               className="btn btn-primary mb-3"
-              style={{ backgroundColor: '#871f40', color: '#FFF' }}
+              style={{ backgroundColor: "#871f40", color: "#FFF" }}
               onClick={handleSubmit}
             >
               Submit
             </button>
+            {submitted && (
+              <p className="text-success">FAQ Submitted Successfully!</p>
+            )}
           </div>
         </div>
       </div>
