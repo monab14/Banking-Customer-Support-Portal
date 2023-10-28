@@ -83,7 +83,7 @@ const faqData = [
   {
     question: "How can I enroll in online banking?",
     answer:
-      "To enroll in online banking, visit our website and click on the 'Register' or 'Enroll Now' option. Provide your account details, create a email, password, and security questions. Once registered, you can log in to your account online, check balances, transfer funds, and manage your finances conveniently.",
+      "To enroll in online banking, visit our website and click on the 'Register' or 'Enroll Now' option. Provide your account details, create a username, password, and security questions. Once registered, you can log in to your account online, check balances, transfer funds, and manage your finances conveniently.",
   },
   {
     question: "What are the interest rates for savings accounts?",
@@ -127,7 +127,7 @@ const Chatbot = () => {
   const [chatHistory, setChatHistory] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showEmailForm, setShowEmailForm] = useState(false);
   const [showAddressForm, setShowAddressForm] = useState(false);
@@ -144,8 +144,8 @@ const Chatbot = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:8090/api/login", {
-        email,
+      const response = await axios.get("http://localhost:8090/api/welcome", {
+        username,
         password,
       });
       console.log(response.data);
@@ -798,7 +798,7 @@ const Chatbot = () => {
                 {!isLoggedIn && (
                   <form onSubmit={handleLoginFormSubmit}>
                     <label
-                      htmlFor="email"
+                      htmlFor="username"
                       style={{
                         display: "block",
                         marginBottom: "5px",
@@ -810,9 +810,9 @@ const Chatbot = () => {
                     </label>
                     <input
                       type="text"
-                      id="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                      id="username"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
                       style={{
                         width: "100%",
                         padding: "10px",

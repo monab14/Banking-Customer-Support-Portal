@@ -24,8 +24,8 @@ const TicketStatus = () => {
       setIsCustomerIdValid(true);
 
       try {
-        const response = await fetch(`http://localhost:8090/api/${customerid}/addtickets`, {
-          method: 'POST',
+        const response = await fetch(`http://localhost:8090/api/${customerid}/alltickets`, {
+          method: 'GET',
           headers: {
             'Content-Type': 'application/json',
           },
