@@ -125,9 +125,11 @@ const Chatbot = () => {
   const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [userMessage, setUserMessage] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    localStorage.getItem("loggedIn")
+  );
   const [showLogin, setShowLogin] = useState(false);
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showEmailForm, setShowEmailForm] = useState(false);
   const [showAddressForm, setShowAddressForm] = useState(false);
@@ -144,13 +146,13 @@ const Chatbot = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.get("http://localhost:8090/api/welcome", {
-        username,
+      const response = await axios.post("http://localhost:8090/api/login", {
+        email,
         password,
       });
       console.log(response.data);
       setIsLoggedIn(true);
-      localStorage.setItem("loggedIn", "true");
+      localStorage.setItem("loggedIn", true);
       setShowLogin(false);
       setChatHistory([{ type: "bot", message: "Logged in successfully." }]);
     } catch (error) {
@@ -226,7 +228,7 @@ const Chatbot = () => {
 
   const handleTermsChange = () => {
     if (!acceptedTerms && !localStorage.getItem("loggedIn")) {
-      setShowLogin(true);
+      setAcceptedTerms(true);
     } else {
       setAcceptedTerms(!acceptedTerms);
       setShowValidationMessage(false);
@@ -798,7 +800,7 @@ const Chatbot = () => {
                 {!isLoggedIn && (
                   <form onSubmit={handleLoginFormSubmit}>
                     <label
-                      htmlFor="username"
+                      htmlFor="email"
                       style={{
                         display: "block",
                         marginBottom: "5px",
@@ -810,9 +812,9 @@ const Chatbot = () => {
                     </label>
                     <input
                       type="text"
-                      id="username"
-                      value={username}
-                      onChange={(e) => setUsername(e.target.value)}
+                      id="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       style={{
                         width: "100%",
                         padding: "10px",
@@ -862,8 +864,6 @@ const Chatbot = () => {
                 )}
               </div>
             )}
-
-            
 
             <div
               className="container"
