@@ -142,11 +142,14 @@ const Chatbot = () => {
     "Others",
   ]);
   const [ticketid, setTicketid] = useState("");
-  const [customerid, setcustomerid] = useState("");
+  const [customerid, setcustomerid] = useState();
   const [ticketStatus, setTicketStatus] = useState("");
   const [showTicketForm, setShowTicketForm] = useState(false);
   const [showTicketStatusForm, setShowTicketStatusForm] = useState(false);
   const [ticketFormInput, setTicketFormInput] = useState("");
+
+  const customerId = JSON.parse(localStorage.getItem("userData"))?.customerid;
+  console.log(customerId);
   const handleLoginFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -155,11 +158,16 @@ const Chatbot = () => {
         email,
         password,
       });
+      if (response.status === 200) {
+        localStorage.setItem("loggedIn", true);
 
-      setcustomerid(response.data.customerid);
+        localStorage.setItem("userData", JSON.stringify(response.data));
+      } else {
+        alert("Invalid username or password. Please try again.");
+      }
 
       setIsLoggedIn(true);
-      localStorage.setItem("loggedIn", true);
+
       setShowLogin(false);
       setChatHistory([{ type: "bot", message: "Logged in successfully." }]);
     } catch (error) {
@@ -271,10 +279,10 @@ const Chatbot = () => {
     setUserMessage("");
   };
 
-  const updateEmail = async (newEmail, customerid, setChatHistory) => {
+  const updateEmail = async (newEmail, customerId, setChatHistory) => {
     try {
       const response = await axios.put(
-        `http://localhost:8090/api/customer/${customerid}`,
+        `http://localhost:8090/api/customer/${customerId}`,
         { email: newEmail },
         {
           headers: {
@@ -312,7 +320,7 @@ const Chatbot = () => {
     e.preventDefault();
     const newAddress = e.target.elements.address.value;
 
-    handleAddressUpdate(newAddress, customerid, setChatHistory);
+    handleAddressUpdate(newAddress, customerId, setChatHistory);
     setShowAddressForm(false);
   };
   const handleQuestionOptionSelect = (selectedOption) => {
@@ -334,12 +342,12 @@ const Chatbot = () => {
   };
   const handleAddressUpdate = async (
     newAddress,
-    customerid,
+    customerId,
     setChatHistory
   ) => {
     try {
       const response = await axios.put(
-        `http://localhost:8090/api/customer/${customerid}`,
+        `http://localhost:8090/api/customer/${customerId}`,
         { address: newAddress },
         {
           headers: {
@@ -377,18 +385,18 @@ const Chatbot = () => {
     e.preventDefault();
     const newPhoneNumber = e.target.elements.phoneNumber.value;
 
-    handlePhoneNumberUpdate(newPhoneNumber, customerid);
+    handlePhoneNumberUpdate(newPhoneNumber, customerId);
     setShowPhoneNumberForm(false);
   };
 
-  const handlePhoneNumberUpdate = async (newPhoneNumber, customerid) => {
+  const handlePhoneNumberUpdate = async (newPhoneNumber, customerId) => {
     try {
       const customer = {
-        customerid: customerid,
+        customerId: customerId,
       };
 
       const response = await fetch(
-        `http://localhost:8090/api/customer/${customer.customerid}`,
+        `http://localhost:8090/api/customer/${customer.customerId}`,
         {
           method: "PUT",
           headers: {
@@ -509,24 +517,19 @@ const Chatbot = () => {
       { type: "bot", message: "Please describe your issue or query:" },
     ]);
     setShowTicketForm(true);
-    
-
   };
 
   const handleTicketStatusButtonClick = () => {
-    setChatHistory([
-      { type: "bot", message: "Enter your Ticket Id:" },
-    ]);
-   setShowTicketStatusForm(true);
+    setChatHistory([{ type: "bot", message: "Enter your Ticket Id:" }]);
+    setShowTicketStatusForm(true);
   };
-
 
   const handleTicketFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      const createdat = new Date().toLocaleString(); 
+      const createdat = new Date().toLocaleString();
       const response = await fetch(
-        `http://localhost:8090/api/${customerid}/addticket`,
+        `http://localhost:8090/api/${customerId}/addticket`,
         {
           method: "POST",
           headers: {
@@ -542,10 +545,8 @@ const Chatbot = () => {
       if (response.ok) {
         const data = await response.json();
 
-       
         const botMessage = `Ticket raised successfully! Ticket ID: ${data.ticketid}`;
-        
-        
+
         setChatHistory([{ type: "bot", message: botMessage }]);
         setShowTicketForm(false);
       } else {
@@ -558,19 +559,19 @@ const Chatbot = () => {
   const handleTicketStatusFormSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(e.target); 
+    const formData = new FormData(e.target);
     const ticketid = formData.get("ticketid");
     console.log("Ticket ID:", ticketid);
-    
+
     console.log(ticketid);
     try {
-      if (!customerid) {
+      if (!customerId) {
         console.error("Customer ID is not available.");
         return;
       }
 
       const response = await axios.get(
-        `http://localhost:8090/api/${customerid}/ticket/${ticketid}`
+        `http://localhost:8090/api/${customerId}/ticket/${ticketid}`
       );
       if (response && response.data && response.data.status) {
         setTicketStatus(response.data.status);
@@ -623,13 +624,13 @@ const Chatbot = () => {
     e.preventDefault();
     const newEmail = e.target.elements.email.value;
 
-    handleEmailUpdate(newEmail, customerid);
+    handleEmailUpdate(newEmail, customerId);
     setShowEmailForm(false);
   };
 
-  const handleEmailUpdate = async (newEmail, customerid) => {
+  const handleEmailUpdate = async (newEmail, customerId) => {
     try {
-      await updateEmail(newEmail, customerid, setChatHistory);
+      await updateEmail(newEmail, customerId, setChatHistory);
     } catch (error) {
       console.error("Error updating email:", error);
     }

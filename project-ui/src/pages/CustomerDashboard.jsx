@@ -32,6 +32,7 @@ const CustomerDashboard = () => {
   };
   const handleLogout = () => {
     localStorage.removeItem("loggedIn");
+    localStorage.removeItem("userData")
 
     navigate("/login");
   };
