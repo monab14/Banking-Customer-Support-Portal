@@ -149,8 +149,8 @@ const AdminDashboard = () => {
               </Link>
             </li>
             <li style={{ marginTop: "15px" }}>
-              <Link to="#">
-                <h5 style={{ color: "black" }}>Support Team</h5>
+              <Link to="/AllTickets">
+                <h5 style={{ color: "black" }}>Raised Tickets</h5>
               </Link>
             </li>
 

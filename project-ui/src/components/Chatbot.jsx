@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaTimes, FaPaperPlane } from "react-icons/fa";
 import AskRadz from "../images/AskRadz.png";
 import axios from "axios";
@@ -8,7 +8,7 @@ const ChatMessage = ({ type, message, timestamp }) => {
     padding: "10px",
     borderRadius: "15px",
     textAlign: type === "user" ? "right" : "left",
-    marginBottom: "10px",
+    marginBottom: "20px",
     color: type === "user" ? "#fff" : "#fff",
     justifyContent: type === "user" ? "flex-end" : "flex-start",
     backgroundColor: type === "user" ? "#750D37" : "#546A76",
@@ -141,7 +141,12 @@ const Chatbot = () => {
     "Card Problems",
     "Others",
   ]);
-
+  const [ticketid, setTicketid] = useState("");
+  const [customerid, setcustomerid] = useState("");
+  const [ticketStatus, setTicketStatus] = useState("");
+  const [showTicketForm, setShowTicketForm] = useState(false);
+  const [showTicketStatusForm, setShowTicketStatusForm] = useState(false);
+  const [ticketFormInput, setTicketFormInput] = useState("");
   const handleLoginFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -150,7 +155,9 @@ const Chatbot = () => {
         email,
         password,
       });
-      console.log(response.data);
+
+      setcustomerid(response.data.customerid);
+
       setIsLoggedIn(true);
       localStorage.setItem("loggedIn", true);
       setShowLogin(false);
@@ -264,20 +271,19 @@ const Chatbot = () => {
     setUserMessage("");
   };
 
-  const updateEmail = async (newEmail, customerId, setChatHistory) => {
+  const updateEmail = async (newEmail, customerid, setChatHistory) => {
     try {
-      const response = await fetch(
-        `http://localhost:8090/api/customer/${customerId}`,
+      const response = await axios.put(
+        `http://localhost:8090/api/customer/${customerid}`,
+        { email: newEmail },
         {
-          method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ email: newEmail }),
         }
       );
 
-      if (response.ok) {
+      if (response.status === 200) {
         setChatHistory([
           { type: "bot", message: "Email updated successfully." },
         ]);
@@ -305,8 +311,8 @@ const Chatbot = () => {
   const handleAddressFormSubmit = (e) => {
     e.preventDefault();
     const newAddress = e.target.elements.address.value;
-    const customerId = 1;
-    handleAddressUpdate(newAddress, customerId);
+
+    handleAddressUpdate(newAddress, customerid, setChatHistory);
     setShowAddressForm(false);
   };
   const handleQuestionOptionSelect = (selectedOption) => {
@@ -326,20 +332,23 @@ const Chatbot = () => {
     setChatHistory(newChatHistory);
     setShowQuestionOptions(false);
   };
-  const handleAddressUpdate = async (newAddress, customerId) => {
+  const handleAddressUpdate = async (
+    newAddress,
+    customerid,
+    setChatHistory
+  ) => {
     try {
-      const response = await fetch(
-        `http://localhost:8090/api/customer/${customerId}`,
+      const response = await axios.put(
+        `http://localhost:8090/api/customer/${customerid}`,
+        { address: newAddress },
         {
-          method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ address: newAddress }),
         }
       );
 
-      if (response.ok) {
+      if (response.status === 200) {
         setChatHistory([
           { type: "bot", message: "Address updated successfully." },
         ]);
@@ -354,6 +363,7 @@ const Chatbot = () => {
       }
     } catch (error) {
       console.error("Error updating address:", error);
+
       setChatHistory([
         {
           type: "bot",
@@ -366,15 +376,19 @@ const Chatbot = () => {
   const handlePhoneNumberFormSubmit = (e) => {
     e.preventDefault();
     const newPhoneNumber = e.target.elements.phoneNumber.value;
-    const customerId = 1;
-    handlePhoneNumberUpdate(newPhoneNumber, customerId);
+
+    handlePhoneNumberUpdate(newPhoneNumber, customerid);
     setShowPhoneNumberForm(false);
   };
 
-  const handlePhoneNumberUpdate = async (newPhoneNumber, customerId) => {
+  const handlePhoneNumberUpdate = async (newPhoneNumber, customerid) => {
     try {
+      const customer = {
+        customerid: customerid,
+      };
+
       const response = await fetch(
-        `http://localhost:8090/api/customer/${customerId}`,
+        `http://localhost:8090/api/customer/${customer.customerid}`,
         {
           method: "PUT",
           headers: {
@@ -473,21 +487,149 @@ const Chatbot = () => {
           break;
         default:
           break;
+        case "Raise Ticket":
+          setChatHistory([
+            { type: "bot", message: "Please describe your issue or query:" },
+          ]);
+          setShowTicketForm(true);
+          break;
+
+        case "Check Ticket Status":
+          setChatHistory([
+            { type: "bot", message: "Please enter your ticket ID:" },
+          ]);
+          setShowTicketStatusForm(true);
+          break;
       }
+    }
+  };
+
+  const handleRaiseTicketClick = () => {
+    setChatHistory([
+      { type: "bot", message: "Please describe your issue or query:" },
+    ]);
+    setShowTicketForm(true);
+    
+
+  };
+
+  const handleTicketStatusButtonClick = () => {
+    setChatHistory([
+      { type: "bot", message: "Enter your Ticket Id:" },
+    ]);
+   setShowTicketStatusForm(true);
+  };
+
+
+  const handleTicketFormSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const createdat = new Date().toLocaleString(); 
+      const response = await fetch(
+        `http://localhost:8090/api/${customerid}/addticket`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            query: ticketFormInput,
+            status: "Open",
+            createdat: createdat,
+          }),
+        }
+      );
+      if (response.ok) {
+        const data = await response.json();
+
+       
+        const botMessage = `Ticket raised successfully! Ticket ID: ${data.ticketid}`;
+        
+        
+        setChatHistory([{ type: "bot", message: botMessage }]);
+        setShowTicketForm(false);
+      } else {
+        console.error("Error:", response.status, response.statusText);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+  const handleTicketStatusFormSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target); 
+    const ticketid = formData.get("ticketid");
+    console.log("Ticket ID:", ticketid);
+    
+    console.log(ticketid);
+    try {
+      if (!customerid) {
+        console.error("Customer ID is not available.");
+        return;
+      }
+
+      const response = await axios.get(
+        `http://localhost:8090/api/${customerid}/ticket/${ticketid}`
+      );
+      if (response && response.data && response.data.status) {
+        setTicketStatus(response.data.status);
+        console.log(
+          `Ticket status for Ticket ID ${ticketid}: ${response.data.status}`
+        );
+        setChatHistory([
+          ...chatHistory,
+          {
+            type: "user",
+            message: `Check ticket status for Ticket ID : ${ticketid}`,
+          },
+          { type: "bot", message: `Ticket status: ${response.data.status}` },
+          { type: "bot", message: `Ticket Query: ${response.data.query}` },
+        ]);
+        setShowTicketStatusForm(false);
+      } else {
+        console.error("Invalid response data:", response);
+        setChatHistory([
+          ...chatHistory,
+          {
+            type: "user",
+            message: `Check ticket status for Ticket ID: ${ticketid}`,
+          },
+          {
+            type: "bot",
+            message:
+              "Failed to retrieve ticket status. Please check the ticket ID and try again.",
+          },
+        ]);
+      }
+    } catch (error) {
+      console.error("Error getting ticket status:", error);
+      setChatHistory([
+        ...chatHistory,
+        {
+          type: "user",
+          message: `Check ticket status for Ticket ID ${ticketid}`,
+        },
+        {
+          type: "bot",
+          message:
+            "Failed to retrieve ticket status. Please check the ticket ID and try again.",
+        },
+      ]);
     }
   };
 
   const handleEmailFormSubmit = (e) => {
     e.preventDefault();
     const newEmail = e.target.elements.email.value;
-    const customerId = 1;
-    handleEmailUpdate(newEmail, customerId);
+
+    handleEmailUpdate(newEmail, customerid);
     setShowEmailForm(false);
   };
 
-  const handleEmailUpdate = async (newEmail, customerId) => {
+  const handleEmailUpdate = async (newEmail, customerid) => {
     try {
-      await updateEmail(newEmail, customerId, setChatHistory);
+      await updateEmail(newEmail, customerid, setChatHistory);
     } catch (error) {
       console.error("Error updating email:", error);
     }
@@ -667,6 +809,38 @@ const Chatbot = () => {
                   >
                     Update E-Mail
                   </button>
+                  <button
+                    style={{
+                      width: "130px",
+                      padding: "5px",
+                      borderRadius: "8px",
+                      border: "none",
+                      backgroundColor: "#d3d3d3",
+                      color: "#750D37",
+                      fontSize: "15px",
+                      margin: "10px",
+                      cursor: "pointer",
+                    }}
+                    onClick={handleRaiseTicketClick}
+                  >
+                    Raise Ticket
+                  </button>
+                  <button
+                    style={{
+                      width: "130px",
+                      padding: "5px",
+                      borderRadius: "8px",
+                      border: "none",
+                      backgroundColor: "#d3d3d3",
+                      color: "#750D37",
+                      fontSize: "15px",
+                      margin: "10px",
+                      cursor: "pointer",
+                    }}
+                    onClick={handleTicketStatusButtonClick}
+                  >
+                    Get Ticket Status
+                  </button>
                 </div>
               </div>
             )}
@@ -789,6 +963,90 @@ const Chatbot = () => {
                   }}
                 >
                   Update Address
+                </button>
+              </form>
+            )}
+
+            {showTicketForm && (
+              <form
+                style={{
+                  backgroundColor: "#f2f2f2",
+                  padding: "20px",
+                  borderRadius: "10px",
+                  boxShadow: "0px 0px 5px 0px rgba(0, 0, 0, 0.5)",
+                  marginTop: "20px",
+                }}
+                onSubmit={handleTicketFormSubmit}
+              >
+                <input
+                  type="text"
+                  name="ticketQuery"
+                  value={ticketFormInput}
+                  onChange={(e) => setTicketFormInput(e.target.value)}
+                  placeholder="Describe your issue or query"
+                  required
+                  style={{
+                    flex: 1,
+                    padding: "10px",
+                    borderRadius: "5px",
+                    border: "1px solid #ccc",
+                    marginBottom: "10px",
+                  }}
+                />
+                <button
+                  type="submit"
+                  style={{
+                    backgroundColor: "#750D37",
+                    color: "white",
+                    border: "none",
+                    padding: "10px 20px",
+                    borderRadius: "5px",
+                    cursor: "pointer",
+                    transition: "background-color 0.3s ease",
+                  }}
+                >
+                  Raise A Ticket
+                </button>
+              </form>
+            )}
+
+            {showTicketStatusForm && (
+              <form
+                style={{
+                  backgroundColor: "#f2f2f2",
+                  padding: "20px",
+                  borderRadius: "10px",
+                  boxShadow: "0px 0px 5px 0px rgba(0, 0, 0, 0.5)",
+                  marginTop: "20px",
+                }}
+                onSubmit={(e) => handleTicketStatusFormSubmit(e, ticketid)}
+              >
+                <input
+                  type="text"
+                  name="ticketid"
+                  placeholder="Enter your ticket ID"
+                  required
+                  style={{
+                    flex: 1,
+                    padding: "10px",
+                    borderRadius: "5px",
+                    border: "1px solid #ccc",
+                    marginBottom: "10px",
+                  }}
+                />
+                <button
+                  type="submit"
+                  style={{
+                    backgroundColor: "#750D37",
+                    color: "white",
+                    border: "none",
+                    padding: "10px 20px",
+                    borderRadius: "5px",
+                    cursor: "pointer",
+                    transition: "background-color 0.3s ease",
+                  }}
+                >
+                  Check Ticket Status
                 </button>
               </form>
             )}
@@ -995,5 +1253,4 @@ const Chatbot = () => {
     </div>
   );
 };
-
 export default Chatbot;
