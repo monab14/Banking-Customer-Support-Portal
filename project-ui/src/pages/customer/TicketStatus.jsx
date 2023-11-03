@@ -20,16 +20,18 @@ const TicketStatus = () => {
         return;
       }
       
-      // Reset validation status
       setIsCustomerIdValid(true);
 
       try {
-        const response = await fetch(`http://localhost:8090/api/allticket`, {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
+        const response = await fetch(
+          `http://localhost:8090/api/${customerid}/tickets`,
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
+        );
 
         if (!response.ok) {
           throw new Error('Network response was not ok');
