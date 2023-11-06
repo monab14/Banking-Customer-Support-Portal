@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect ,axios} from "react";
 import { useNavigate } from "react-router-dom";
 import DashboardCarousel from "./SupportCarousel";
 import Chatbot from "../components/Chatbot";
@@ -7,12 +7,11 @@ import ComplaintWrapperButton from "../components/ComplaintWrapperButton";
 
 const CustomerDashboard = () => {
   const navigate = useNavigate();
-  const [customerId, setCustomerId] = useState(null);
-  const [customerData, setCustomerData] = useState(null);
+  const [isRmInfoVisible, setIsRmInfoVisible] = useState(false);
+ const [customerData, setCustomerData] = useState(null);
   const [complaintData, setComplaintData] = useState(null);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const [isRmInfoVisible, setIsRmInfoVisible] = useState(false);
   const [showComplaintsCard, setShowComplaintsCard] = useState(false);
 
   const handleViewComplaints = () => {
@@ -32,10 +31,76 @@ const CustomerDashboard = () => {
   };
   const handleLogout = () => {
     localStorage.removeItem("loggedIn");
-    localStorage.removeItem("userData")
 
     navigate("/login");
   };
+  const handleExcelDownload = (complaintId) => {
+    fetch(`http://localhost:8090/complaints/complaint/${complaintId}/export/excel`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.blob();
+      })
+      .then(blob => {
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'complaint.xlsx'; // Change the file extension to .xlsx for Excel
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      })
+      .catch(error => {
+        console.error('Error generating Excel', error);
+      });
+  };
+  //handle csv file download
+  const handleCsvDownload = (complaintId) => {
+    fetch(`http://localhost:8090/complaints/complaint/${complaintId}/export/csv`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.blob();
+      })
+      .then(blob => {
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'complaint.csv'; // Set the file name to have a .csv extension
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      })
+      .catch(error => {
+        console.error('Error generating CSV', error);
+      });
+  };
+  
+// Define the function to handle the download
+const handleDownload = (complaintId) => {
+  fetch(`http://localhost:8090/complaints/complaint/${complaintId}/exportPdf`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.blob();
+    })
+    .then(blob => {
+      const url = window.URL.createObjectURL(new Blob([blob]));
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'complaint.pdf';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    })
+    .catch(error => {
+      console.error('Error generating PDF', error);
+    });
+};
+
 
   useEffect(() => {
     // Fetch customer data
@@ -47,12 +112,18 @@ const CustomerDashboard = () => {
       .catch((error) => console.error("Error fetching customer data:", error));
 
     // Fetch complaint data
-    fetch(`http://localhost:8090/complaints/complaint/${customer.customerid}`)
+  
+    fetch(`http://localhost:8090/complaints/customer/${customer.customerid}`)
       .then((response) => response.json())
       .then((data) => setComplaintData(data))
       .catch((error) => console.error("Error fetching complaint data:", error));
   }, []);
+ 
+  
 
+
+
+  
   const handleToggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
     console.log(isDropdownOpen);
@@ -322,21 +393,16 @@ const CustomerDashboard = () => {
             <div className="mt-2">
               <div className="d-flex align-items-center justify-content-between">
                 <div className="textAlign " style={{ textAlign: "left" }}>
-                  <h2 style={{ marginLeft: "45px", color: "grey" }}>
-                    {" "}
-                    Customer Dashboard
-                  </h2>
+                <h2 style={{ marginLeft: "45px", color: "grey" }}>
+  EasyBank Portal As <span style={{ fontStyle: "italic", color: "#750D37" }}>Money Matters</span>
+</h2>
+
                 </div>
 
-                <div
-                  className="col-md-5 ml-auto text-right"
-                  style={{
-                    marginLeft: "20px",
-                    marginRight: 0,
-                    textAlign: "right",
-                  }}
-                >
-                  <div className=" d-flex align-items-center justify-content-end ">
+                <div className="col-md-3">
+
+              <div className="d-flex align-items-end" style={{ marginLeft: "195px" }}>
+  <div className="mr-5"></div>
                     {customerData && (
                       <div className="dropdown">
                         <button
@@ -386,15 +452,18 @@ const CustomerDashboard = () => {
                     )}
                     <button
                       className="btn btn-secondary"
+                      
                       style={{
                         marginLeft: "10px",
                         backgroundColor: "#750D37",
                         color: "white",
+                       
                       }}
                       onClick={handleLogout}
                     >
                       Logout
                     </button>
+        
                   </div>
                 </div>
               </div>
@@ -486,6 +555,7 @@ const CustomerDashboard = () => {
                         height: "290px",
                         width: "170px",
                         boxShadow: "0px 4px 8px rgba(1, 1, 1, 0.3)",
+                        zIndex: 2, //to set the card in front
                       }}
                     >
                       <div className="card-body">
@@ -517,30 +587,34 @@ const CustomerDashboard = () => {
                             <div
                               className="card mt-4 "
                               style={{
-                                height: "330px",
-                                width: "190px",
+                                height: "290px",
+                                width: "195px",
                                 marginTop: "15px",
+                                boxShadow: "0px 4px 8px rgba(1, 1, 1, 0.3)",
                               }}
                             >
                               <div className="card-body">
                                 <div>
-                                  <p style={{ color: "#333" }}>
+                                  <p style={{ color: "#333" ,fontWeight: "bold", fontSize:"15px",}}>
                                     Please contact your nearest branch or reach
                                     below customer care numbers for any
                                     assistance.
                                   </p>
                                   <p
                                     style={{
-                                      color: "#343a40",
+                                      color: "#6c757d",
                                       fontWeight: "bold",
+                                      fontSize:"18px",
+                                      
                                     }}
                                   >
                                     1-860-419-5555 / 1-860-500-5555
                                   </p>
-                                  <div className="card-body text-center">
+                                  <div className="card-body text-center" >
+                                  
                                     <button
                                       className="btn btn-primary "
-                                      style={{ backgroundColor: "#871f40" }}
+                                      style={{ backgroundColor: "#871f40",marginTop:"-35px" }}
                                       onClick={handleOk}
                                     >
                                       OK
@@ -555,57 +629,101 @@ const CustomerDashboard = () => {
                     </div>
                   </div>
 
+                 
+   
+
                   {showComplaintsCard && (
-                    <div className="col-md-6 mb-4">
-                      <div
-                        className="card mt-4 "
-                        style={{
-                          width: "900px",
-                          boxShadow: "0px 4px 8px rgba(1, 1, 1, 0.3)",
-                        }}
-                      >
-                        <div className="card-body">
-                          <h5 className="card-title">Your Complaints</h5>
-                          <table className="table">
-                            <tbody>
-                              <tr>
-                                <th>Complaint ID</th>
-                                <td>{complaintData.complaintId}</td>
-                              </tr>
-                              <tr>
-                                <th>Category</th>
-                                <td>{complaintData.category}</td>
-                              </tr>
-                              <tr>
-                                <th>Status</th>
-                                <td>{complaintData.status}</td>
-                              </tr>
-                              <tr>
-                                <th>Created At</th>
-                                <td>{complaintData.createdAt}</td>
-                              </tr>
-                              <tr>
-                                <th>Resolved At</th>
+                    <div
+                      className="card"
+                      style={{
+                        width: "1120px",
+                        boxShadow: "0px 4px 8px rgba(1, 1, 1, 0.3)",
+                      }}
+                    >
+                      <div className="card-body">
+                        <h5 className="card-title">
+                          Customer Complaint Details
+                        </h5>
+                        <table className="table">
+                        <thead className="thead-dark">
+                            <tr>
+                              <th>Complaint ID</th>
+                              <th>Category</th>
+                              {/* <th>Status</th> */}
+                              <th>Created At</th>
+                              <th>Resolved At</th>
+                              <th>Complaint Text</th>
+                              <th>Download Report</th>
+                              <th>Download Report</th>
+                              <th>Download Report</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {complaintData.map((complaint) => (
+                              <tr key={complaint.complaintId}>
+                                <td>{complaint.complaintId}</td>
+                                <td>{complaint.category}</td>
+                                {/* <td>{complaint.status}</td> */}
+                                <td>{complaint.createdAt}</td>
                                 <td>
-                                  {complaintData.resolvedAt
-                                    ? complaintData.resolvedAt
-                                    : "Not Resolved Yet"}
-                                </td>
+                {complaintData.resolvedAt
+                  ? complaintData.resolvedAt
+                  : "Not Resolved Yet"}
+              </td>
+              <td>{complaint.complaintText}</td>
+                             
+  
+                                <td><button
+      className="btn btn-secondary"
+      style={{
+        marginLeft: "5px",
+        backgroundColor: "#750D37",
+        color: "white",
+        marginTop: "10px",
+        width: "70px",
+      }}
+      onClick={() => handleDownload(complaint.complaintId)}
+    >
+      PDF
+    </button></td>
+                                <td> <button
+      className="btn btn-secondary"
+      style={{
+        marginLeft: "5px",
+        backgroundColor: "#750D37",
+        color: "white",
+        marginTop: "10px",
+        width: "70px",
+      }}
+      onClick={() => handleExcelDownload(complaint.complaintId)}
+    >
+      Excel
+    </button></td>
+                                <td><button
+      className="btn btn-secondary"
+      style={{
+        marginLeft: "5px",
+        backgroundColor: "#750D37",
+        color: "white",
+        marginTop: "10px",
+        width: "70px",
+        
+      }}
+      onClick={() => handleCsvDownload(complaint.complaintId)}
+    >
+      CSV
+    </button></td>
                               </tr>
-                              <tr>
-                                <th>Complaint Text</th>
-                                <td>{complaintData.complaintText}</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <button
-                            className="btn btn-primary"
-                            style={{ backgroundColor: "#871f40" }}
-                            onClick={handleGoBack}
-                          >
-                            Back
-                          </button>
-                        </div>
+                            ))}
+                          </tbody>
+                        </table>
+                        <button
+                          className="btn btn-primary"
+                          style={{ backgroundColor: "#871f40" }}
+                          onClick={handleGoBack}
+                        >
+                          Back
+                        </button>
                       </div>
                     </div>
                   )}
