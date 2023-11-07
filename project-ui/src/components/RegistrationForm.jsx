@@ -68,13 +68,19 @@ const sendEmail = (otp) => {
     to_email: formData.email,
     otp: otp,
     };
-    emailjs.send('service_0kj3zyj', 'template_se6hqga', templateParams, 'gIpcz5iBrCfkD-xYm')
-    .then((response) => {
-        console.log('Email sent successfully:', response);
-    })
-    .catch((error) => {
-        console.error('Email sending failed:', error);
-    });
+    emailjs
+      .send(
+        "service_uo2syzr",
+        "template_l4vc8gv",
+        templateParams,
+        "g33NIXa0pnyQ6Fh11"
+      )
+      .then((response) => {
+        console.log("Email sent successfully:", response);
+      })
+      .catch((error) => {
+        console.error("Email sending failed:", error);
+      });
 };
 const [showOTPInput, setShowOTPInput] = useState(false);
     
@@ -121,13 +127,19 @@ const handleOTPSubmit = (e) => {
     customer_id: customerId,
     welcome_message: welcomeMessage,
     };
-    emailjs.send('service_0kj3zyj', 'template_fxz6jh8', templateParams, 'gIpcz5iBrCfkD-xYm')
-    .then((response) => {
-        console.log('Registration Email sent successfully:', response);
-    })
-    .catch((error) => {
-        console.error('Registration Email sending failed:', error);
-    });
+    emailjs
+      .send(
+        "service_uo2syzr",
+        "template_lu0tbun",
+        templateParams,
+        "g33NIXa0pnyQ6Fh11"
+      )
+      .then((response) => {
+        console.log("Registration Email sent successfully:", response);
+      })
+      .catch((error) => {
+        console.error("Registration Email sending failed:", error);
+      });
 };
 
 
